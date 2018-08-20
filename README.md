@@ -37,7 +37,7 @@ Supports addons created by other modders by allowing easy creation of new rule o
 
 ------------
 
-The following original methods are patched using HugsLib.Harmony:
+The following original methods are patched using Harmony:
 ```C#
 RimWorld.FoodUtility.BestFoodSourceOnMap : Prefix
 RimWorld.FoodUtility.BestFoodInInventory : Prefix
