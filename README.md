@@ -31,7 +31,7 @@ Supports addons created by other modders by allowing easy creation of new rule o
 ------------
 
 ###### TECHINICAL DETAILS
->This mod can be safely removed from a save without breaking the game. To do so go to *Global Options* either from the mod settings menu or the main rules window for a character and select *Remove Mod*.
+>This mod can be safely removed from a save without breaking the game. To do so go to *Options* from the main rules window for a character and select *Remove Mod*.
 >
 > A save of your world will be made with no traces of this mod and the game will restart. Skipping the *Remove Mod* step will result in errors being displayed the first time a save is loaded although no further problems should occur.
 
