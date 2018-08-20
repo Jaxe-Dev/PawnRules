@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+  <PawnRules.Button.OK>OK</PawnRules.Button.OK>
+  <PawnRules.Button.Cancel>Cancel</PawnRules.Button.Cancel>
+  <PawnRules.Button.Yes>Yes</PawnRules.Button.Yes>
+  <PawnRules.Button.No>No</PawnRules.Button.No>
+
+  <PawnRules.Button.AssignTo>Assign to ...</PawnRules.Button.AssignTo>
+  <PawnRules.Button.AssignToDesc>Click to assign this preset to others.</PawnRules.Button.AssignToDesc>
+
+  <PawnRules.Button.ViewType>Showing rules for {0}</PawnRules.Button.ViewType>
+  <PawnRules.Button.ViewTypeDefault>Showing default rules for {0}</PawnRules.Button.ViewTypeDefault>
+  <PawnRules.Button.ViewTypeDesc>Click to view rules for other types.</PawnRules.Button.ViewTypeDesc>
+
+  <PawnRules.Button.GlobalOptions>Options</PawnRules.Button.GlobalOptions>
+  <PawnRules.Button.GlobalOptionsDesc>Click to open the global options dialog.</PawnRules.Button.GlobalOptionsDesc>
+
+  <PawnRules.Button.RemoveMod>Remove Mod</PawnRules.Button.RemoveMod>
+  <PawnRules.Button.RemoveModDesc>This will remove and all rules from all characters in the current game and deactivate the mod.\n\nThis will avoid any errors being displayed the first time reloading this game without this mod.</PawnRules.Button.RemoveModDesc>
+  <PawnRules.Button.RemoveModConfirm>This will remove all rules from all characters in the current game and deactivate the mod.\n\nAre you sure you want to do this?</PawnRules.Button.RemoveModConfirm>
+  <PawnRules.Button.RemoveModComplete>A save was created called '{0}' that contains no traces of this mod.\n\nThe game will now restart.</PawnRules.Button.RemoveModComplete>
+  <PawnRules.Button.RemoveModAndAddonsComplete>A save was created called '{0}' that contains no traces of this mod or anyone of the following addon mods:\n\n{1}\n\nThe game will now restart.</PawnRules.Button.RemoveModAndAddonsComplete>
+
+  <PawnRules.Button.PresetNew>New</PawnRules.Button.PresetNew>
+  <PawnRules.Button.PresetNewDesc>Create a new preset.</PawnRules.Button.PresetNewDesc>
+  <PawnRules.Button.PresetEdit>Edit</PawnRules.Button.PresetEdit>
+  <PawnRules.Button.PresetEditDesc>Modify the currently selected preset.</PawnRules.Button.PresetEditDesc>
+  <PawnRules.Button.PresetSave>Save</PawnRules.Button.PresetSave>
+  <PawnRules.Button.PresetSaveDesc>Commit changes to this preset.</PawnRules.Button.PresetSaveDesc>
+  <PawnRules.Button.PresetSaveAs>Save As</PawnRules.Button.PresetSaveAs>
+  <PawnRules.Button.PresetSaveAsDesc>Create a preset from the currently displayed rules.</PawnRules.Button.PresetSaveAsDesc>
+  <PawnRules.Button.PresetClear>Clear</PawnRules.Button.PresetClear>
+  <PawnRules.Button.PresetClearDesc>Reset these personalized rules to vanilla.</PawnRules.Button.PresetClearDesc>
+  <PawnRules.Button.PresetRevert>Revert</PawnRules.Button.PresetRevert>
+  <PawnRules.Button.PresetRevertDesc>Cancel changes to this preset.</PawnRules.Button.PresetRevertDesc>
+  <PawnRules.Button.PresetRename>Rename</PawnRules.Button.PresetRename>
+  <PawnRules.Button.PresetRenameDesc>Change the name of this preset.</PawnRules.Button.PresetRenameDesc>
+  <PawnRules.Button.PresetDelete>Delete</PawnRules.Button.PresetDelete>
+  <PawnRules.Button.PresetDeleteDesc>Permanently remove this preset.</PawnRules.Button.PresetDeleteDesc>
+  <PawnRules.Button.PresetDeleteConfirm>Are you sure you want to delete the preset [{0}]?\n\nThis will affect all characters using this preset.</PawnRules.Button.PresetDeleteConfirm>
+  <PawnRules.Button.PresetSaveConfirm>Save changes to this preset?</PawnRules.Button.PresetSaveConfirm>
+
+  <PawnRules.Button.RestrictionsAllowOn>Allow all</PawnRules.Button.RestrictionsAllowOn>
+  <PawnRules.Button.RestrictionsAllowOff>Disallow all</PawnRules.Button.RestrictionsAllowOff>
+
+  <PawnRules.PresetType.Rules>Rules Preset</PawnRules.PresetType.Rules>
+  <PawnRules.PresetType.Restriction>Restriction Preset</PawnRules.PresetType.Restriction>
+
+  <PawnRules.Preset.Header>Presets</PawnRules.Preset.Header>
+  <PawnRules.Preset.None>None</PawnRules.Preset.None>
+  <PawnRules.Preset.Personalized>&lt;i&gt;Personalized&lt;/i&gt;</PawnRules.Preset.Personalized>
+
+  <PawnRules.RestrictionType.Food>Food Preset</PawnRules.RestrictionType.Food>
+  <PawnRules.RestrictionType.FoodPlural>Food Presets</PawnRules.RestrictionType.FoodPlural>
+  <PawnRules.RestrictionType.FoodCategorization>Edibles</PawnRules.RestrictionType.FoodCategorization>
+  <PawnRules.RestrictionType.Bonding>Bonding Preset</PawnRules.RestrictionType.Bonding>
+  <PawnRules.RestrictionType.BondingPlural>Bonding Presets</PawnRules.RestrictionType.BondingPlural>
+  <PawnRules.RestrictionType.BondingCategorization>Animals</PawnRules.RestrictionType.BondingCategorization>
+
+  <PawnRules.PawnType.Colonist>Colonist</PawnRules.PawnType.Colonist>
+  <PawnRules.PawnType.ColonistPlural>Colonists</PawnRules.PawnType.ColonistPlural>
+  <PawnRules.PawnType.Animal>Animal</PawnRules.PawnType.Animal>
+  <PawnRules.PawnType.AnimalPlural>Animals</PawnRules.PawnType.AnimalPlural>
+  <PawnRules.PawnType.Guest>Guest</PawnRules.PawnType.Guest>
+  <PawnRules.PawnType.GuestPlural>Guests</PawnRules.PawnType.GuestPlural>
+  <PawnRules.PawnType.Prisoner>Prisoner</PawnRules.PawnType.Prisoner>
+  <PawnRules.PawnType.PrisonerPlural>Prisoners</PawnRules.PawnType.PrisonerPlural>
+  <PawnRules.PawnType.Person>Person</PawnRules.PawnType.Person>
+  <PawnRules.PawnType.PersonPlural>Persons</PawnRules.PawnType.PersonPlural>
+  <PawnRules.PawnType.Individual>Individual</PawnRules.PawnType.Individual>
+
+  <PawnRules.Rules.FoodRestrictions>Food Restrictions: {0}</PawnRules.Rules.FoodRestrictions>
+  <PawnRules.Rules.FoodRestrictionsDesc>Click to choose foods that can be eaten automatically.</PawnRules.Rules.FoodRestrictionsDesc>
+  <PawnRules.Rules.BondingRestrictions>Bonding Restrictions: {0}</PawnRules.Rules.BondingRestrictions>
+  <PawnRules.Rules.BondingRestrictionsDesc>Click to choose animals that can be bonded with.</PawnRules.Rules.BondingRestrictionsDesc>
+  <PawnRules.Rules.AllowCourting>Allow Courting</PawnRules.Rules.AllowCourting>
+  <PawnRules.Rules.AllowCourtingDesc>If toggled off will not be allowed to gain a new lover or spouse.</PawnRules.Rules.AllowCourtingDesc>
+  <PawnRules.Rules.AllowArtisan>Allow Artisan</PawnRules.Rules.AllowArtisan>
+  <PawnRules.Rules.AllowArtisanDesc>If toggled off will not build any construction that has a quality level.</PawnRules.Rules.AllowArtisanDesc>
+  <PawnRules.Rules.NotArtisanReason>not allowed artisan builds</PawnRules.Rules.NotArtisanReason>
+  <PawnRules.Rules.NotArtisanJob>construct {0}</PawnRules.Rules.NotArtisanJob>
+
+  <PawnRules.AnimalCategory.Pet>Common Pets</PawnRules.AnimalCategory.Pet>
+  <PawnRules.AnimalCategory.Farm>Farm Animals</PawnRules.AnimalCategory.Farm>
+  <PawnRules.AnimalCategory.Herd>Herd Animals</PawnRules.AnimalCategory.Herd>
+  <PawnRules.AnimalCategory.Predator>Predators</PawnRules.AnimalCategory.Predator>
+  <PawnRules.AnimalCategory.Insect>Insects</PawnRules.AnimalCategory.Insect>
+  <PawnRules.AnimalCategory.Other>Other</PawnRules.AnimalCategory.Other>
+
+  <PawnRules.Gizmo.EditRulesLabel>Rules</PawnRules.Gizmo.EditRulesLabel>
+  <PawnRules.Gizmo.EditRulesDesc>Edit the rules for this {0}.</PawnRules.Gizmo.EditRulesDesc>
+
+  <PawnRules.Dialog_Global.Title>Global Options</PawnRules.Dialog_Global.Title>
+
+  <PawnRules.Dialog_Rules.Title>Rules for {0}, {1}</PawnRules.Dialog_Rules.Title>
+  <PawnRules.Dialog_Rules.TitleDefault>Default Rules for {0}</PawnRules.Dialog_Rules.TitleDefault>
+  <PawnRules.Dialog_Rules.HeaderOptions>Options</PawnRules.Dialog_Rules.HeaderOptions>
+  <PawnRules.Dialog_Rules.Configuration>Configuration</PawnRules.Dialog_Rules.Configuration>
+  <PawnRules.Dialog_Rules.DefaultType>Default {0}</PawnRules.Dialog_Rules.DefaultType>
+  <PawnRules.Dialog_Rules.AssignAll>Assign to all {0}</PawnRules.Dialog_Rules.AssignAll>
+  <PawnRules.Dialog_Rules.AssignAllConfirm>Are you sure you want to {0} {1} other {2}?</PawnRules.Dialog_Rules.AssignAllConfirm>
+  <PawnRules.Dialog_Rules.AssignDefault>Set as default for new {0}</PawnRules.Dialog_Rules.AssignDefault>
+  <PawnRules.Dialog_Rules.AssignDefaultConfirm>Are you sure you want to change the default rules for new {0} to the preset {1}?</PawnRules.Dialog_Rules.AssignDefaultConfirm>
+  <PawnRules.Dialog_Rules.AssignSpecific>Assign to {0}</PawnRules.Dialog_Rules.AssignSpecific>
+  <PawnRules.Dialog_Rules.AssignSpecificConfirm>Are you sure you want to {0} {1}?</PawnRules.Dialog_Rules.AssignSpecificConfirm>
+  <PawnRules.Dialog_Rules.AssignPersonalizedName>assign these personalized rules to</PawnRules.Dialog_Rules.AssignPersonalizedName>
+  <PawnRules.Dialog_Rules.AssignSpecificName>assign the preset {0} to</PawnRules.Dialog_Rules.AssignSpecificName>
+  <PawnRules.Dialog_Rules.AssignVoidName>clear the rules for</PawnRules.Dialog_Rules.AssignVoidName>
+  <PawnRules.Dialog_Rules.EditRestriction>Edit restrictions...</PawnRules.Dialog_Rules.EditRestriction>
+  <PawnRules.Dialog_Rules.ClearRestriction>Allow all {0}</PawnRules.Dialog_Rules.ClearRestriction>
+  <PawnRules.Dialog_Rules.ChangeRestriction>Set to {0}</PawnRules.Dialog_Rules.ChangeRestriction>
+
+  <PawnRules.Dialog_Restrictions.TitlePreset>{0} [{1}]</PawnRules.Dialog_Restrictions.TitlePreset>
+  <PawnRules.Dialog_Restrictions.TitlePawn>{0} for {1}, {2}</PawnRules.Dialog_Restrictions.TitlePawn>
+  <PawnRules.Dialog_Restrictions.HeaderCategory>Category</PawnRules.Dialog_Restrictions.HeaderCategory>
+
+  <PawnRules.Dialog_PresetName.Title>Preset [{0}]</PawnRules.Dialog_PresetName.Title>
+  <PawnRules.Dialog_PresetName.TitleNew>Create Preset</PawnRules.Dialog_PresetName.TitleNew>
+  <PawnRules.Dialog_PresetName.Label>Enter new name:</PawnRules.Dialog_PresetName.Label>
+</LanguageData>

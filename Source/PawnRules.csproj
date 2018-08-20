@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A4DC7884-6BF7-4787-A274-ABF85D361DE0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PawnRules</RootNamespace>
+    <AssemblyName>PawnRules</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>default</LangVersion>
+    <DocumentationFile>..\Assemblies\PawnRules.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>..\Assemblies\PawnRules.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Dev\RimDev\Harmony\New\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Patch\RimWorld_FoodUtility_BestFoodInInventory.cs" />
+    <Compile Include="Patch\RimWorld_JoyGiver_Ingest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mod.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="Data\AddonManager.cs" />
+    <Compile Include="Data\AddonOption.cs" />
+    <Compile Include="Data\Binding.cs" />
+    <Compile Include="Data\IPresetableType.cs" />
+    <Compile Include="Data\Lang.cs" />
+    <Compile Include="Data\PawnType.cs" />
+    <Compile Include="Data\Presetable.cs" />
+    <Compile Include="Data\Registry.cs" />
+    <Compile Include="Data\Restriction.cs" />
+    <Compile Include="Data\RestrictionTemplate.cs" />
+    <Compile Include="Data\RestrictionType.cs" />
+    <Compile Include="Data\Rules.cs" />
+    <Compile Include="Data\ScribePlus.cs" />
+    <Compile Include="Data\Toggle.cs" />
+    <Compile Include="Interface\Dialog_Alert.cs" />
+    <Compile Include="Interface\Dialog_Global.cs" />
+    <Compile Include="Interface\Dialog_Restrictions.cs" />
+    <Compile Include="Interface\Dialog_Rules.cs" />
+    <Compile Include="Interface\Dialog_PresetName.cs" />
+    <Compile Include="Interface\GuiPlus.cs" />
+    <Compile Include="Interface\Listing_Preset.cs" />
+    <Compile Include="Interface\Listing_StandardPlus.cs" />
+    <Compile Include="Interface\OptionWidget.cs" />
+    <Compile Include="Interface\WindowPlus.cs" />
+    <Compile Include="Patch\Extensions.cs" />
+    <Compile Include="Patch\PrivateAccess.cs" />
+    <Compile Include="Patch\RimWorld_FoodUtility_BestFoodSourceOnMap.cs" />
+    <Compile Include="Patch\RimWorld_GenConstruct_CanConstruct.cs" />
+    <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_SuccessChance.cs" />
+    <Compile Include="Patch\RimWorld_JobGiver_PackFood.cs" />
+    <Compile Include="Patch\RimWorld_PawnUtility_TrySpawnHatchedOrBornPawn.cs" />
+    <Compile Include="Patch\RimWorld_RelationsUtility_TryDevelopBondRelation.cs" />
+    <Compile Include="Patch\Verse_Game_FinalizeInit.cs" />
+    <Compile Include="Patch\Verse_Pawn_GetGizmos.cs" />
+    <Compile Include="Patch\Verse_Pawn_GuestTracker_SetGuestStatus.cs" />
+    <Compile Include="Patch\Verse_Pawn_Kill.cs" />
+    <Compile Include="Patch\Verse_Pawn_SetFaction.cs" />
+    <Compile Include="Patch\Verse_Pawn_SetFactionDirect.cs" />
+    <Compile Include="SDK\OptionHandle.cs" />
+    <Compile Include="SDK\OptionTarget.cs" />
+    <Compile Include="SDK\PawnRulesLink.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Link>-\README.md</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\.gitignore">
+      <Link>-\.gitignore</Link>
+    </Content>
+    <Content Include="..\About\About.xml">
+      <Link>-\About\About.xml</Link>
+    </Content>
+    <Content Include="..\About\ModSync.xml">
+      <Link>-\About\ModSync.xml</Link>
+    </Content>
+    <Content Include="..\Defs\WorldObjectDefs\PawnRules.xml">
+      <Link>-\Defs\WorldObjectDefs\PawnRules.xml</Link>
+    </Content>
+    <Content Include="..\Languages\English\Keyed\PawnRules.xml">
+      <Link>-\Languages\English\Keyed\PawnRules.xml</Link>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="..\Textures\UI\EditRules.png">
+      <Link>-\Textures\UI\EditRules.png</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
