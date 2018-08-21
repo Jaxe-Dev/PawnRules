@@ -1,6 +1,8 @@
 # Pawn Rules
-#### Version 1.0
+![](https://img.shields.io/badge/Version-1.0.1-brightgreen.svg)
+
 Built for **RimWorld 1.0.x / 0.19.x**\
+Powered by **Harmony**\
 Supports **ModSync RW**
 
 [Link to Ludeon Forum Post](https://ludeon.com/forums/index.php?topic=43086.0)
