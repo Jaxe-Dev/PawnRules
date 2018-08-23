@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+  <PawnRules.Button.OK>确定</PawnRules.Button.OK>
+  <PawnRules.Button.Cancel>取消</PawnRules.Button.Cancel>
+  <PawnRules.Button.Yes>是</PawnRules.Button.Yes>
+  <PawnRules.Button.No>否</PawnRules.Button.No>
+
+  <PawnRules.Button.AssignTo>分配给 ...</PawnRules.Button.AssignTo>
+  <PawnRules.Button.AssignToDesc>点击此处可以将设置分配给其单位。</PawnRules.Button.AssignToDesc>
+
+  <PawnRules.Button.ViewType>显示 {0} 的规则</PawnRules.Button.ViewType>
+  <PawnRules.Button.ViewTypeDefault>显示 {0} 的默认规则</PawnRules.Button.ViewTypeDefault>
+  <PawnRules.Button.ViewTypeDesc>点击此处可以查看其它类型的规则。</PawnRules.Button.ViewTypeDesc>
+
+  <PawnRules.Button.GlobalOptions>设置</PawnRules.Button.GlobalOptions>
+  <PawnRules.Button.GlobalOptionsDesc>点击此处可以打开全局设置对话框。</PawnRules.Button.GlobalOptionsDesc>
+
+  <PawnRules.Button.RemoveMod>移除mod</PawnRules.Button.RemoveMod>
+  <PawnRules.Button.RemoveModDesc>这将删除当前游戏中所有单位的所有规则和预设，并停用mod。\n\n以避免在没有此mod的情况下第一次重新加载此游戏时显示的任何错误。</PawnRules.Button.RemoveModDesc>
+  <PawnRules.Button.RemoveModConfirm>这将删除当前游戏中所有单位的所有规则和预设，并停用该mod。\n\n你确定要这样做吗？</PawnRules.Button.RemoveModConfirm>
+  <PawnRules.Button.RemoveModComplete>创建了一个名为 '{0}'的存档，其中不包含此mod的痕迹。\n\n游戏现在将重新启动。</PawnRules.Button.RemoveModComplete>
+  <PawnRules.Button.RemoveModAndAddonsComplete>创建了一个名为 '{0}'的存档，其中不包含此mod或者以下任何一个mod的痕迹：\n\n{1}\n\n游戏现在将重新启动。</PawnRules.Button.RemoveModAndAddonsComplete>
+
+  <PawnRules.Button.PresetNew>新建</PawnRules.Button.PresetNew>
+  <PawnRules.Button.PresetNewDesc>创建一个新的预设。</PawnRules.Button.PresetNewDesc>
+  <PawnRules.Button.PresetEdit>编辑</PawnRules.Button.PresetEdit>
+  <PawnRules.Button.PresetEditDesc>修改当前选定的预设。</PawnRules.Button.PresetEditDesc>
+  <PawnRules.Button.PresetSave>保存</PawnRules.Button.PresetSave>
+  <PawnRules.Button.PresetSaveDesc>保存对此预设的修改。</PawnRules.Button.PresetSaveDesc>
+  <PawnRules.Button.PresetSaveAs>另存为</PawnRules.Button.PresetSaveAs>
+  <PawnRules.Button.PresetSaveAsDesc>从当前选择的规则创建一个预设。</PawnRules.Button.PresetSaveAsDesc>
+  <PawnRules.Button.PresetClear>清除</PawnRules.Button.PresetClear>
+  <PawnRules.Button.PresetClearDesc>将这些规则重置为原版预设。</PawnRules.Button.PresetClearDesc>
+  <PawnRules.Button.PresetRevert>还原</PawnRules.Button.PresetRevert>
+  <PawnRules.Button.PresetRevertDesc>取消对该预设的更改。</PawnRules.Button.PresetRevertDesc>
+  <PawnRules.Button.PresetRename>重命名</PawnRules.Button.PresetRename>
+  <PawnRules.Button.PresetRenameDesc>更改此预置的名称。</PawnRules.Button.PresetRenameDesc>
+  <PawnRules.Button.PresetDelete>删除</PawnRules.Button.PresetDelete>
+  <PawnRules.Button.PresetDeleteDesc>永久删除此预置。</PawnRules.Button.PresetDeleteDesc>
+  <PawnRules.Button.PresetDeleteConfirm>你确定要删除预设 [{0}]吗？\n\n这样影响所有使用此预设的单位。</PawnRules.Button.PresetDeleteConfirm>
+  <PawnRules.Button.PresetSaveConfirm>保存对该预设的更改吗？</PawnRules.Button.PresetSaveConfirm>
+
+  <PawnRules.Button.RestrictionsAllowOn>允许所有</PawnRules.Button.RestrictionsAllowOn>
+  <PawnRules.Button.RestrictionsAllowOff>禁止所有</PawnRules.Button.RestrictionsAllowOff>
+
+  <PawnRules.PresetType.Rules>预设规则</PawnRules.PresetType.Rules>
+  <PawnRules.PresetType.Restriction>预设限制</PawnRules.PresetType.Restriction>
+
+  <PawnRules.Preset.Header>预设</PawnRules.Preset.Header>
+  <PawnRules.Preset.None>无</PawnRules.Preset.None>
+  <PawnRules.Preset.Personalized>&lt;i&gt;单位预设&lt;/i&gt;</PawnRules.Preset.Personalized>
+
+  <PawnRules.RestrictionType.Food>食物预设</PawnRules.RestrictionType.Food>
+  <PawnRules.RestrictionType.FoodPlural>食物预设</PawnRules.RestrictionType.FoodPlural>
+  <PawnRules.RestrictionType.FoodCategorization>食物</PawnRules.RestrictionType.FoodCategorization>
+  <PawnRules.RestrictionType.Bonding>牵绊预设</PawnRules.RestrictionType.Bonding>
+  <PawnRules.RestrictionType.BondingPlural>牵绊预设</PawnRules.RestrictionType.BondingPlural>
+  <PawnRules.RestrictionType.BondingCategorization>动物</PawnRules.RestrictionType.BondingCategorization>
+
+  <PawnRules.PawnType.Colonist>殖民者</PawnRules.PawnType.Colonist>
+  <PawnRules.PawnType.ColonistPlural>殖民者</PawnRules.PawnType.ColonistPlural>
+  <PawnRules.PawnType.Animal>动物</PawnRules.PawnType.Animal>
+  <PawnRules.PawnType.AnimalPlural>动物</PawnRules.PawnType.AnimalPlural>
+  <PawnRules.PawnType.Guest>访客</PawnRules.PawnType.Guest>
+  <PawnRules.PawnType.GuestPlural>访客</PawnRules.PawnType.GuestPlural>
+  <PawnRules.PawnType.Prisoner>囚犯</PawnRules.PawnType.Prisoner>
+  <PawnRules.PawnType.PrisonerPlural>囚犯</PawnRules.PawnType.PrisonerPlural>
+  <PawnRules.PawnType.Person>个人</PawnRules.PawnType.Person>
+  <PawnRules.PawnType.PersonPlural>个人</PawnRules.PawnType.PersonPlural>
+  <PawnRules.PawnType.Individual>个体</PawnRules.PawnType.Individual>
+
+  <PawnRules.Rules.FoodRestrictions>食物限制： {0}</PawnRules.Rules.FoodRestrictions>
+  <PawnRules.Rules.FoodRestrictionsDesc>点此选择允许食用的食物。</PawnRules.Rules.FoodRestrictionsDesc>
+  <PawnRules.Rules.BondingRestrictions>牵绊限制： {0}</PawnRules.Rules.BondingRestrictions>
+  <PawnRules.Rules.BondingRestrictionsDesc>点此选择允许发展牵绊关系的动物。</PawnRules.Rules.BondingRestrictionsDesc>
+  <PawnRules.Rules.AllowCourting>允许求爱</PawnRules.Rules.AllowCourting>
+  <PawnRules.Rules.AllowCourtingDesc>如果禁止，将不允许获得新的情人或配偶。</PawnRules.Rules.AllowCourtingDesc>
+  <PawnRules.Rules.AllowArtisan>允许品质建造</PawnRules.Rules.AllowArtisan>
+  <PawnRules.Rules.AllowArtisanDesc>如果禁止，将不允许建造任何有品质等级的建筑。</PawnRules.Rules.AllowArtisanDesc>
+  <PawnRules.Rules.NotArtisanReason>不允许品质建造</PawnRules.Rules.NotArtisanReason>
+  <PawnRules.Rules.NotArtisanJob>建造 {0}</PawnRules.Rules.NotArtisanJob>
+
+  <PawnRules.AnimalCategory.Pet>普通宠物</PawnRules.AnimalCategory.Pet>
+  <PawnRules.AnimalCategory.Farm>农场动物</PawnRules.AnimalCategory.Farm>
+  <PawnRules.AnimalCategory.Herd>群居动物</PawnRules.AnimalCategory.Herd>
+  <PawnRules.AnimalCategory.Predator>食肉动物</PawnRules.AnimalCategory.Predator>
+  <PawnRules.AnimalCategory.Insect>虫类</PawnRules.AnimalCategory.Insect>
+  <PawnRules.AnimalCategory.Other>其它</PawnRules.AnimalCategory.Other>
+
+  <PawnRules.Gizmo.EditRulesLabel>规则</PawnRules.Gizmo.EditRulesLabel>
+  <PawnRules.Gizmo.EditRulesDesc>编辑此规则 {0}。</PawnRules.Gizmo.EditRulesDesc>
+
+  <PawnRules.Dialog_Global.Title>全局选项</PawnRules.Dialog_Global.Title>
+
+  <PawnRules.Dialog_Rules.Title>规则：{0}， {1}</PawnRules.Dialog_Rules.Title>
+  <PawnRules.Dialog_Rules.TitleDefault>给{0}默认规则</PawnRules.Dialog_Rules.TitleDefault>
+  <PawnRules.Dialog_Rules.HeaderOptions>设置</PawnRules.Dialog_Rules.HeaderOptions>
+  <PawnRules.Dialog_Rules.Configuration>配置</PawnRules.Dialog_Rules.Configuration>
+  <PawnRules.Dialog_Rules.DefaultType>{0} 默认设置</PawnRules.Dialog_Rules.DefaultType>
+  <PawnRules.Dialog_Rules.AssignAll>分配给所有 {0}</PawnRules.Dialog_Rules.AssignAll>
+  <PawnRules.Dialog_Rules.AssignAllConfirm>你确定要{0}另外{1}个{2}？</PawnRules.Dialog_Rules.AssignAllConfirm>
+  <PawnRules.Dialog_Rules.AssignDefault>设为新{0}的默认预设</PawnRules.Dialog_Rules.AssignDefault>
+  <PawnRules.Dialog_Rules.AssignDefaultConfirm>你确定要将新的{0}默认规则更改为预设{1}吗？</PawnRules.Dialog_Rules.AssignDefaultConfirm>
+  <PawnRules.Dialog_Rules.AssignSpecific>分配给 {0}</PawnRules.Dialog_Rules.AssignSpecific>
+  <PawnRules.Dialog_Rules.AssignSpecificConfirm>你确定你要{0}{1}？</PawnRules.Dialog_Rules.AssignSpecificConfirm>
+  <PawnRules.Dialog_Rules.AssignPersonalizedName>将这些单位预设分配给</PawnRules.Dialog_Rules.AssignPersonalizedName>
+  <PawnRules.Dialog_Rules.AssignSpecificName>将预设{0}分配给</PawnRules.Dialog_Rules.AssignSpecificName>
+  <PawnRules.Dialog_Rules.AssignVoidName>清除规则给</PawnRules.Dialog_Rules.AssignVoidName>
+  <PawnRules.Dialog_Rules.EditRestriction>编辑限制...</PawnRules.Dialog_Rules.EditRestriction>
+  <PawnRules.Dialog_Rules.ClearRestriction>允许全部 {0}</PawnRules.Dialog_Rules.ClearRestriction>
+  <PawnRules.Dialog_Rules.ChangeRestriction>设置 {0}</PawnRules.Dialog_Rules.ChangeRestriction>
+
+  <PawnRules.Dialog_Restrictions.TitlePreset>{0} [{1}]</PawnRules.Dialog_Restrictions.TitlePreset>
+  <PawnRules.Dialog_Restrictions.TitlePawn>{0}：{1}， {2}</PawnRules.Dialog_Restrictions.TitlePawn>
+  <PawnRules.Dialog_Restrictions.HeaderCategory>类别</PawnRules.Dialog_Restrictions.HeaderCategory>
+
+  <PawnRules.Dialog_PresetName.Title>预设 [{0}]</PawnRules.Dialog_PresetName.Title>
+  <PawnRules.Dialog_PresetName.TitleNew>创建预设</PawnRules.Dialog_PresetName.TitleNew>
+  <PawnRules.Dialog_PresetName.Label>输入新名称：</PawnRules.Dialog_PresetName.Label>
+</LanguageData>
