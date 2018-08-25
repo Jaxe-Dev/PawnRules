@@ -6,7 +6,6 @@ namespace PawnRules.Data
 {
     internal class Restriction : Presetable
     {
-        //public static readonly Restriction None = new Restriction(null, Lang.Get("Preset.None"));
         public new RestrictionType Type { get => (RestrictionType) base.Type; private set => base.Type = value; }
 
         private List<string> _defs = new List<string>();
