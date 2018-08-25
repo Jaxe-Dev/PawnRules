@@ -51,11 +51,11 @@
   <PawnRules.Preset.None>None</PawnRules.Preset.None>
   <PawnRules.Preset.Personalized>&lt;i&gt;Personalized&lt;/i&gt;</PawnRules.Preset.Personalized>
 
-  <PawnRules.RestrictionType.Food>Food Preset</PawnRules.RestrictionType.Food>
-  <PawnRules.RestrictionType.FoodPlural>Food Presets</PawnRules.RestrictionType.FoodPlural>
+  <PawnRules.RestrictionType.Food>Food Restriction Preset</PawnRules.RestrictionType.Food>
+  <PawnRules.RestrictionType.FoodPlural>Food Restriction Presets</PawnRules.RestrictionType.FoodPlural>
   <PawnRules.RestrictionType.FoodCategorization>Edibles</PawnRules.RestrictionType.FoodCategorization>
-  <PawnRules.RestrictionType.Bonding>Bonding Preset</PawnRules.RestrictionType.Bonding>
-  <PawnRules.RestrictionType.BondingPlural>Bonding Presets</PawnRules.RestrictionType.BondingPlural>
+  <PawnRules.RestrictionType.Bonding>Bonding Restriction Preset</PawnRules.RestrictionType.Bonding>
+  <PawnRules.RestrictionType.BondingPlural>Bonding Restriction Presets</PawnRules.RestrictionType.BondingPlural>
   <PawnRules.RestrictionType.BondingCategorization>Animals</PawnRules.RestrictionType.BondingCategorization>
 
   <PawnRules.PawnType.Colonist>Colonist</PawnRules.PawnType.Colonist>
