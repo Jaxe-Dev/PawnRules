@@ -6,7 +6,7 @@
   <PawnRules.Button.Yes>是</PawnRules.Button.Yes>
   <PawnRules.Button.No>否</PawnRules.Button.No>
 
-  <PawnRules.Button.AssignTo>分配给 ...</PawnRules.Button.AssignTo>
+  <PawnRules.Button.AssignTo>分配给...</PawnRules.Button.AssignTo>
   <PawnRules.Button.AssignToDesc>点击此处可以将设置分配给其单位。</PawnRules.Button.AssignToDesc>
 
   <PawnRules.Button.ViewType>显示 {0} 的规则</PawnRules.Button.ViewType>
@@ -41,8 +41,8 @@
   <PawnRules.Button.PresetDeleteConfirm>你确定要删除预设 [{0}]吗？\n\n这样影响所有使用此预设的单位。</PawnRules.Button.PresetDeleteConfirm>
   <PawnRules.Button.PresetSaveConfirm>保存对该预设的更改吗？</PawnRules.Button.PresetSaveConfirm>
 
-  <PawnRules.Button.RestrictionsAllowOn>允许所有</PawnRules.Button.RestrictionsAllowOn>
-  <PawnRules.Button.RestrictionsAllowOff>禁止所有</PawnRules.Button.RestrictionsAllowOff>
+  <PawnRules.Button.RestrictionsAllowOn>全部允许</PawnRules.Button.RestrictionsAllowOn>
+  <PawnRules.Button.RestrictionsAllowOff>全部禁止</PawnRules.Button.RestrictionsAllowOff>
 
   <PawnRules.PresetType.Rules>预设规则</PawnRules.PresetType.Rules>
   <PawnRules.PresetType.Restriction>预设限制</PawnRules.PresetType.Restriction>
@@ -51,11 +51,11 @@
   <PawnRules.Preset.None>无</PawnRules.Preset.None>
   <PawnRules.Preset.Personalized>&lt;i&gt;单位预设&lt;/i&gt;</PawnRules.Preset.Personalized>
 
-  <PawnRules.RestrictionType.Food>食物预设</PawnRules.RestrictionType.Food>
-  <PawnRules.RestrictionType.FoodPlural>食物预设</PawnRules.RestrictionType.FoodPlural>
+  <PawnRules.RestrictionType.Food>食物限制预设</PawnRules.RestrictionType.Food>
+  <PawnRules.RestrictionType.FoodPlural>食物限制预设</PawnRules.RestrictionType.FoodPlural>
   <PawnRules.RestrictionType.FoodCategorization>食物</PawnRules.RestrictionType.FoodCategorization>
-  <PawnRules.RestrictionType.Bonding>牵绊预设</PawnRules.RestrictionType.Bonding>
-  <PawnRules.RestrictionType.BondingPlural>牵绊预设</PawnRules.RestrictionType.BondingPlural>
+  <PawnRules.RestrictionType.Bonding>牵绊限制预设</PawnRules.RestrictionType.Bonding>
+  <PawnRules.RestrictionType.BondingPlural>牵绊限制预设</PawnRules.RestrictionType.BondingPlural>
   <PawnRules.RestrictionType.BondingCategorization>动物</PawnRules.RestrictionType.BondingCategorization>
 
   <PawnRules.PawnType.Colonist>殖民者</PawnRules.PawnType.Colonist>
