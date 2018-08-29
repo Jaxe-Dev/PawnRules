@@ -45,17 +45,17 @@
   <PawnRules.Button.RestrictionsAllowOff>Disallow all</PawnRules.Button.RestrictionsAllowOff>
 
   <PawnRules.PresetType.Rules>Rules Preset</PawnRules.PresetType.Rules>
-  <PawnRules.PresetType.Restriction>Restriction Preset</PawnRules.PresetType.Restriction>
+  <PawnRules.PresetType.Restriction>Policy</PawnRules.PresetType.Restriction>
 
   <PawnRules.Preset.Header>Presets</PawnRules.Preset.Header>
-  <PawnRules.Preset.None>None</PawnRules.Preset.None>
-  <PawnRules.Preset.Personalized>&lt;i&gt;Personalized&lt;/i&gt;</PawnRules.Preset.Personalized>
+  <PawnRules.Preset.None>Unrestricted</PawnRules.Preset.None>
+  <PawnRules.Preset.Personalized>Personalized</PawnRules.Preset.Personalized>
 
-  <PawnRules.RestrictionType.Food>Food Restriction Preset</PawnRules.RestrictionType.Food>
-  <PawnRules.RestrictionType.FoodPlural>Food Restriction Presets</PawnRules.RestrictionType.FoodPlural>
+  <PawnRules.RestrictionType.Food>Food Policy</PawnRules.RestrictionType.Food>
+  <PawnRules.RestrictionType.FoodPlural>Food Policies</PawnRules.RestrictionType.FoodPlural>
   <PawnRules.RestrictionType.FoodCategorization>Edibles</PawnRules.RestrictionType.FoodCategorization>
-  <PawnRules.RestrictionType.Bonding>Bonding Restriction Preset</PawnRules.RestrictionType.Bonding>
-  <PawnRules.RestrictionType.BondingPlural>Bonding Restriction Presets</PawnRules.RestrictionType.BondingPlural>
+  <PawnRules.RestrictionType.Bonding>Bonding Policy</PawnRules.RestrictionType.Bonding>
+  <PawnRules.RestrictionType.BondingPlural>Bonding Policies</PawnRules.RestrictionType.BondingPlural>
   <PawnRules.RestrictionType.BondingCategorization>Animals</PawnRules.RestrictionType.BondingCategorization>
 
   <PawnRules.PawnType.Colonist>Colonist</PawnRules.PawnType.Colonist>
@@ -70,10 +70,10 @@
   <PawnRules.PawnType.PersonPlural>Persons</PawnRules.PawnType.PersonPlural>
   <PawnRules.PawnType.Individual>Individual</PawnRules.PawnType.Individual>
 
-  <PawnRules.Rules.FoodRestrictions>Food Restrictions: {0}</PawnRules.Rules.FoodRestrictions>
-  <PawnRules.Rules.FoodRestrictionsDesc>Click to choose foods that can be eaten automatically.</PawnRules.Rules.FoodRestrictionsDesc>
-  <PawnRules.Rules.BondingRestrictions>Bonding Restrictions: {0}</PawnRules.Rules.BondingRestrictions>
-  <PawnRules.Rules.BondingRestrictionsDesc>Click to choose animals that can be bonded with.</PawnRules.Rules.BondingRestrictionsDesc>
+  <PawnRules.Rules.FoodRestrictions>Food policy: {0}</PawnRules.Rules.FoodRestrictions>
+  <PawnRules.Rules.FoodRestrictionsDesc>Click to choose which foods can be eaten.</PawnRules.Rules.FoodRestrictionsDesc>
+  <PawnRules.Rules.BondingRestrictions>Bonding policy: {0}</PawnRules.Rules.BondingRestrictions>
+  <PawnRules.Rules.BondingRestrictionsDesc>Click to choose which animals can be bonded with.</PawnRules.Rules.BondingRestrictionsDesc>
   <PawnRules.Rules.AllowCourting>Allow Courting</PawnRules.Rules.AllowCourting>
   <PawnRules.Rules.AllowCourtingDesc>If toggled off will not be allowed to gain a new lover or spouse.</PawnRules.Rules.AllowCourtingDesc>
   <PawnRules.Rules.AllowArtisan>Allow Artisan</PawnRules.Rules.AllowArtisan>
@@ -107,7 +107,7 @@
   <PawnRules.Dialog_Rules.AssignPersonalizedName>assign these personalized rules to</PawnRules.Dialog_Rules.AssignPersonalizedName>
   <PawnRules.Dialog_Rules.AssignSpecificName>assign the preset {0} to</PawnRules.Dialog_Rules.AssignSpecificName>
   <PawnRules.Dialog_Rules.AssignVoidName>clear the rules for</PawnRules.Dialog_Rules.AssignVoidName>
-  <PawnRules.Dialog_Rules.EditRestriction>Edit restrictions...</PawnRules.Dialog_Rules.EditRestriction>
+  <PawnRules.Dialog_Rules.EditRestriction>Edit policies...</PawnRules.Dialog_Rules.EditRestriction>
   <PawnRules.Dialog_Rules.ClearRestriction>Allow all {0}</PawnRules.Dialog_Rules.ClearRestriction>
   <PawnRules.Dialog_Rules.ChangeRestriction>Set to {0}</PawnRules.Dialog_Rules.ChangeRestriction>
 

@@ -114,7 +114,7 @@ namespace PawnRules.SDK
         /// </summary>
         /// <param name="pawn">The pawn to get the value from.</param>
         /// <param name="invalidValue">The value returned if unable to retrieve the option.</param>
-        /// <returns>Returns the value if the option is found or <see cref="invalidValue" /> if not.</returns>
+        /// <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
         public T GetValue(Pawn pawn, T invalidValue = default(T))
         {
             var rules = Registry.GetRules(pawn);
@@ -126,7 +126,7 @@ namespace PawnRules.SDK
         /// </summary>
         /// <param name="target">The default rules target to get the value from.</param>
         /// <param name="invalidValue">The value returned if unable to retrieve the option.</param>
-        /// <returns>Returns the value if the option is found or <see cref="invalidValue" /> if not.</returns>
+        /// <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
         public T GetDefaultValue(OptionTarget target, T invalidValue = default(T)) => Registry.GetAddonDefaultValue<T>(target, Addon);
 
         /// <summary>

@@ -53,8 +53,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patch\RimWorld_FoodUtility_BestFoodInInventory.cs" />
-    <Compile Include="Patch\RimWorld_JoyGiver_Ingest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Controller.cs" />
@@ -84,9 +82,12 @@
     <Compile Include="Interface\WindowPlus.cs" />
     <Compile Include="Patch\Extensions.cs" />
     <Compile Include="Patch\PrivateAccess.cs" />
+    <Compile Include="Patch\RimWorld_FoodUtility_BestFoodInInventory.cs" />
     <Compile Include="Patch\RimWorld_FoodUtility_BestFoodSourceOnMap.cs" />
+    <Compile Include="Patch\RimWorld_FoodUtility_TryFindBestFoodSourceFor.cs" />
     <Compile Include="Patch\RimWorld_GenConstruct_CanConstruct.cs" />
     <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_SuccessChance.cs" />
+    <Compile Include="Patch\RimWorld_JoyGiver_Ingest.cs" />
     <Compile Include="Patch\RimWorld_JobGiver_PackFood.cs" />
     <Compile Include="Patch\RimWorld_PawnUtility_TrySpawnHatchedOrBornPawn.cs" />
     <Compile Include="Patch\RimWorld_RelationsUtility_TryDevelopBondRelation.cs" />
