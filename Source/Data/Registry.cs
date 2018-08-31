@@ -106,7 +106,7 @@ namespace PawnRules.Data
                     {
                         var rule = (Rules) presetable;
                         var type = (RestrictionType) preset.Type;
-                        if(rule.GetRestriction(type) == preset) { rule.SetRestriction(type, GetVoidPreset<Restriction>(type));}
+                        if (rule.GetRestriction(type) == preset) { rule.SetRestriction(type, GetVoidPreset<Restriction>(type)); }
                     }
                 }
             }
@@ -220,14 +220,6 @@ namespace PawnRules.Data
             Find.WindowStack.Add(new Dialog_Alert(message, Dialog_Alert.Buttons.Ok, GenCommandLine.Restart));
         }
 
-        public override void PostAdd()
-        {
-            base.PostAdd();
-            Instance = this;
-            InitVoids();
-            InitDefaults();
-        }
-
         private void InitVoids()
         {
             _voidPresets[typeof(Rules)] = new Dictionary<IPresetableType, Presetable>();
@@ -241,6 +233,25 @@ namespace PawnRules.Data
         {
             foreach (var type in PawnType.List.Where(type => !_defaults.ContainsKey(type))) { _defaults.Add(type, (Rules) _voidPresets[typeof(Rules)][type]); }
         }
+
+        public override void PostAdd()
+        {
+            base.PostAdd();
+            Instance = this;
+            InitVoids();
+            InitDefaults();
+        }
+        public override void SpawnSetup()
+        { }
+
+        public override void PostRemove()
+        { }
+
+        public override void Print(LayerSubMesh subMesh)
+        { }
+
+        public override void Draw()
+        { }
 
         public override void ExposeData()
         {

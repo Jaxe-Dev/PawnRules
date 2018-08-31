@@ -1,5 +1,5 @@
 # Pawn Rules
-![](https://img.shields.io/badge/Version-1.0.3-brightgreen.svg)
+![](https://img.shields.io/badge/Version-1.0.4-brightgreen.svg)
 
 Built for **RimWorld 1.0.x / 0.19.x**\
 Powered by **Harmony**\

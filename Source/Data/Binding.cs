@@ -32,7 +32,6 @@ namespace PawnRules.Data
             if ((Scribe.mode != LoadSaveMode.Saving) || (Target == null)) { Scribe_References.Look(ref Pawn, "pawn"); }
             if ((Scribe.mode != LoadSaveMode.Saving) || (Target != null)) { Target = PawnType.FromId(ScribePlus.LookValue(Target?.Id, "target")); }
 
-
             if (Scribe.mode != LoadSaveMode.Saving)
             {
                 Scribe_References.Look(ref _preset, "preset");

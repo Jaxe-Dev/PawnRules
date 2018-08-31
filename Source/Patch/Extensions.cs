@@ -97,7 +97,7 @@ namespace PawnRules.Patch
                 }
                 else
                 {
-                    newHeight = unfixedWidth;                 
+                    newHeight = unfixedWidth;
                     rects[index] = new Rect(self.x, currentY, self.width, newHeight);
                 }
                 currentY += newHeight + spacing;
@@ -105,7 +105,7 @@ namespace PawnRules.Patch
 
             return rects;
         }
-/*
+        /*
                 public static Rect[] GetVGrid(this Rect self, float spacing, params float[] heights)
                 {
                     var unfixedCount = 0;

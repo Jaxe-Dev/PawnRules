@@ -6,6 +6,10 @@
     <defName>PawnRules_Registry</defName>
     <label>Pawn Rules Registry</label>
     <worldObjectClass>PawnRules.Data.Registry</worldObjectClass>
+    <useDynamicDrawer>true</useDynamicDrawer>
+    <selectable>false</selectable>
+    <neverMultiSelect>true</neverMultiSelect>
+    <canHaveFaction>false</canHaveFaction>
   </WorldObjectDef>
 
 </Defs>
