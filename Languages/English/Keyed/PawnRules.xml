@@ -92,6 +92,7 @@
   <PawnRules.Gizmo.EditRulesDesc>Edit the rules for this {0}.</PawnRules.Gizmo.EditRulesDesc>
 
   <PawnRules.Dialog_Global.Title>Global Options</PawnRules.Dialog_Global.Title>
+  <PawnRules.Dialog_Global.ShowRule>Show {0}</PawnRules.Dialog_Global.ShowRule>
 
   <PawnRules.Dialog_Rules.Title>Rules for {0}, {1}</PawnRules.Dialog_Rules.Title>
   <PawnRules.Dialog_Rules.TitleDefault>Default Rules for {0}</PawnRules.Dialog_Rules.TitleDefault>

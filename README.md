@@ -1,5 +1,5 @@
 # Pawn Rules
-![](https://img.shields.io/badge/Version-1.0.4-brightgreen.svg)
+![](https://img.shields.io/badge/Version-1.0.5-brightgreen.svg)
 
 Built for **RimWorld 1.0.x / 0.19.x**\
 Powered by **Harmony**\
@@ -20,6 +20,8 @@ Currently the following rules can be applied:
   - *This has no effect on existing relations and engaged couples can still get married*
 - Disallow constructing items that have a quality level
   - *Can still haul materials to blueprints*
+
+Any of these rules can be disabled and hidden from the rules window.
 
 ------------
 

@@ -4,6 +4,6 @@
   <name>Pawn Rules</name>
   <author>Jaxe</author>
   <targetVersion>0.19.0</targetVersion>
-  <description>Pawn Rules is a mod that allows custom rules to be assigned individually to your colonists, animals, guests and prisoners.\n\nCurrently the following rules can be applied:\n\n- Disallow certain foods\n- Disallow bonding with certain animals\n- Disallow new romances\n- Disallow constructing items that have a quality level\n\n</description>
+  <description>Pawn Rules is a mod that allows custom rules to be assigned individually to your colonists, animals, guests and prisoners.\n\nCurrently the following rules can be applied:\n\n- Disallow certain foods\n- Disallow bonding with certain animals\n- Disallow new romances\n- Disallow constructing items that have a quality level\n\nAny of these rules can be disabled and hidden from the rules window.</description>
   <url>https://ludeon.com/forums/index.php?topic=43086.0</url>
 </ModMetaData>

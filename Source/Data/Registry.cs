@@ -21,6 +21,11 @@ namespace PawnRules.Data
 
         private static bool _isDeactivating;
 
+        public static bool ShowFoodPolicy { get => Instance._showFoodPolicy; set => Instance._showFoodPolicy = value; }
+        public static bool ShowBondingPolicy { get => Instance._showBondingPolicy; set => Instance._showBondingPolicy = value; }
+        public static bool ShowAllowCourting { get => Instance._showAllowCourting; set => Instance._showAllowCourting = value; }
+        public static bool ShowAllowArtisan { get => Instance._showAllowArtisan; set => Instance._showAllowArtisan = value; }
+
         private readonly Dictionary<Type, Dictionary<IPresetableType, Presetable>> _voidPresets = new Dictionary<Type, Dictionary<IPresetableType, Presetable>>();
         private readonly Dictionary<Type, Dictionary<IPresetableType, Dictionary<string, Presetable>>> _presets = new Dictionary<Type, Dictionary<IPresetableType, Dictionary<string, Presetable>>>();
         private readonly Dictionary<PawnType, Rules> _defaults = new Dictionary<PawnType, Rules>();
@@ -29,6 +34,11 @@ namespace PawnRules.Data
         private List<Presetable> _savedPresets = new List<Presetable>();
         private List<Binding> _savedBindings = new List<Binding>();
         private List<Binding> _savedDefaults = new List<Binding>();
+
+        private bool _showFoodPolicy = true;
+        private bool _showBondingPolicy = true;
+        private bool _showAllowCourting = true;
+        private bool _showAllowArtisan = true;
 
         public static void Initialize()
         {
@@ -281,6 +291,11 @@ namespace PawnRules.Data
                 _savedDefaults.AddRange(_defaults.Values.Where(preset => !preset.IsVoid).Select(preset => new Binding(preset.Type, preset)).ToArray());
                 _savedBindings.AddRange(_rules.Where(rules => rules.Key.CanHaveRules()).Select(rules => new Binding(rules.Key, rules.Value.IsIgnored() ? null : rules.Value)).ToArray());
             }
+
+            Scribe_Values.Look(ref _showFoodPolicy, "showFoodPolicy", true);
+            Scribe_Values.Look(ref _showBondingPolicy, "showBondingPolicy", true);
+            Scribe_Values.Look(ref _showAllowCourting, "showAllowCourting", true);
+            Scribe_Values.Look(ref _showAllowArtisan, "showAllowArtisan", true);
 
             Scribe_Collections.Look(ref _savedPresets, "presets", LookMode.Deep);
             Scribe_Collections.Look(ref _savedBindings, "bindings", LookMode.Deep);

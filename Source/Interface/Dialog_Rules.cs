@@ -164,7 +164,7 @@ namespace PawnRules.Interface
             Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Dialog_Rules.AssignSpecificConfirm", GetPresetNameDefinite(), pawn.Name.ToString().Italic()), Dialog_Alert.Buttons.YesNo, OnAccept));
         }
 
-        private string GetRestrictionDisplayName(Presetable restriction) => restriction.IsPreset && !restriction.IsVoid ? restriction.Name.Bold() : restriction.Name;
+        private static string GetRestrictionDisplayName(Presetable restriction) => restriction.IsPreset && !restriction.IsVoid ? restriction.Name.Bold() : restriction.Name;
 
         public override void Close(bool doCloseSound = true)
         {
@@ -222,15 +222,18 @@ namespace PawnRules.Interface
             if (!editMode) { GUI.color = GuiPlus.ReadOnlyColor; }
 
             listing.Begin(vGrid[1]);
-            if (listing.ButtonText(Lang.Get("Rules.FoodRestrictions", GetRestrictionDisplayName(_template.GetRestriction(RestrictionType.Food))), Lang.Get("Rules.FoodRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Food); }
+            if (Registry.ShowFoodPolicy && listing.ButtonText(Lang.Get("Rules.FoodRestrictions", GetRestrictionDisplayName(_template.GetRestriction(RestrictionType.Food))), Lang.Get("Rules.FoodRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Food); }
             if (_template.Type == PawnType.Colonist)
             {
-                if (listing.ButtonText(Lang.Get("Rules.BondingRestrictions", GetRestrictionDisplayName(_template.GetRestriction(RestrictionType.Bonding))), Lang.Get("Rules.BondingRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Bonding); }
-                listing.GapLine();
-                listing.CheckboxLabeled(Lang.Get("Rules.AllowCourting"), ref _template.AllowCourting, Lang.Get("Rules.AllowCourtingDesc"), editMode);
-                listing.CheckboxLabeled(Lang.Get("Rules.AllowArtisan"), ref _template.AllowArtisan, Lang.Get("Rules.AllowArtisanDesc"), editMode);
+                if (Registry.ShowBondingPolicy && listing.ButtonText(Lang.Get("Rules.BondingRestrictions", GetRestrictionDisplayName(_template.GetRestriction(RestrictionType.Bonding))), Lang.Get("Rules.BondingRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Bonding); }
+
+                if ((Registry.ShowFoodPolicy || Registry.ShowBondingPolicy) && (Registry.ShowAllowCourting || Registry.ShowAllowArtisan)) { listing.GapLine(); }
+                if (Registry.ShowAllowCourting) { listing.CheckboxLabeled(Lang.Get("Rules.AllowCourting"), ref _template.AllowCourting, Lang.Get("Rules.AllowCourtingDesc"), editMode); }
+                if (Registry.ShowAllowArtisan) { listing.CheckboxLabeled(Lang.Get("Rules.AllowArtisan"), ref _template.AllowArtisan, Lang.Get("Rules.AllowArtisanDesc"), editMode); }
             }
-            listing.GapLine();
+
+            if ((Registry.ShowFoodPolicy || Registry.ShowBondingPolicy || Registry.ShowAllowCourting || Registry.ShowAllowArtisan)) { listing.GapLine(); }
+
             listing.End();
 
             if (_template.HasAddons)
