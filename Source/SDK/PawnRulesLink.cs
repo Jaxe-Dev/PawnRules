@@ -35,7 +35,7 @@ namespace PawnRules.SDK
         /// <param name="target">The type(s) of pawns this option will apply to.</param>
         /// <param name="label">The label of the widget displayed.</param>
         /// <param name="tooltip">The tooltip displayed for the widget.</param>
-        /// <param name="defaultValue">This is the default value if <see cref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+        /// <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
         /// <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
         /// <returns>Returns a handle for this option.</returns>
         public OptionHandle<bool> AddToggle(string key, OptionTarget target, string label, string tooltip, bool defaultValue, bool allowedInPreset = true) => AddonOption.Add(this, key, target, OptionWidget.Checkbox, label, tooltip, defaultValue, allowedInPreset);
@@ -47,7 +47,7 @@ namespace PawnRules.SDK
         /// <param name="target">The type(s) of pawns this option will apply to.</param>
         /// <param name="label">The label of the widget displayed.</param>
         /// <param name="tooltip">The tooltip displayed for the widget.</param>
-        /// <param name="defaultValue">This is the default value if <see cref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+        /// <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
         /// <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
         /// <returns>Returns a handle for this option.</returns>
         public OptionHandle<string> AddEntry(string key, OptionTarget target, string label, string tooltip, string defaultValue, bool allowedInPreset = true) => AddonOption.Add(this, key, target, OptionWidget.TextEntry, label, tooltip, defaultValue, allowedInPreset);
@@ -59,7 +59,7 @@ namespace PawnRules.SDK
         /// <param name="target">The type(s) of pawns this option will apply to.</param>
         /// <param name="label">The label of the widget displayed.</param>
         /// <param name="tooltip">The tooltip displayed for the widget.</param>
-        /// <param name="defaultValue">This is the default value if <see cref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+        /// <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
         /// <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
         /// <returns>Returns a handle for this option.</returns>
         public OptionHandle<int> AddEntry(string key, OptionTarget target, string label, string tooltip, int defaultValue, bool allowedInPreset = true) => AddonOption.Add(this, key, target, OptionWidget.TextEntry, label, tooltip, defaultValue, allowedInPreset);
@@ -71,7 +71,7 @@ namespace PawnRules.SDK
         /// <param name="target">The type(s) of pawns this option will apply to.</param>
         /// <param name="label">The label of the widget displayed.</param>
         /// <param name="tooltip">The tooltip displayed for the widget.</param>
-        /// <param name="defaultValue">This is the default value if <see cref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+        /// <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
         /// <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
         /// <returns>Returns a handle for this option.</returns>
         public OptionHandle<float> AddEntry(string key, OptionTarget target, string label, string tooltip, float defaultValue, bool allowedInPreset = true) => AddonOption.Add(this, key, target, OptionWidget.TextEntry, label, tooltip, defaultValue, allowedInPreset);
@@ -83,7 +83,7 @@ namespace PawnRules.SDK
         /// <param name="target">The type(s) of pawns this option will apply to.</param>
         /// <param name="label">The label of the widget displayed.</param>
         /// <param name="tooltip">The tooltip displayed for the widget.</param>
-        /// <param name="defaultValue">This is the default value if <see cref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+        /// <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
         /// <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
         /// <returns>Returns a handle for this option.</returns>
         public OptionHandle<string> AddButton(string key, OptionTarget target, string label, string tooltip, string defaultValue, bool allowedInPreset = true) => AddonOption.Add(this, key, target, OptionWidget.Button, label, tooltip, defaultValue, allowedInPreset);
@@ -95,7 +95,7 @@ namespace PawnRules.SDK
         /// <param name="target">The type(s) of pawns this option will apply to.</param>
         /// <param name="label">The label of the widget displayed.</param>
         /// <param name="tooltip">The tooltip displayed for the widget.</param>
-        /// <param name="defaultValue">This is the default value if <see cref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+        /// <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
         /// <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
         /// <returns>Returns a handle for this option.</returns>
         public OptionHandle<bool> AddButton(string key, OptionTarget target, string label, string tooltip, bool defaultValue, bool allowedInPreset = true) => AddonOption.Add(this, key, target, OptionWidget.Button, label, tooltip, defaultValue, allowedInPreset);
@@ -107,7 +107,7 @@ namespace PawnRules.SDK
         /// <param name="target">The type(s) of pawns this option will apply to.</param>
         /// <param name="label">The label of the widget displayed.</param>
         /// <param name="tooltip">The tooltip displayed for the widget.</param>
-        /// <param name="defaultValue">This is the default value if <see cref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+        /// <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
         /// <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
         /// <returns>Returns a handle for this option.</returns>
         public OptionHandle<int> AddButton(string key, OptionTarget target, string label, string tooltip, int defaultValue, bool allowedInPreset = true) => AddonOption.Add(this, key, target, OptionWidget.Button, label, tooltip, defaultValue, allowedInPreset);
@@ -119,7 +119,7 @@ namespace PawnRules.SDK
         /// <param name="target">The type(s) of pawns this option will apply to.</param>
         /// <param name="label">The label of the widget displayed.</param>
         /// <param name="tooltip">The tooltip displayed for the widget.</param>
-        /// <param name="defaultValue">This is the default value if <see cref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+        /// <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
         /// <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
         /// <returns>Returns a handle for this option.</returns>
         public OptionHandle<float> AddButton(string key, OptionTarget target, string label, string tooltip, float defaultValue, bool allowedInPreset = true) => AddonOption.Add(this, key, target, OptionWidget.Button, label, tooltip, defaultValue, allowedInPreset);

@@ -13,7 +13,8 @@ namespace PawnRules.Interface
 
         private bool _scrollable;
 
-        public override void Begin(Rect rect) { Begin(rect, false); }
+        public override void Begin(Rect rect) => Begin(rect, false);
+
         public void Begin(Rect rect, bool scrollable)
         {
             _scrollable = scrollable;

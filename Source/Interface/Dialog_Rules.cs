@@ -80,12 +80,14 @@ namespace PawnRules.Interface
         {
             if (_preset.Selected == _personalized)
             {
-                Find.WindowStack.Add(new Dialog_PresetName<Rules>(_preset.Type, rules =>
-                                                                                {
-                                                                                    rules.CopyRules(_personalized);
-                                                                                    _preset.Selected = rules;
-                                                                                    UpdateSelected();
-                                                                                }));
+                void OnCommit(Rules rules)
+                {
+                    rules.CopyRules(_personalized);
+                    _preset.Selected = rules;
+                    UpdateSelected();
+                }
+
+                Find.WindowStack.Add(new Dialog_PresetName<Rules>(_preset.Type, OnCommit));
                 return;
             }
 
@@ -162,6 +164,8 @@ namespace PawnRules.Interface
             Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Dialog_Rules.AssignSpecificConfirm", GetPresetNameDefinite(), pawn.Name.ToString().Italic()), Dialog_Alert.Buttons.YesNo, OnAccept));
         }
 
+        private string GetRestrictionDisplayName(Presetable restriction) => restriction.IsPreset && !restriction.IsVoid ? restriction.Name.Bold() : restriction.Name;
+
         public override void Close(bool doCloseSound = true)
         {
             if (_preset.EditMode)
@@ -218,10 +222,10 @@ namespace PawnRules.Interface
             if (!editMode) { GUI.color = GuiPlus.ReadOnlyColor; }
 
             listing.Begin(vGrid[1]);
-            if (listing.ButtonText(Lang.Get("Rules.FoodRestrictions", _template.GetRestriction(RestrictionType.Food).Name.Bold()), Lang.Get("Rules.FoodRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Food); }
+            if (listing.ButtonText(Lang.Get("Rules.FoodRestrictions", GetRestrictionDisplayName(_template.GetRestriction(RestrictionType.Food))), Lang.Get("Rules.FoodRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Food); }
             if (_template.Type == PawnType.Colonist)
             {
-                if (listing.ButtonText(Lang.Get("Rules.BondingRestrictions", _template.GetRestriction(RestrictionType.Bonding).Name.Bold()), Lang.Get("Rules.BondingRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Bonding); }
+                if (listing.ButtonText(Lang.Get("Rules.BondingRestrictions", GetRestrictionDisplayName(_template.GetRestriction(RestrictionType.Bonding))), Lang.Get("Rules.BondingRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Bonding); }
                 listing.GapLine();
                 listing.CheckboxLabeled(Lang.Get("Rules.AllowCourting"), ref _template.AllowCourting, Lang.Get("Rules.AllowCourtingDesc"), editMode);
                 listing.CheckboxLabeled(Lang.Get("Rules.AllowArtisan"), ref _template.AllowArtisan, Lang.Get("Rules.AllowArtisanDesc"), editMode);
@@ -245,7 +249,7 @@ namespace PawnRules.Interface
             listing.End();
 
             listing.Begin(optionGrid[1]);
-            if (listing.ButtonText(_type == null ? Lang.Get("Button.ViewType", Lang.Get("PawnType.Individual")) : Lang.Get("Button.ViewTypeDefault", _template.Type.LabelPlural), Lang.Get("Button.ViewTypeDesc"), !editMode || (_template == _personalized))) { Find.WindowStack.Add(new FloatMenu(_floatMenuViews)); }
+            if (listing.ButtonText(_type == null ? Lang.Get("Button.ViewType", Lang.Get("PawnType.Individual")) : Lang.Get("Button.ViewTypeDefault", _type.LabelPlural), Lang.Get("Button.ViewTypeDesc"), !editMode || (_template == _personalized))) { Find.WindowStack.Add(new FloatMenu(_floatMenuViews)); }
             listing.End();
 
             GUI.EndGroup();

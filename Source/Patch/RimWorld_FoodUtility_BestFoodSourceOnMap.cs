@@ -18,7 +18,7 @@ namespace PawnRules.Patch
             if (!Registry.IsActive) { return true; }
 
             var rules = Registry.GetRules(eater);
-            if (eater.InMentalState || (rules == null) || (rules.GetRestriction(RestrictionType.Food).IsVoid)) { return true; }
+            if (eater.InMentalState || (rules == null) || rules.GetRestriction(RestrictionType.Food).IsVoid) { return true; }
 
             Profiler.BeginSample("BestFoodInWorldFor getter=" + getter.LabelCap + " eater=" + eater.LabelCap);
             var getterCanManipulate = getter.RaceProps.ToolUser && getter.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);

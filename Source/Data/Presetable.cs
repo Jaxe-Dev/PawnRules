@@ -30,8 +30,9 @@ namespace PawnRules.Data
         protected abstract string GetPresetId();
 
         protected abstract void ExposePresetData();
+        internal abstract bool IsIgnored();
 
-        public static bool NameIsValid<T>(IPresetableType type, string name) => (name.Length <= MaxIdLength) && !string.Equals(name, Lang.Get("Preset.None"), StringComparison.OrdinalIgnoreCase) && NameRegex.IsMatch(name) && !Registry.PresetNameExists<T>(type, name);
+        public static bool NameIsValid<T>(IPresetableType type, string name) => (name.Length <= MaxIdLength) && !string.Equals(name, Lang.Get("Preset.None"), StringComparison.OrdinalIgnoreCase) && !string.Equals(name, Lang.Get("Preset.Personalized"), StringComparison.OrdinalIgnoreCase) && NameRegex.IsMatch(name) && !Registry.PresetNameExists<T>(type, name);
 
         public static T CreateVoidPreset<T>(IPresetableType type) where T : Presetable
         {
@@ -49,6 +50,5 @@ namespace PawnRules.Data
         }
 
         public string GetUniqueLoadID() => $"{Mod.Id}_{GetPresetId()}";
-        internal abstract bool IsIgnored();
     }
 }

@@ -90,7 +90,7 @@
             </summary>
             <param name="pawn">The pawn to get the value from.</param>
             <param name="invalidValue">The value returned if unable to retrieve the option.</param>
-            <returns>Returns the value if the option is found or <see cref="!:invalidValue" /> if not.</returns>
+            <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
         </member>
         <member name="M:PawnRules.SDK.OptionHandle`1.GetDefaultValue(PawnRules.SDK.OptionTarget,`0)">
             <summary>
@@ -98,7 +98,7 @@
             </summary>
             <param name="target">The default rules target to get the value from.</param>
             <param name="invalidValue">The value returned if unable to retrieve the option.</param>
-            <returns>Returns the value if the option is found or <see cref="!:invalidValue" /> if not.</returns>
+            <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
         </member>
         <member name="M:PawnRules.SDK.OptionHandle`1.SetValue(Verse.Pawn,`0)">
             <summary>
@@ -151,7 +151,7 @@
             <param name="target">The type(s) of pawns this option will apply to.</param>
             <param name="label">The label of the widget displayed.</param>
             <param name="tooltip">The tooltip displayed for the widget.</param>
-            <param name="defaultValue">This is the default value if <see cref="!:allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
             <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
             <returns>Returns a handle for this option.</returns>
         </member>
@@ -163,7 +163,7 @@
             <param name="target">The type(s) of pawns this option will apply to.</param>
             <param name="label">The label of the widget displayed.</param>
             <param name="tooltip">The tooltip displayed for the widget.</param>
-            <param name="defaultValue">This is the default value if <see cref="!:allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
             <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
             <returns>Returns a handle for this option.</returns>
         </member>
@@ -175,7 +175,7 @@
             <param name="target">The type(s) of pawns this option will apply to.</param>
             <param name="label">The label of the widget displayed.</param>
             <param name="tooltip">The tooltip displayed for the widget.</param>
-            <param name="defaultValue">This is the default value if <see cref="!:allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
             <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
             <returns>Returns a handle for this option.</returns>
         </member>
@@ -187,7 +187,7 @@
             <param name="target">The type(s) of pawns this option will apply to.</param>
             <param name="label">The label of the widget displayed.</param>
             <param name="tooltip">The tooltip displayed for the widget.</param>
-            <param name="defaultValue">This is the default value if <see cref="!:allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
             <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
             <returns>Returns a handle for this option.</returns>
         </member>
@@ -199,7 +199,7 @@
             <param name="target">The type(s) of pawns this option will apply to.</param>
             <param name="label">The label of the widget displayed.</param>
             <param name="tooltip">The tooltip displayed for the widget.</param>
-            <param name="defaultValue">This is the default value if <see cref="!:allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
             <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
             <returns>Returns a handle for this option.</returns>
         </member>
@@ -211,7 +211,7 @@
             <param name="target">The type(s) of pawns this option will apply to.</param>
             <param name="label">The label of the widget displayed.</param>
             <param name="tooltip">The tooltip displayed for the widget.</param>
-            <param name="defaultValue">This is the default value if <see cref="!:allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
             <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
             <returns>Returns a handle for this option.</returns>
         </member>
@@ -223,7 +223,7 @@
             <param name="target">The type(s) of pawns this option will apply to.</param>
             <param name="label">The label of the widget displayed.</param>
             <param name="tooltip">The tooltip displayed for the widget.</param>
-            <param name="defaultValue">This is the default value if <see cref="!:allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
             <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
             <returns>Returns a handle for this option.</returns>
         </member>
@@ -235,7 +235,7 @@
             <param name="target">The type(s) of pawns this option will apply to.</param>
             <param name="label">The label of the widget displayed.</param>
             <param name="tooltip">The tooltip displayed for the widget.</param>
-            <param name="defaultValue">This is the default value if <see cref="!:allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
             <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
             <returns>Returns a handle for this option.</returns>
         </member>
