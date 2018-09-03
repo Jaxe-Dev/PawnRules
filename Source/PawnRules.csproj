@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_RandomSelectionWeight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Controller.cs" />
@@ -93,10 +94,10 @@
     <Compile Include="Patch\RimWorld_RelationsUtility_TryDevelopBondRelation.cs" />
     <Compile Include="Patch\Verse_Game_FinalizeInit.cs" />
     <Compile Include="Patch\Verse_Pawn_GetGizmos.cs" />
-    <Compile Include="Patch\Verse_Pawn_GuestTracker_SetGuestStatus.cs" />
     <Compile Include="Patch\Verse_Pawn_Kill.cs" />
     <Compile Include="Patch\Verse_Pawn_SetFaction.cs" />
-    <Compile Include="Patch\Verse_Pawn_SetFactionDirect.cs" />
+    <Compile Include="Patch\Verse_PawnGenerator_GeneratePawn.cs" />
+    <Compile Include="Patch\Verse_Pawn_GuestTracker_SetGuestStatus.cs" />
     <Compile Include="SDK\OptionHandle.cs" />
     <Compile Include="SDK\OptionTarget.cs" />
     <Compile Include="SDK\PawnRulesLink.cs" />

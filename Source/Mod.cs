@@ -7,7 +7,7 @@ namespace PawnRules
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
         public const string Author = "Jaxe";
-        public const string Version = "1.0.5";
+        public const string Version = "1.0.6";
 
         public static ModContentPack ContentPack { get; private set; }
 

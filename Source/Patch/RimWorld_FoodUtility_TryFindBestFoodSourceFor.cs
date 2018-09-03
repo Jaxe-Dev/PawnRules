@@ -15,10 +15,7 @@ namespace PawnRules.Patch
             var thing1 = (Thing) null;
             if (canUseInventory)
             {
-                if (flag)
-                {
-                    thing1 = FoodUtility.BestFoodInInventory(getter, eater, FoodPreferability.MealAwful);
-                }
+                if (flag) { thing1 = FoodUtility.BestFoodInInventory(getter, eater, FoodPreferability.MealAwful); }
                 if (thing1 != null)
                 {
                     if (getter.Faction != Faction.OfPlayer)
@@ -28,6 +25,7 @@ namespace PawnRules.Patch
                         __result = true;
                         return false;
                     }
+
                     var comp = thing1.TryGetComp<CompRottable>();
                     if ((comp != null) && (comp.Stage == RotStage.Fresh) && (comp.TicksUntilRotAtCurrentTemp < 30000))
                     {

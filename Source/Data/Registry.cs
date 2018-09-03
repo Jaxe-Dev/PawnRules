@@ -139,7 +139,18 @@ namespace PawnRules.Data
             return Instance._rules.ContainsKey(pawn) ? Instance._rules[pawn] : null;
         }
 
-        public static Rules GetOrCreateRules(Pawn pawn)
+        public static Rules GetOrNewRules(Pawn pawn)
+        {
+            if (!pawn.CanHaveRules()) { return null; }
+            if (Instance._rules.ContainsKey(pawn)) { return Instance._rules[pawn]; }
+
+            var rules = GetVoidPreset<Rules>(pawn.GetTargetType()).CloneRulesFor(pawn);
+            Instance._rules.Add(pawn, rules);
+
+            return rules;
+        }
+
+        public static Rules GetOrDefaultRules(Pawn pawn)
         {
             if (!pawn.CanHaveRules()) { return null; }
             if (Instance._rules.ContainsKey(pawn)) { return Instance._rules[pawn]; }
@@ -163,7 +174,7 @@ namespace PawnRules.Data
         public static Rules CloneRules(Pawn original, Pawn cloner)
         {
             if (!original.CanHaveRules()) { return null; }
-            if (!Instance._rules.ContainsKey(original)) { return GetOrCreateRules(cloner); }
+            if (!Instance._rules.ContainsKey(original)) { return GetOrDefaultRules(cloner); }
             if (Instance._rules.ContainsKey(cloner)) { DeleteRules(cloner); }
 
             var cloned = Instance._rules[original].CloneRulesFor(cloner);
@@ -196,7 +207,7 @@ namespace PawnRules.Data
             }
             else { return; }
 
-            if (GetDefaultRules(type).IsIgnored()) { return; }
+            if (GetDefaultRules(type).IsVoid) { return; }
 
             ChangeTypeOrCreateRules(pawn, type);
         }
@@ -251,6 +262,7 @@ namespace PawnRules.Data
             InitVoids();
             InitDefaults();
         }
+
         public override void SpawnSetup()
         { }
 

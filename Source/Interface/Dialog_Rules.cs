@@ -38,7 +38,7 @@ namespace PawnRules.Interface
             _floatMenuAssign = GetAssignmentOptions();
         }
 
-        public static void OpenFromPawn(Pawn pawn) => Find.WindowStack.Add(new Dialog_Rules(pawn, Registry.GetOrCreateRules(pawn)));
+        public static void OpenFromPawn(Pawn pawn) => Find.WindowStack.Add(new Dialog_Rules(pawn, Registry.GetOrNewRules(pawn)));
 
         private void ChangeType(PawnType type)
         {
@@ -47,7 +47,7 @@ namespace PawnRules.Interface
             _preset.FixedPresets = _type == null ? new[] { _personalized } : new[] { Registry.GetVoidPreset<Rules>(_template.Type) };
             if (type == null)
             {
-                var rules = Registry.GetOrCreateRules(_pawn);
+                var rules = Registry.GetOrNewRules(_pawn);
                 _preset.Selected = rules.IsPreset ? rules : _personalized;
             }
             else { _preset.Selected = Registry.GetDefaultRules(type); }

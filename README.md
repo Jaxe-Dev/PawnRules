@@ -1,11 +1,12 @@
 # Pawn Rules
 ![](https://img.shields.io/badge/Version-1.0.5-brightgreen.svg)
 
-Built for **RimWorld 1.0.x / 0.19.x**\
+Built for **RimWorld B19**\
 Powered by **Harmony**\
 Supports **ModSync RW**
 
-[Link to Ludeon Forum Post](https://ludeon.com/forums/index.php?topic=43086.0)
+[Link to Ludeon Forum thread](https://ludeon.com/forums/index.php?topic=43086.0)\
+[Link to Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=1499843448)
 
 ------------
 
@@ -47,6 +48,7 @@ RimWorld.FoodUtility.BestFoodSourceOnMap : Prefix
 RimWorld.FoodUtility.BestFoodInInventory : Prefix
 RimWorld.FoodUtility.TryFindBestFoodSourceFor : Prefix
 RimWorld.GenConstruct.CanConstruct : Postfix
+RimWorld.InteractionWorker_RomanceAttempt.RandomSelectionWeight : Prefix
 RimWorld.InteractionWorker_RomanceAttempt.SuccessChance : Prefix
 RimWorld.JobGiver_PackFood.IsGoodPackableFoodFor : Postfix
 RimWorld.JoyGiver_Ingest.CanIngestForJoy : Prefix
@@ -56,6 +58,6 @@ Verse.Game.FinalizeInit : Postfix
 Verse.Pawn.GetGizmos : Postfix
 Verse.Pawn.Kill : Postfix
 Verse.Pawn.SetFaction : Prefix
-Verse.Pawn.SetFactionDirect : Prefix
+Verse.PawnGenerator.GeneratePawn : Postfix
 Verse.Pawn_GuestTracker.SetGuestStatus : Prefix
 ```
