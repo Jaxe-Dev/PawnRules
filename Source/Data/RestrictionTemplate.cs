@@ -56,10 +56,10 @@ namespace PawnRules.Data
                 string category;
 
                 if (animal.RaceProps.petness > 0.5f) { category = categories[0]; }
-                else if (animal.race.tradeTags.Contains("AnimalFarm")) { category = categories[1]; }
+                else if (animal.race.tradeTags?.Contains("AnimalFarm") ?? false) { category = categories[1]; }
                 else if (animal.RaceProps.herdAnimal) { category = categories[2]; }
                 else if (animal.RaceProps.predator) { category = categories[3]; }
-                else if (animal.race.tradeTags.Contains("AnimalInsect")) { category = categories[4]; }
+                else if (animal.race.tradeTags?.Contains("AnimalInsect") ?? false) { category = categories[4]; }
                 else { category = categories[5]; }
 
                 if (!list.ContainsKey(category)) { list[category] = new Category(category); }
