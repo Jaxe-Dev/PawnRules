@@ -105,41 +105,5 @@ namespace PawnRules.Patch
 
             return rects;
         }
-        /*
-                public static Rect[] GetVGrid(this Rect self, float spacing, params float[] heights)
-                {
-                    var unfixedCount = 0;
-                    var currentY = self.y;
-                    var fixedHeights = 0f;
-                    var rects = new Rect[heights.Length];
-
-                    foreach (var height in heights)
-                    {
-                        if (height > 0) { fixedHeights += height - (spacing * 2); }
-                        else { unfixedCount++; }
-                    }
-
-                    var unfixedHeight = unfixedCount > 0 ? (self.height - fixedHeights) / unfixedCount : 0;
-
-                    for (var index = 0; index < heights.Length; index++)
-                    {
-                        var height = heights[index];
-                        float newHeight;
-                        if (height > 0)
-                        {
-                            newHeight = height;
-                            rects[index] = new Rect(self.x, currentY, self.width, newHeight);
-                        }
-                        else
-                        {
-                            newHeight = unfixedHeight;
-                            rects[index] = new Rect(self.x, currentY, self.width, newHeight);
-                        }
-                        currentY += newHeight + spacing;
-                    }
-
-                    return rects;
-                }
-        */
     }
 }
