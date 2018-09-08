@@ -4,7 +4,7 @@ using PawnRules.Data;
 using PawnRules.Interface;
 using Verse;
 
-namespace PawnRules.SDK
+namespace PawnRules.API
 {
     /// <summary>
     ///     Provides a link to Pawn Rules and is used to add options to the rules dialog.

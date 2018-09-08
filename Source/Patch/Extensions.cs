@@ -40,19 +40,19 @@ namespace PawnRules.Patch
             for (var index = 0; index < widths.Length; index++)
             {
                 var width = widths[index];
-                if (width > 0) { fixedWidths += width; }
+                if (width >= 0f) { fixedWidths += width; }
                 else { unfixedCount++; }
 
                 if (index != widths.LastIndex()) { fixedWidths += spacing; }
             }
 
-            var unfixedWidth = unfixedCount > 0 ? (self.width - fixedWidths) / unfixedCount : 0;
+            var unfixedWidth = unfixedCount > 0 ? (self.width - fixedWidths) / unfixedCount : 0f;
 
             for (var index = 0; index < widths.Length; index++)
             {
                 var width = widths[index];
                 float newWidth;
-                if (width > 0)
+                if (width >= 0f)
                 {
                     newWidth = width;
                     rects[index] = new Rect(currentX, self.y, newWidth, self.height);
@@ -78,19 +78,19 @@ namespace PawnRules.Patch
             for (var index = 0; index < heights.Length; index++)
             {
                 var height = heights[index];
-                if (height > 0) { fixedHeights += height; }
+                if (height >= 0f) { fixedHeights += height; }
                 else { unfixedCount++; }
 
                 if (index != heights.LastIndex()) { fixedHeights += spacing; }
             }
 
-            var unfixedWidth = unfixedCount > 0 ? (self.height - fixedHeights) / unfixedCount : 0;
+            var unfixedWidth = unfixedCount > 0 ? (self.height - fixedHeights) / unfixedCount : 0f;
 
             for (var index = 0; index < heights.Length; index++)
             {
                 var height = heights[index];
                 float newHeight;
-                if (height > 0)
+                if (height >= 0f)
                 {
                     newHeight = height;
                     rects[index] = new Rect(self.x, currentY, self.width, newHeight);

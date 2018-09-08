@@ -75,8 +75,8 @@ namespace PawnRules.Interface
 
             _color = GUI.color;
 
-            var vGrid = rect.GetVGrid(4f, 42f, 0f);
-            var hGrid = vGrid[1].GetHGrid(8f, 200f, 0f, 0f);
+            var vGrid = rect.GetVGrid(4f, 42f, -1f);
+            var hGrid = vGrid[1].GetHGrid(8f, 200f, -1f, -1f);
             DoHeader(vGrid[0]);
 
             _presetList.DoContent(hGrid[0]);
@@ -86,7 +86,7 @@ namespace PawnRules.Interface
 
         private void DoHeader(Rect rect)
         {
-            var grid = rect.GetHGrid(8f, 200f, 0f, 0f);
+            var grid = rect.GetHGrid(8f, 200f, -1f, -1f);
             _headerList.Begin(grid[0]);
             _headerList.Label(Lang.Get("Preset.Header").Italic().Bold());
             _headerList.GapLine();
@@ -105,7 +105,7 @@ namespace PawnRules.Interface
 
         private void DoCategories(Rect rect)
         {
-            var vGrid = rect.GetVGrid(4f, 0f, 30f);
+            var vGrid = rect.GetVGrid(4f, -1f, 30f);
             _categoryList.Begin(vGrid[0]);
 
             foreach (var category in _template.Categories)
@@ -129,7 +129,7 @@ namespace PawnRules.Interface
 
             if (!_presetList.EditMode) { return; }
 
-            var hGrid = vGrid[1].GetHGrid(4f, 0f, 0f);
+            var hGrid = vGrid[1].GetHGrid(4f, -1f, -1f);
             _categoryList.Begin(hGrid[0]);
             if (_categoryList.ButtonText(Lang.Get("Button.RestrictionsAllowOn"))) { _template.ToggleAll(true); }
             _categoryList.End();

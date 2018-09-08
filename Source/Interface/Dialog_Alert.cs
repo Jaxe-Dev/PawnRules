@@ -36,13 +36,13 @@ namespace PawnRules.Interface
         public override void DoWindowContents(Rect rect)
         {
             var listing = new Listing_Standard();
-            var vGrid = rect.GetVGrid(4f, 0f, 30f);
+            var vGrid = rect.GetVGrid(4f, -1f, 30f);
 
             listing.Begin(vGrid[0]);
             listing.Label(_message);
             listing.End();
 
-            var hGrid = vGrid[1].GetHGrid(4f, 100f, 0f);
+            var hGrid = vGrid[1].GetHGrid(4f, 100f, -1f);
 
             listing.Begin(_buttons == Buttons.Ok ? vGrid[1] : hGrid[0]);
 

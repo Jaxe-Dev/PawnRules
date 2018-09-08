@@ -58,7 +58,7 @@ namespace PawnRules.Interface
             if (presets.Any()) { _listing.GapLine(); }
             _listing.End();
 
-            var presetGrid = rect.GetVGrid(4f, _listing.CurHeight, 0f, 62f);
+            var presetGrid = rect.GetVGrid(4f, _listing.CurHeight, -1f, 62f);
 
             _presetListing.Begin(presetGrid[1], true);
             foreach (var preset in presets)
@@ -68,7 +68,7 @@ namespace PawnRules.Interface
             }
             _presetListing.End();
 
-            var buttonGrid = presetGrid[2].GetHGrid(4f, 0f, 0f);
+            var buttonGrid = presetGrid[2].GetHGrid(4f, -1f, -1f);
             _listing.Begin(buttonGrid[0]);
 
             if (_listing.ButtonText(Lang.Get("Button.PresetNew"), Lang.Get("Button.PresetNewDesc"), !EditMode))

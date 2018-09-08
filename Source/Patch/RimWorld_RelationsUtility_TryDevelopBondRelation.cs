@@ -5,7 +5,7 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(RelationsUtility), nameof(RelationsUtility.TryDevelopBondRelation))]
+    [HarmonyPatch(typeof(RelationsUtility), "TryDevelopBondRelation")]
     internal static class RimWorld_RelationsUtility_TryDevelopBondRelation
     {
         private static bool Prefix(ref bool __result, Pawn humanlike, Pawn animal)

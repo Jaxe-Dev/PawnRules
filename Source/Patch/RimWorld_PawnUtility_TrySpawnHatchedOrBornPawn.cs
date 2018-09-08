@@ -5,7 +5,7 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(PawnUtility), nameof(PawnUtility.TrySpawnHatchedOrBornPawn))]
+    [HarmonyPatch(typeof(PawnUtility), "TrySpawnHatchedOrBornPawn")]
     internal static class RimWorld_PawnUtility_TrySpawnHatchedOrBornPawn
     {
         private static void Postfix(bool __result, Pawn pawn, Thing motherOrEgg)

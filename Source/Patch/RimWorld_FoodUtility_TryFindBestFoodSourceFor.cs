@@ -4,7 +4,7 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.TryFindBestFoodSourceFor))]
+    [HarmonyPatch(typeof(FoodUtility), "TryFindBestFoodSourceFor")]
     internal static class RimWorld_FoodUtility_TryFindBestFoodSourceFor
     {
         private static bool Prefix(ref bool __result, Pawn getter, Pawn eater, bool desperate, out Thing foodSource, out ThingDef foodDef, bool canRefillDispenser = true, bool canUseInventory = true, bool allowForbidden = false, bool allowCorpse = true, bool allowSociallyImproper = false, bool allowHarvest = false, bool forceScanWholeMap = false)

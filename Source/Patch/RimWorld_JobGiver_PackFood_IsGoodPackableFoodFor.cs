@@ -6,7 +6,7 @@ using Verse;
 namespace PawnRules.Patch
 {
     [HarmonyPatch(typeof(JobGiver_PackFood), "IsGoodPackableFoodFor")]
-    internal static class RimWorld_JobGiver_PackFood
+    internal static class RimWorld_JobGiver_PackFood_IsGoodPackableFoodFor
     {
         private static void Postfix(ref bool __result, Thing food, Pawn forPawn)
         {

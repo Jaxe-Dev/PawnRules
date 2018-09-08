@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PawnRules.API;
 using PawnRules.Interface;
 using PawnRules.Patch;
-using PawnRules.SDK;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -165,11 +165,7 @@ namespace PawnRules.Data
         public static void ReplaceRules(Pawn pawn, Rules rules) => Instance._rules[pawn] = rules;
         public static void ReplaceDefaultRules(PawnType type, Rules rules) => Instance._defaults[type] = rules;
 
-        private static Rules ChangeTypeOrCreateRules(Pawn pawn, PawnType type)
-        {
-            Instance._rules[pawn] = new Rules(pawn, type ?? pawn.GetTargetType());
-            return Instance._rules[pawn];
-        }
+        private static void ChangeTypeOrCreateRules(Pawn pawn, PawnType type) => Instance._rules[pawn] = GetDefaultRules(type);
 
         public static Rules CloneRules(Pawn original, Pawn cloner)
         {
@@ -191,7 +187,7 @@ namespace PawnRules.Data
 
         public static void FactionUpdate(Thing thing, Faction newFaction, bool? guest = null)
         {
-            if (!(thing is Pawn pawn) || !pawn.Spawned || !pawn.Dead) { return; }
+            if (!(thing is Pawn pawn) || !pawn.Spawned || pawn.Dead) { return; }
 
             PawnType type;
 
@@ -206,8 +202,6 @@ namespace PawnRules.Data
                 return;
             }
             else { return; }
-
-            if (GetDefaultRules(type).IsVoid) { return; }
 
             ChangeTypeOrCreateRules(pawn, type);
         }

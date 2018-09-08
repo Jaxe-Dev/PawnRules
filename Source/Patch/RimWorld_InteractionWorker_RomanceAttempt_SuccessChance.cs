@@ -5,7 +5,7 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), nameof(InteractionWorker_RomanceAttempt.SuccessChance))]
+    [HarmonyPatch(typeof(InteractionWorker_RomanceAttempt), "SuccessChance")]
     internal static class RimWorld_InteractionWorker_RomanceAttempt_SuccessChance
     {
         private static bool Prefix(ref float __result, Pawn initiator, Pawn recipient)

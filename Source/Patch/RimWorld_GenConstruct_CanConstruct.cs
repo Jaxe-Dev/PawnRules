@@ -6,7 +6,7 @@ using Verse.AI;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(GenConstruct), nameof(GenConstruct.CanConstruct))]
+    [HarmonyPatch(typeof(GenConstruct), "CanConstruct")]
     internal static class RimWorld_GenConstruct_CanConstruct
     {
         private static void Postfix(ref bool __result, Thing t, Pawn p, bool checkConstructionSkill = true, bool forced = false)

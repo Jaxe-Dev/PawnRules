@@ -5,7 +5,7 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(PawnGenerator), nameof(PawnGenerator.GeneratePawn), typeof(PawnGenerationRequest))]
+    [HarmonyPatch(typeof(PawnGenerator), "GeneratePawn", typeof(PawnKindDef), typeof(Faction))]
     internal static class Verse_PawnGenerator_GeneratePawn
     {
         private static void Postfix(ref Pawn __result)

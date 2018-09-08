@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PawnRules.SDK
+namespace PawnRules.API
 {
     /// <summary>
     ///     Used to set the target type of the pawn that a rule will be applied to. Multiple flags may be set.

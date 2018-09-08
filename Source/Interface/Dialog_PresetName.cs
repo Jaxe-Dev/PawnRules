@@ -73,7 +73,7 @@ namespace PawnRules.Interface
             listing.Gap();
             listing.End();
 
-            var grid = rect.AdjustedBy(0f, listing.CurHeight, 0f, -listing.CurHeight).GetHGrid(4f, 0f, 0f);
+            var grid = rect.AdjustedBy(0f, listing.CurHeight, 0f, -listing.CurHeight).GetHGrid(4f, -1f, -1f);
 
             listing.Begin(grid[0]);
             if (listing.ButtonText(Lang.Get("Button.OK"), null, valid))

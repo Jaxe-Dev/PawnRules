@@ -5,8 +5,8 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(Pawn_GuestTracker), nameof(Pawn_GuestTracker.SetGuestStatus))]
-    internal static class Verse_Pawn_GuestTracker_SetGuestStatus
+    [HarmonyPatch(typeof(Pawn_GuestTracker), "SetGuestStatus")]
+    internal static class RimWorld_Pawn_GuestTracker_SetGuestStatus
     {
         private static void Prefix(Pawn_GuestTracker __instance, Faction newHost, bool prisoner = false)
         {

@@ -201,8 +201,8 @@ namespace PawnRules.Interface
             Title = _type == null ? Lang.Get("Dialog_Rules.Title", _pawn.Name.ToStringFull.Bold(), _preset.Type.Label) : Lang.Get("Dialog_Rules.TitleDefault", _type.LabelPlural.Bold());
 
             var listing = new Listing_StandardPlus();
-            var hGrid = rect.GetHGrid(8f, 200f, 0f);
-            var lGrid = hGrid[0].GetVGrid(4f, 42f, 0f);
+            var hGrid = rect.GetHGrid(8f, 200f, -1f);
+            var lGrid = hGrid[0].GetVGrid(4f, 42f, -1f);
 
             listing.Begin(lGrid[0]);
             listing.Label(Lang.Get("Preset.Header").Italic().Bold());
@@ -210,7 +210,7 @@ namespace PawnRules.Interface
             listing.End();
             _preset.DoContent(lGrid[1]);
 
-            var vGrid = hGrid[1].GetVGrid(4f, 42f, 0f, 62f);
+            var vGrid = hGrid[1].GetVGrid(4f, 42f, -1f, 62f);
             listing.Begin(vGrid[0]);
             listing.Label(Lang.Get("Dialog_Rules.Configuration").Italic().Bold());
             listing.GapLine();
@@ -238,7 +238,7 @@ namespace PawnRules.Interface
 
             if (_template.HasAddons)
             {
-                var addonsRect = vGrid[1].GetVGrid(4f, listing.CurHeight, 0f)[1];
+                var addonsRect = vGrid[1].GetVGrid(4f, listing.CurHeight, -1f)[1];
                 _addons.Begin(addonsRect, addonsRect.height <= _template.AddonsRectHeight);
                 GuiPlus.DoAddonsListing(_addons, _template, editMode);
                 _addons.End();
@@ -246,7 +246,7 @@ namespace PawnRules.Interface
 
             GUI.color = color;
 
-            var optionGrid = vGrid[2].GetVGrid(2f, 0f, 0f);
+            var optionGrid = vGrid[2].GetVGrid(2f, -1f, -1f);
             listing.Begin(optionGrid[0]);
             if (listing.ButtonText(Lang.Get("Button.AssignTo"), Lang.Get("Button.AssignToDesc"), (_floatMenuAssign.Count > 0) && (!editMode || (_template == _personalized)))) { Find.WindowStack.Add(new FloatMenu(_floatMenuAssign)); }
             listing.End();

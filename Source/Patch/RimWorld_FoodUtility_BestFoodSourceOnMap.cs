@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.BestFoodSourceOnMap))]
+    [HarmonyPatch(typeof(FoodUtility), "BestFoodSourceOnMap")]
     internal static class RimWorld_FoodUtility_BestFoodSourceOnMap
     {
         private static bool Prefix(ref Thing __result, Pawn getter, Pawn eater, bool desperate, out ThingDef foodDef, FoodPreferability maxPref = FoodPreferability.MealLavish, bool allowPlant = true, bool allowDrug = true, bool allowCorpse = true, bool allowDispenserFull = true, bool allowDispenserEmpty = true, bool allowForbidden = false, bool allowSociallyImproper = false, bool allowHarvest = false, bool forceScanWholeMap = false)

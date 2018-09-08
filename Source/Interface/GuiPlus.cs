@@ -18,7 +18,7 @@ namespace PawnRules.Interface
         private static readonly Color InactiveColor = new Color(0.37f, 0.37f, 0.37f, 0.8f);
         public static readonly Color ReadOnlyColor = new Color(0.75f, 0.75f, 0.75f, 0.75f);
 
-        private static readonly Texture2D EditRulesTexture = ContentFinder<Texture2D>.Get("UI/EditRules");
+        private static readonly Texture2D EditRulesTexture = ContentFinder<Texture2D>.Get("PawnRules/EditRules");
 
         public static Command_Action EditRulesCommand(Pawn pawn) => new Command_Action
                                                                     {

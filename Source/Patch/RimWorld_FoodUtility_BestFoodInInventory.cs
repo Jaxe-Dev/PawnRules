@@ -5,7 +5,7 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(FoodUtility), nameof(FoodUtility.BestFoodInInventory))]
+    [HarmonyPatch(typeof(FoodUtility), "BestFoodInInventory")]
     internal static class RimWorld_FoodUtility_BestFoodInInventory
     {
         private static bool Prefix(ref Thing __result, Pawn holder, Pawn eater = null, FoodPreferability minFoodPref = FoodPreferability.NeverForNutrition, FoodPreferability maxFoodPref = FoodPreferability.MealLavish, float minStackNutrition = 0.0f, bool allowDrug = false)

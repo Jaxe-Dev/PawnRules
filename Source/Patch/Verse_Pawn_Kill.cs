@@ -4,7 +4,7 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(Pawn), nameof(Pawn.Kill))]
+    [HarmonyPatch(typeof(Pawn), "Kill")]
     internal static class Verse_Pawn_Kill
     {
         private static void Postfix(Pawn __instance)

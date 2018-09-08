@@ -1,7 +1,7 @@
 ﻿using PawnRules.Data;
 using Verse;
 
-namespace PawnRules.SDK
+namespace PawnRules.API
 {
     /// <summary>
     ///     The base class of a rules option handle.

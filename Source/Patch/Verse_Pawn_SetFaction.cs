@@ -5,7 +5,7 @@ using Verse;
 
 namespace PawnRules.Patch
 {
-    [HarmonyPatch(typeof(Pawn), nameof(Pawn.SetFaction))]
+    [HarmonyPatch(typeof(Pawn), "SetFaction")]
     internal static class Verse_Pawn_SetFaction
     {
         private static void Prefix(Pawn __instance, Faction newFaction)
