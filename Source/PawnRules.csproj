@@ -82,7 +82,7 @@
     <Compile Include="Interface\OptionWidget.cs" />
     <Compile Include="Interface\WindowPlus.cs" />
     <Compile Include="Patch\Extensions.cs" />
-    <Compile Include="Patch\PrivateAccess.cs" />
+    <Compile Include="Patch\Access.cs" />
     <Compile Include="Patch\RimWorld_FoodUtility_BestFoodInInventory.cs" />
     <Compile Include="Patch\RimWorld_FoodUtility_BestFoodSourceOnMap.cs" />
     <Compile Include="Patch\RimWorld_FoodUtility_TryFindBestFoodSourceFor.cs" />
@@ -123,9 +123,6 @@
     <Content Include="..\Languages\English\Keyed\PawnRules.xml">
       <Link>-\Languages\English\Keyed\PawnRules.xml</Link>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="..\Textures\PawnRules\EditRules.png">
-      <Link>-\Textures\PawnRules\EditRules.png</Link>
     </Content>
   </ItemGroup>
   <ItemGroup />

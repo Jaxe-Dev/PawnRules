@@ -1,5 +1,5 @@
 # Pawn Rules
-![](https://img.shields.io/badge/Version-1.0.9-brightgreen.svg)
+![](https://img.shields.io/badge/Version-1.1.0-brightgreen.svg)
 
 Built for **RimWorld B19**\
 Powered by **Harmony**\
@@ -42,22 +42,22 @@ Supports addons created by other modders by allowing easy creation of new rule o
 
 ------------
 
-The following original methods are patched using Harmony:
+The following base methods are patched with Harmony:
 ```C#
-RimWorld.FoodUtility.BestFoodSourceOnMap : Prefix
-RimWorld.FoodUtility.BestFoodInInventory : Prefix
-RimWorld.FoodUtility.TryFindBestFoodSourceFor : Prefix
-RimWorld.GenConstruct.CanConstruct : Postfix
-RimWorld.InteractionWorker_RomanceAttempt.RandomSelectionWeight : Prefix
-RimWorld.InteractionWorker_RomanceAttempt.SuccessChance : Prefix
-RimWorld.JobGiver_PackFood.IsGoodPackableFoodFor : Postfix
-RimWorld.JoyGiver_Ingest.CanIngestForJoy : Prefix
-RimWorld.Pawn_GuestTracker.SetGuestStatus : Prefix
-RimWorld.PawnUtility.TrySpawnHatchedOrBornPawn : Postfix
-RimWorld.RelationsUtility.TryDevelopBondRelation : Prefix
-Verse.Game.FinalizeInit : Postfix
-Verse.Pawn.GetGizmos : Postfix
-Verse.Pawn.Kill : Postfix
-Verse.Pawn.SetFaction : Prefix
-Verse.PawnGenerator.GeneratePawn : Postfix
+Prefix  : RimWorld.FoodUtility.BestFoodSourceOnMap
+Prefix  : RimWorld.FoodUtility.BestFoodInInventory
+Prefix  : RimWorld.FoodUtility.TryFindBestFoodSourceFor
+Postfix : RimWorld.GenConstruct.CanConstruct
+Prefix  : RimWorld.InteractionWorker_RomanceAttempt.RandomSelectionWeight
+Prefix  : RimWorld.InteractionWorker_RomanceAttempt.SuccessChance
+Postfix : RimWorld.JobGiver_PackFood.IsGoodPackableFoodFor
+Prefix  : RimWorld.JoyGiver_Ingest.CanIngestForJoy
+Prefix  : RimWorld.Pawn_GuestTracker.SetGuestStatus
+Postfix : RimWorld.PawnUtility.TrySpawnHatchedOrBornPawn
+Prefix  : RimWorld.RelationsUtility.TryDevelopBondRelation
+Postfix : Verse.Game.FinalizeInit
+Postfix : Verse.Pawn.GetGizmos
+Postfix : Verse.Pawn.Kill
+Prefix  : Verse.Pawn.SetFaction
+Postfix : Verse.PawnGenerator.GeneratePawn
 ```

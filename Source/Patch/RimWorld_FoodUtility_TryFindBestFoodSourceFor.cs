@@ -84,7 +84,7 @@ namespace PawnRules.Patch
             }
             if ((foodSource1 == null) && (getter == eater) && (getter.RaceProps.predator || (getter.IsWildMan() && !getter.IsPrisoner)))
             {
-                var huntForPredator = PrivateAccess.RimWorld_FoodUtility_BestPawnToHuntForPredator(getter, forceScanWholeMap);
+                var huntForPredator = Access.Method_RimWorld_FoodUtility_BestPawnToHuntForPredator_Call(getter, forceScanWholeMap);
                 if (huntForPredator != null)
                 {
                     foodSource = huntForPredator;

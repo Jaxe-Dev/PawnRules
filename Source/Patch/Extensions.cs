@@ -11,16 +11,11 @@ namespace PawnRules.Patch
         public static string Italic(this string self) => "<i>" + self + "</i>";
         public static string Bold(this string self) => "<b>" + self + "</b>";
 
-        public static string GetCategoryLabel(this ThingDef self) => self.category == ThingCategory.Item ? self.FirstThingCategory.LabelCap : self.category.ToString();
-        public static Rect AdjustedBy(this Rect self, float x, float y, float width, float height) => new Rect(self.x + x, self.y + y, self.width + width, self.height + height);
-
         public static int LastIndex(this Array self) => self.Length - 1;
-
         public static int ToInt(this string self, int defaultValue = 0) => int.TryParse(self, out var result) ? result : defaultValue;
         public static float ToFloat(this string self, float defaultValue = 0f) => float.TryParse(self, out var result) ? result : defaultValue;
 
         public static bool CanHaveRules(this Pawn self) => (self != null) && !self.Dead && (self.GetTargetType() != null);
-
         public static PawnType GetTargetType(this Pawn self)
         {
             if (self == null) { return null; }
@@ -29,6 +24,8 @@ namespace PawnRules.Patch
             if (self.HostFaction == Faction.OfPlayer) { return self.IsPrisonerOfColony ? PawnType.Prisoner : PawnType.Guest; }
             return null;
         }
+
+        public static Rect AdjustedBy(this Rect self, float x, float y, float width, float height) => new Rect(self.x + x, self.y + y, self.width + width, self.height + height);
 
         public static Rect[] GetHGrid(this Rect self, float spacing, params float[] widths)
         {

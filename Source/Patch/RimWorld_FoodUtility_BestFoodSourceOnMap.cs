@@ -42,13 +42,13 @@ namespace PawnRules.Patch
                                                         }
                                                         if (thing is Building_NutrientPasteDispenser nutrientPasteDispenser)
                                                         {
-                                                            if (!allowDispenserFull || !getterCanManipulate || (ThingDefOf.MealNutrientPaste.ingestible.preferability < minPref) || (ThingDefOf.MealNutrientPaste.ingestible.preferability > maxPref) || !eater.RaceProps.CanEverEat(ThingDefOf.MealNutrientPaste) || ((thing.Faction != getter.Faction) && (thing.Faction != getter.HostFaction)) || (!allowForbidden && thing.IsForbidden(getter)) || !nutrientPasteDispenser.powerComp.PowerOn || (!allowDispenserEmpty && !nutrientPasteDispenser.HasEnoughFeedstockInHoppers()) || !thing.InteractionCell.Standable(thing.Map) || !PrivateAccess.RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper(thing, getter, eater, allowSociallyImproper) || getter.IsWildMan() || !getter.Map.reachability.CanReachNonLocal(getter.Position, new TargetInfo(thing.InteractionCell, thing.Map), PathEndMode.OnCell, TraverseParms.For(getter, Danger.Some)))
+                                                            if (!allowDispenserFull || !getterCanManipulate || (ThingDefOf.MealNutrientPaste.ingestible.preferability < minPref) || (ThingDefOf.MealNutrientPaste.ingestible.preferability > maxPref) || !eater.RaceProps.CanEverEat(ThingDefOf.MealNutrientPaste) || ((thing.Faction != getter.Faction) && (thing.Faction != getter.HostFaction)) || (!allowForbidden && thing.IsForbidden(getter)) || !nutrientPasteDispenser.powerComp.PowerOn || (!allowDispenserEmpty && !nutrientPasteDispenser.HasEnoughFeedstockInHoppers()) || !thing.InteractionCell.Standable(thing.Map) || !Access.Method_RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper_Call(thing, getter, eater, allowSociallyImproper) || getter.IsWildMan() || !getter.Map.reachability.CanReachNonLocal(getter.Position, new TargetInfo(thing.InteractionCell, thing.Map), PathEndMode.OnCell, TraverseParms.For(getter, Danger.Some)))
                                                             {
                                                                 Profiler.EndSample();
                                                                 return false;
                                                             }
                                                         }
-                                                        else if ((thing.def.ingestible.preferability < minPref) || (thing.def.ingestible.preferability > maxPref) || !eater.RaceProps.WillAutomaticallyEat(thing) || !thing.def.IsNutritionGivingIngestible || !thing.IngestibleNow || (!allowCorpse && thing is Corpse) || (!allowDrug && thing.def.IsDrug) || (!allowForbidden && thing.IsForbidden(getter)) || (!desperate && thing.IsNotFresh()) || thing.IsDessicated() || !PrivateAccess.RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper(thing, getter, eater, allowSociallyImproper) || (!getter.AnimalAwareOf(thing) && !forceScanWholeMap) || !getter.CanReserve((LocalTargetInfo) thing))
+                                                        else if ((thing.def.ingestible.preferability < minPref) || (thing.def.ingestible.preferability > maxPref) || !eater.RaceProps.WillAutomaticallyEat(thing) || !thing.def.IsNutritionGivingIngestible || !thing.IngestibleNow || (!allowCorpse && thing is Corpse) || (!allowDrug && thing.def.IsDrug) || (!allowForbidden && thing.IsForbidden(getter)) || (!desperate && thing.IsNotFresh()) || thing.IsDessicated() || !Access.Method_RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper_Call(thing, getter, eater, allowSociallyImproper) || (!getter.AnimalAwareOf(thing) && !forceScanWholeMap) || !getter.CanReserve((LocalTargetInfo) thing))
                                                         {
                                                             Profiler.EndSample();
                                                             return false;
@@ -63,7 +63,7 @@ namespace PawnRules.Patch
 
             if (getter.RaceProps.Humanlike)
             {
-                bestThing = PrivateAccess.RimWorld_FoodUtility_SpawnedFoodSearchInnerScan(eater, getter.Position, getter.Map.listerThings.ThingsMatching(req), PathEndMode.ClosestTouch, TraverseParms.For(getter), 9999f, foodValidator);
+                bestThing = Access.Method_RimWorld_FoodUtility_SpawnedFoodSearchInnerScan_Call(eater, getter.Position, getter.Map.listerThings.ThingsMatching(req), PathEndMode.ClosestTouch, TraverseParms.For(getter), 9999f, foodValidator);
 
                 if (allowHarvest && getterCanManipulate)
                 {
@@ -93,16 +93,16 @@ namespace PawnRules.Patch
             }
             else
             {
-                var maxRegionsToScan = PrivateAccess.RimWorld_FoodUtility_GetMaxRegionsToScan(getter, forceScanWholeMap);
-                PrivateAccess.RimWorld_FoodUtility_Filtered().Clear();
+                var maxRegionsToScan = Access.Method_RimWorld_FoodUtility_GetMaxRegionsToScan_Call(getter, forceScanWholeMap);
+                Access.Field_RimWorld_FoodUtility_Filtered_Get().Clear();
 
                 foreach (var thing in GenRadial.RadialDistinctThingsAround(getter.Position, getter.Map, 2f, true))
                 {
-                    if (thing is Pawn pawn && (pawn != getter) && pawn.RaceProps.Animal && (pawn.CurJob != null) && (pawn.CurJob.def == JobDefOf.Ingest) && pawn.CurJob.GetTarget(TargetIndex.A).HasThing) { PrivateAccess.RimWorld_FoodUtility_Filtered().Add(pawn.CurJob.GetTarget(TargetIndex.A).Thing); }
+                    if (thing is Pawn pawn && (pawn != getter) && pawn.RaceProps.Animal && (pawn.CurJob != null) && (pawn.CurJob.def == JobDefOf.Ingest) && pawn.CurJob.GetTarget(TargetIndex.A).HasThing) { Access.Field_RimWorld_FoodUtility_Filtered_Get().Add(pawn.CurJob.GetTarget(TargetIndex.A).Thing); }
                 }
 
                 var flag = !allowForbidden && ForbidUtility.CaresAboutForbidden(getter, true) && (getter.playerSettings?.EffectiveAreaRestrictionInPawnCurrentMap != null);
-                var predicate = (Predicate<Thing>) (thing => foodValidator(thing) && !PrivateAccess.RimWorld_FoodUtility_Filtered().Contains(thing) && (thing is Building_NutrientPasteDispenser || (thing.def.ingestible.preferability > FoodPreferability.DesperateOnly)) && !thing.IsNotFresh());
+                var predicate = (Predicate<Thing>) (thing => foodValidator(thing) && !Access.Field_RimWorld_FoodUtility_Filtered_Get().Contains(thing) && (thing is Building_NutrientPasteDispenser || (thing.def.ingestible.preferability > FoodPreferability.DesperateOnly)) && !thing.IsNotFresh());
                 var position1 = getter.Position;
                 var map1 = getter.Map;
                 var thingReq1 = req;
@@ -112,7 +112,7 @@ namespace PawnRules.Patch
 
                 bestThing = GenClosest.ClosestThingReachable(position1, map1, thingReq1, PathEndMode.ClosestTouch, traverseParams1, 9999f, validator1, null, 0, maxRegionsToScan, false, RegionType.Set_Passable, ignoreEntirelyForbiddenRegions1);
 
-                PrivateAccess.RimWorld_FoodUtility_Filtered().Clear();
+                Access.Field_RimWorld_FoodUtility_Filtered_Get().Clear();
 
                 if (bestThing == null)
                 {

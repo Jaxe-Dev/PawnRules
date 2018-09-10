@@ -1,7 +1,6 @@
 ﻿using Harmony;
 using PawnRules.Data;
 using RimWorld;
-using Verse;
 
 namespace PawnRules.Patch
 {
@@ -11,7 +10,8 @@ namespace PawnRules.Patch
         private static void Prefix(Pawn_GuestTracker __instance, Faction newHost, bool prisoner = false)
         {
             if (!Registry.IsActive) { return; }
-            Registry.FactionUpdate(Traverse.Create(__instance).Field("pawn").GetValue<Pawn>(), newHost, !prisoner);
+
+            Registry.FactionUpdate(Access.Field_RimWorld_Pawn_GuestTracker_Pawn_Get(__instance), newHost, !prisoner);
         }
     }
 }

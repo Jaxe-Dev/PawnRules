@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PawnRules.Patch;
 using Verse;
 
 namespace PawnRules.Data
@@ -28,7 +27,7 @@ namespace PawnRules.Data
 
             foreach (var food in FoodCache)
             {
-                var category = food.GetCategoryLabel();
+                var category = GetCategoryLabel(food);
 
                 if (!list.ContainsKey(category)) { list[category] = new Category(category); }
                 list[category].Members.Add(new Toggle(food, restriction.Allows(food)));
@@ -74,6 +73,8 @@ namespace PawnRules.Data
             if (type == RestrictionType.Food) { return GetFoodsCategorized(restriction); }
             return type == RestrictionType.Bonding ? GetAnimalsCategorized(restriction) : null;
         }
+
+        private static string GetCategoryLabel(ThingDef self) => self.category == ThingCategory.Item ? self.FirstThingCategory.LabelCap : self.category.ToString();
 
         public class Category
         {

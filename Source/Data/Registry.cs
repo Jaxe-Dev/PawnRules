@@ -165,7 +165,11 @@ namespace PawnRules.Data
         public static void ReplaceRules(Pawn pawn, Rules rules) => Instance._rules[pawn] = rules;
         public static void ReplaceDefaultRules(PawnType type, Rules rules) => Instance._defaults[type] = rules;
 
-        private static void ChangeTypeOrCreateRules(Pawn pawn, PawnType type) => Instance._rules[pawn] = GetDefaultRules(type);
+        private static void ChangeTypeOrCreateRules(Pawn pawn, PawnType type)
+        {
+            if (type == pawn.GetTargetType()) { return; }
+            Instance._rules[pawn] = GetDefaultRules(type);
+        }
 
         public static Rules CloneRules(Pawn original, Pawn cloner)
         {
@@ -187,16 +191,17 @@ namespace PawnRules.Data
 
         public static void FactionUpdate(Thing thing, Faction newFaction, bool? guest = null)
         {
-            if (!(thing is Pawn pawn) || !pawn.Spawned || pawn.Dead) { return; }
+            if (!(thing is Pawn pawn) || pawn.Dead) { return; }
 
+            var oldFaction = guest == null ? pawn.Faction : pawn.HostFaction;
             PawnType type;
 
             if (newFaction == Faction.OfPlayer)
             {
-                if ((guest == null) || pawn.IsColonistPlayerControlled) { type = pawn.RaceProps.Animal ? PawnType.Animal : PawnType.Colonist; }
+                if ((guest == null) || (pawn.Faction == Faction.OfPlayer)) { type = pawn.RaceProps.Animal ? PawnType.Animal : PawnType.Colonist; }
                 else { type = guest.Value ? PawnType.Guest : PawnType.Prisoner; }
             }
-            else if ((guest == null ? pawn.Faction : pawn.HostFaction) == Faction.OfPlayer)
+            else if ((oldFaction == Faction.OfPlayer) && (newFaction != null))
             {
                 DeleteRules(pawn);
                 return;
@@ -212,7 +217,7 @@ namespace PawnRules.Data
 
             ModsConfig.SetActive(Mod.ContentPack.Identifier, false);
 
-            var runningMods = PrivateAccess.Verse_LoadedModManager_RunningMods();
+            var runningMods = Access.Field_Verse_LoadedModManager_RunningMods_Get();
             runningMods.Remove(Mod.ContentPack);
 
             var addonMods = new StringBuilder();
