@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using Verse;
 
 namespace PawnRules.Data
@@ -23,11 +24,11 @@ namespace PawnRules.Data
 
         private static RestrictionTemplate GetFoodsCategorized(Restriction restriction)
         {
-            var list = new Dictionary<string, Category>();
+            var list = new Dictionary<string, Category> { [ThingCategoryDefOf.FoodMeals.LabelCap] = new Category(ThingCategoryDefOf.FoodMeals.LabelCap) };
 
             foreach (var food in FoodCache)
             {
-                var category = GetCategoryLabel(food);
+                var category = GetFoodCategory(food);
 
                 if (!list.ContainsKey(category)) { list[category] = new Category(category); }
                 list[category].Members.Add(new Toggle(food, restriction.Allows(food)));
@@ -35,6 +36,8 @@ namespace PawnRules.Data
 
             return new RestrictionTemplate(list.Values.ToArray());
         }
+
+        private static string GetFoodCategory(ThingDef self) => self.category == ThingCategory.Item ? self.FirstThingCategory.LabelCap : self.category.ToString();
 
         private static RestrictionTemplate GetAnimalsCategorized(Restriction restriction)
         {
@@ -74,8 +77,6 @@ namespace PawnRules.Data
             return type == RestrictionType.Bonding ? GetAnimalsCategorized(restriction) : null;
         }
 
-        private static string GetCategoryLabel(ThingDef self) => self.category == ThingCategory.Item ? self.FirstThingCategory.LabelCap : self.category.ToString();
-
         public class Category
         {
             public string Label { get; }
@@ -99,6 +100,19 @@ namespace PawnRules.Data
             private void SetAll(bool state)
             {
                 foreach (var member in Members) { member.Value = state; }
+            }
+        }
+
+        public class Toggle
+        {
+            public Def Def { get; }
+
+            public bool Value;
+
+            public Toggle(Def def, bool value)
+            {
+                Def = def;
+                Value = value;
             }
         }
     }

@@ -15,7 +15,7 @@ namespace PawnRules.Patch
             var rules = Registry.GetRules(forPawn);
             if (forPawn.InMentalState || (rules == null) || rules.GetRestriction(RestrictionType.Food).IsVoid) { return; }
 
-            __result = __result && rules.GetRestriction(RestrictionType.Food).Allows(food.def);
+            __result = __result && rules.GetRestriction(RestrictionType.Food).AllowsFood(food.def, forPawn);
         }
     }
 }

@@ -7,31 +7,41 @@ namespace PawnRules.Interface
 {
     internal class Dialog_Global : WindowPlus
     {
-        public Dialog_Global() : base(Lang.Get("Dialog_Global.Title"), new Vector2(300f, 300))
+        private Dialog_Global() : base(Lang.Get("Dialog_Global.Title"), new Vector2(300f, 400f))
         { }
 
-        public override void DoContent(Rect rect)
+        public static void Open() => Find.WindowStack.Add(new Dialog_Global());
+
+        protected override void DoContent(Rect rect)
         {
-            var listing = new Listing_Standard();
+            var listing = new Listing_StandardPlus();
             listing.Begin(rect);
 
-            Registry.ShowFoodPolicy = ShowRuleListing(listing, Lang.Get("RestrictionType.Food"), Registry.ShowFoodPolicy);
-            Registry.ShowBondingPolicy = ShowRuleListing(listing, Lang.Get("RestrictionType.Bonding"), Registry.ShowBondingPolicy);
-            Registry.ShowAllowCourting = ShowRuleListing(listing, Lang.Get("Rules.AllowCourting"), Registry.ShowAllowCourting);
-            Registry.ShowAllowArtisan = ShowRuleListing(listing, Lang.Get("Rules.AllowArtisan"), Registry.ShowAllowArtisan);
+            Registry.AllowEmergencyFood = listing.CheckboxLabeled(Lang.Get("Dialog_Global.AllowEmergencyFood"), Registry.AllowEmergencyFood);
+            Registry.AllowTrainingFood = listing.CheckboxLabeled(Lang.Get("Dialog_Global.AllowTrainingFood"), Registry.AllowTrainingFood);
 
             listing.Gap();
             listing.GapLine();
             listing.Gap();
 
-            if (listing.ButtonText(Lang.Get("Button.RemoveMod"), Lang.Get("Button.RemoveModDesc"))) { Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Button.RemoveModConfirm"), Dialog_Alert.Buttons.YesNo, Registry.DeactivateMod)); }
+            Registry.ShowFoodPolicy = listing.CheckboxLabeled(GetShowRuleLabel(Lang.Get("RestrictionType.Food")), Registry.ShowFoodPolicy);
+            Registry.ShowBondingPolicy = listing.CheckboxLabeled(GetShowRuleLabel(Lang.Get("RestrictionType.Bonding")), Registry.ShowBondingPolicy);
+            Registry.ShowAllowCourting = listing.CheckboxLabeled(GetShowRuleLabel(Lang.Get("Rules.AllowCourting")), Registry.ShowAllowCourting);
+            Registry.ShowAllowArtisan = listing.CheckboxLabeled(GetShowRuleLabel(Lang.Get("Rules.AllowArtisan")), Registry.ShowAllowArtisan);
+
+            listing.Gap();
+            listing.GapLine();
+            listing.Gap();
+
+            if (listing.ButtonText(Lang.Get("Dialog_Global.Plans")))
+            {
+                Close();
+                Dialog_Plans.Open();
+            }
+
             listing.End();
         }
 
-        private static bool ShowRuleListing(Listing_Standard listing, string label, bool value)
-        {
-            listing.CheckboxLabeled(Lang.Get("Dialog_Global.ShowRule", label.Italic()), ref value);
-            return value;
-        }
+        private static string GetShowRuleLabel(string label) => Lang.Get("Dialog_Global.ShowRule", label.Italic());
     }
 }

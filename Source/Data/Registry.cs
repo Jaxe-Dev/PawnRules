@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using PawnRules.API;
 using PawnRules.Interface;
 using PawnRules.Patch;
@@ -16,15 +17,21 @@ namespace PawnRules.Data
         private const string WorldObjectDefName = "PawnRules_Registry";
         private const string CurrentVersion = "v" + Mod.Version;
 
-        public static Registry Instance { get; private set; }
-        public static bool IsActive => !_isDeactivating && (Instance != null) && (Current.Game?.World != null);
+        public static bool IsActive => !_isDeactivating && (_instance != null) && (Current.Game != null);
+
+        private static Registry _instance;
 
         private static bool _isDeactivating;
 
-        public static bool ShowFoodPolicy { get => Instance._showFoodPolicy; set => Instance._showFoodPolicy = value; }
-        public static bool ShowBondingPolicy { get => Instance._showBondingPolicy; set => Instance._showBondingPolicy = value; }
-        public static bool ShowAllowCourting { get => Instance._showAllowCourting; set => Instance._showAllowCourting = value; }
-        public static bool ShowAllowArtisan { get => Instance._showAllowArtisan; set => Instance._showAllowArtisan = value; }
+        public static bool AllowEmergencyFood { get => _instance._allowEmergencyFood; set => _instance._allowEmergencyFood = value; }
+        public static bool AllowTrainingFood { get => _instance._allowTrainingFood; set => _instance._allowTrainingFood = value; }
+
+        public static bool ShowFoodPolicy { get => _instance._showFoodPolicy; set => _instance._showFoodPolicy = value; }
+        public static bool ShowBondingPolicy { get => _instance._showBondingPolicy; set => _instance._showBondingPolicy = value; }
+        public static bool ShowAllowCourting { get => _instance._showAllowCourting; set => _instance._showAllowCourting = value; }
+        public static bool ShowAllowArtisan { get => _instance._showAllowArtisan; set => _instance._showAllowArtisan = value; }
+
+        private string _loadedVersion;
 
         private readonly Dictionary<Type, Dictionary<IPresetableType, Presetable>> _voidPresets = new Dictionary<Type, Dictionary<IPresetableType, Presetable>>();
         private readonly Dictionary<Type, Dictionary<IPresetableType, Dictionary<string, Presetable>>> _presets = new Dictionary<Type, Dictionary<IPresetableType, Dictionary<string, Presetable>>>();
@@ -34,6 +41,9 @@ namespace PawnRules.Data
         private List<Presetable> _savedPresets = new List<Presetable>();
         private List<Binding> _savedBindings = new List<Binding>();
         private List<Binding> _savedDefaults = new List<Binding>();
+
+        private bool _allowEmergencyFood;
+        private bool _allowTrainingFood;
 
         private bool _showFoodPolicy = true;
         private bool _showBondingPolicy = true;
@@ -55,28 +65,30 @@ namespace PawnRules.Data
             worldObjects.Add(instance);
         }
 
-        public static T GetVoidPreset<T>(IPresetableType type) where T : Presetable => (T) Instance._voidPresets[typeof(T)][type];
+        public static void Reset() => _instance = null;
+
+        public static T GetVoidPreset<T>(IPresetableType type) where T : Presetable => (T) _instance._voidPresets[typeof(T)][type];
 
         public static T GetPreset<T>(IPresetableType type, string name) where T : Presetable
         {
-            if (!Instance._presets.ContainsKey(typeof(T)) || !Instance._presets[typeof(T)].ContainsKey(type) || !Instance._presets[typeof(T)][type].ContainsKey(name)) { return null; }
+            if (!_instance._presets.ContainsKey(typeof(T)) || !_instance._presets[typeof(T)].ContainsKey(type) || !_instance._presets[typeof(T)][type].ContainsKey(name)) { return null; }
 
-            return (T) Instance._presets[typeof(T)][type][name];
+            return (T) _instance._presets[typeof(T)][type][name];
         }
 
         public static IEnumerable<T> GetPresets<T>(IPresetableType type) where T : Presetable
         {
-            if (!Instance._presets.ContainsKey(typeof(T)) || !Instance._presets[typeof(T)].ContainsKey(type)) { return new T[] { }; }
+            if (!_instance._presets.ContainsKey(typeof(T)) || !_instance._presets[typeof(T)].ContainsKey(type)) { return new T[] { }; }
 
-            return Instance._presets[typeof(T)][type].Values.Cast<T>().ToArray();
+            return _instance._presets[typeof(T)][type].Values.Cast<T>().ToArray();
         }
 
         private static void AddPreset(Presetable preset)
         {
-            if (!Instance._presets.ContainsKey(preset.GetType())) { Instance._presets[preset.GetType()] = new Dictionary<IPresetableType, Dictionary<string, Presetable>>(); }
-            if (!Instance._presets[preset.GetType()].ContainsKey(preset.Type)) { Instance._presets[preset.GetType()][preset.Type] = new Dictionary<string, Presetable>(); }
+            if (!_instance._presets.ContainsKey(preset.GetType())) { _instance._presets[preset.GetType()] = new Dictionary<IPresetableType, Dictionary<string, Presetable>>(); }
+            if (!_instance._presets[preset.GetType()].ContainsKey(preset.Type)) { _instance._presets[preset.GetType()][preset.Type] = new Dictionary<string, Presetable>(); }
 
-            Instance._presets[preset.GetType()][preset.Type][preset.Name] = preset;
+            _instance._presets[preset.GetType()][preset.Type][preset.Name] = preset;
         }
 
         public static T CreatePreset<T>(IPresetableType type, string name) where T : Presetable
@@ -88,11 +100,11 @@ namespace PawnRules.Data
 
         public static T RenamePreset<T>(T old, string name) where T : Presetable
         {
-            var preset = Instance._presets[old.GetType()][old.Type][old.Name];
+            var preset = _instance._presets[old.GetType()][old.Type][old.Name];
 
-            Instance._presets[preset.GetType()][preset.Type].Remove(preset.Name);
+            _instance._presets[preset.GetType()][preset.Type].Remove(preset.Name);
             preset.Name = name;
-            Instance._presets[preset.GetType()][preset.Type].Add(preset.Name, preset);
+            _instance._presets[preset.GetType()][preset.Type].Add(preset.Name, preset);
 
             return (T) preset;
         }
@@ -101,16 +113,16 @@ namespace PawnRules.Data
         {
             if ((preset == null) || preset.IsVoid) { throw new Mod.Exception("Tried to delete void preset"); }
 
-            Instance._presets[preset.GetType()][preset.Type].Remove(preset.Name);
+            _instance._presets[preset.GetType()][preset.Type].Remove(preset.Name);
 
             if (typeof(T) == typeof(Rules))
             {
-                foreach (var rule in Instance._rules.Where(rule => rule.Value == preset).ToArray()) { Instance._rules[rule.Key] = GetVoidPreset<Rules>(rule.Value.Type).CloneRulesFor(rule.Key); }
-                foreach (var rule in Instance._defaults.Where(rule => rule.Value == preset).ToArray()) { Instance._defaults[rule.Key] = GetVoidPreset<Rules>(rule.Value.Type); }
+                foreach (var rule in _instance._rules.Where(rule => rule.Value == preset).ToArray()) { _instance._rules[rule.Key] = GetVoidPreset<Rules>(rule.Value.Type).CloneRulesFor(rule.Key); }
+                foreach (var rule in _instance._defaults.Where(rule => rule.Value == preset).ToArray()) { _instance._defaults[rule.Key] = GetVoidPreset<Rules>(rule.Value.Type); }
             }
             else if (typeof(T) == typeof(Restriction))
             {
-                foreach (var rulesType in Instance._presets[typeof(Rules)].Values.ToArray())
+                foreach (var rulesType in _instance._presets[typeof(Rules)].Values.ToArray())
                 {
                     foreach (var presetable in rulesType.Values.ToArray())
                     {
@@ -122,9 +134,9 @@ namespace PawnRules.Data
             }
         }
 
-        public static bool PresetNameExists<T>(IPresetableType type, string name) => Instance._presets.ContainsKey(typeof(T)) && Instance._presets[typeof(T)].ContainsKey(type) && Instance._presets[typeof(T)][type].ContainsKey(name);
-        public static Rules GetDefaultRules(PawnType type) => Instance._defaults[type];
-        public static void SetDefaultRules(Rules rules) => Instance._defaults[rules.Type] = rules;
+        public static bool PresetNameExists<T>(IPresetableType type, string name) => _instance._presets.ContainsKey(typeof(T)) && _instance._presets[typeof(T)].ContainsKey(type) && _instance._presets[typeof(T)][type].ContainsKey(name);
+        public static Rules GetDefaultRules(PawnType type) => _instance._defaults[type];
+        public static void SetDefaultRules(Rules rules) => _instance._defaults[rules.Type] = rules;
 
         public static T GetAddonDefaultValue<T>(OptionTarget target, AddonOption addon, T invalidValue = default(T))
         {
@@ -136,16 +148,16 @@ namespace PawnRules.Data
         public static Rules GetRules(Pawn pawn)
         {
             if (!pawn.CanHaveRules()) { return null; }
-            return Instance._rules.ContainsKey(pawn) ? Instance._rules[pawn] : null;
+            return _instance._rules.ContainsKey(pawn) ? _instance._rules[pawn] : null;
         }
 
         public static Rules GetOrNewRules(Pawn pawn)
         {
             if (!pawn.CanHaveRules()) { return null; }
-            if (Instance._rules.ContainsKey(pawn)) { return Instance._rules[pawn]; }
+            if (_instance._rules.ContainsKey(pawn)) { return _instance._rules[pawn]; }
 
             var rules = GetVoidPreset<Rules>(pawn.GetTargetType()).CloneRulesFor(pawn);
-            Instance._rules.Add(pawn, rules);
+            _instance._rules.Add(pawn, rules);
 
             return rules;
         }
@@ -153,40 +165,40 @@ namespace PawnRules.Data
         public static Rules GetOrDefaultRules(Pawn pawn)
         {
             if (!pawn.CanHaveRules()) { return null; }
-            if (Instance._rules.ContainsKey(pawn)) { return Instance._rules[pawn]; }
+            if (_instance._rules.ContainsKey(pawn)) { return _instance._rules[pawn]; }
 
             var defaultRules = GetDefaultRules(pawn.GetTargetType());
             var rules = defaultRules.IsVoid ? defaultRules.CloneRulesFor(pawn) : defaultRules;
-            Instance._rules.Add(pawn, rules);
+            _instance._rules.Add(pawn, rules);
 
             return rules;
         }
 
-        public static void ReplaceRules(Pawn pawn, Rules rules) => Instance._rules[pawn] = rules;
-        public static void ReplaceDefaultRules(PawnType type, Rules rules) => Instance._defaults[type] = rules;
+        public static void ReplaceRules(Pawn pawn, Rules rules) => _instance._rules[pawn] = rules;
+        public static void ReplaceDefaultRules(PawnType type, Rules rules) => _instance._defaults[type] = rules;
 
         private static void ChangeTypeOrCreateRules(Pawn pawn, PawnType type)
         {
             if (type == pawn.GetTargetType()) { return; }
-            Instance._rules[pawn] = GetDefaultRules(type);
+            _instance._rules[pawn] = GetDefaultRules(type);
         }
 
         public static Rules CloneRules(Pawn original, Pawn cloner)
         {
             if (!original.CanHaveRules()) { return null; }
-            if (!Instance._rules.ContainsKey(original)) { return GetOrDefaultRules(cloner); }
-            if (Instance._rules.ContainsKey(cloner)) { DeleteRules(cloner); }
+            if (!_instance._rules.ContainsKey(original)) { return GetOrDefaultRules(cloner); }
+            if (_instance._rules.ContainsKey(cloner)) { DeleteRules(cloner); }
 
-            var cloned = Instance._rules[original].CloneRulesFor(cloner);
-            Instance._rules.Add(cloner, cloned);
+            var cloned = _instance._rules[original].CloneRulesFor(cloner);
+            _instance._rules.Add(cloner, cloned);
 
             return cloned;
         }
 
         public static void DeleteRules(Pawn pawn)
         {
-            if ((pawn == null) || !Instance._rules.ContainsKey(pawn)) { return; }
-            Instance._rules.Remove(pawn);
+            if ((pawn == null) || !_instance._rules.ContainsKey(pawn)) { return; }
+            _instance._rules.Remove(pawn);
         }
 
         public static void FactionUpdate(Thing thing, Faction newFaction, bool? guest = null)
@@ -215,10 +227,10 @@ namespace PawnRules.Data
         {
             _isDeactivating = true;
 
-            ModsConfig.SetActive(Mod.ContentPack.Identifier, false);
+            ModsConfig.SetActive(Mod.Instance.Content.Identifier, false);
 
             var runningMods = Access.Field_Verse_LoadedModManager_RunningMods_Get();
-            runningMods.Remove(Mod.ContentPack);
+            runningMods.Remove(Mod.Instance.Content);
 
             var addonMods = new StringBuilder();
             foreach (var mod in AddonManager.Mods)
@@ -230,14 +242,14 @@ namespace PawnRules.Data
 
             ModsConfig.Save();
 
-            if (Find.WorldObjects.Contains(Instance)) { Find.WorldObjects.Remove(Instance); }
+            if (Find.WorldObjects.Contains(_instance)) { Find.WorldObjects.Remove(_instance); }
 
             const string saveName = "PawnRules_Removed";
 
             GameDataSaveLoader.SaveGame(saveName);
 
             var message = addonMods.Length > 0 ? Lang.Get("Button.RemoveModAndAddonsComplete", saveName.Bold(), addonMods.ToString()) : Lang.Get("Button.RemoveModComplete", saveName.Bold());
-            Find.WindowStack.Add(new Dialog_Alert(message, Dialog_Alert.Buttons.Ok, GenCommandLine.Restart));
+            Dialog_Alert.Open(message, Dialog_Alert.Buttons.Ok, GenCommandLine.Restart);
         }
 
         private void InitVoids()
@@ -257,7 +269,7 @@ namespace PawnRules.Data
         public override void PostAdd()
         {
             base.PostAdd();
-            Instance = this;
+            _instance = this;
             InitVoids();
             InitDefaults();
         }
@@ -281,12 +293,13 @@ namespace PawnRules.Data
 
             if (Scribe.mode == LoadSaveMode.LoadingVars)
             {
-                Instance = this;
+                _instance = this;
                 InitVoids();
             }
 
-            var version = CurrentVersion;
-            Scribe_Values.Look(ref version, "version");
+            if (Scribe.mode == LoadSaveMode.Saving) { _loadedVersion = CurrentVersion; }
+            Scribe_Values.Look(ref _loadedVersion, "version");
+            if ((Scribe.mode == LoadSaveMode.PostLoadInit) && (_loadedVersion != CurrentVersion)) { Mod.Warning($"Registry loaded was saved by a different mod version ({_loadedVersion ?? "vNULL"} loaded, current is {CurrentVersion})"); }
 
             if (Scribe.mode == LoadSaveMode.Saving)
             {
@@ -302,6 +315,9 @@ namespace PawnRules.Data
                 _savedDefaults.AddRange(_defaults.Values.Where(preset => !preset.IsVoid).Select(preset => new Binding(preset.Type, preset)).ToArray());
                 _savedBindings.AddRange(_rules.Where(rules => rules.Key.CanHaveRules()).Select(rules => new Binding(rules.Key, rules.Value.IsIgnored() ? null : rules.Value)).ToArray());
             }
+
+            Scribe_Values.Look(ref _allowEmergencyFood, "allowEmergencyFood");
+            Scribe_Values.Look(ref _allowTrainingFood, "allowTrainingFood");
 
             Scribe_Values.Look(ref _showFoodPolicy, "showFoodPolicy", true);
             Scribe_Values.Look(ref _showBondingPolicy, "showBondingPolicy", true);
@@ -329,6 +345,52 @@ namespace PawnRules.Data
             _savedDefaults.Clear();
             _savedBindings.Clear();
             Presetable.ResetIds();
+        }
+
+        public static XElement ToXml()
+        {
+            var xml = new XElement("PawnRulesPlan", new XAttribute("Version", CurrentVersion));
+
+            var presets = new XElement("Presets");
+
+            foreach (var type in _instance._presets.Values)
+            {
+                foreach (var presetType in type.Values) { presets.Add(from preset in presetType where !preset.Value.IsVoid select preset.Value.ToXml()); }
+            }
+
+            xml.Add(presets);
+
+            xml.Add(new XElement("Defaults", from rule in _instance._defaults.Values where !rule.IsVoid select new XElement("Preset", new XAttribute("Type", rule.Type.Id), rule.Name)));
+
+            return xml;
+        }
+
+        public static void FromXml(XElement xml)
+        {
+            var version = xml.Attribute("Version")?.Value;
+            if (version != CurrentVersion) { Mod.Warning($"Loaded xml from a different mod version ({version ?? "vNULL"} loaded, current is {CurrentVersion})"); }
+
+            var presets = xml.Element("Presets")?.Elements();
+            if (presets == null) { return; }
+
+            foreach (var restriction in presets.Where(preset => preset.Name == "Restriction").Select(preset => new Restriction(preset))) { AddPreset(restriction); }
+            foreach (var rules in presets.Where(preset => preset.Name == "Rules").Select(preset => new Rules(preset))) { AddPreset(rules); }
+
+            var defaults = xml.Element("Defaults")?.Elements();
+            if (defaults == null) { return; }
+            foreach (var preset in defaults)
+            {
+                var type = PawnType.FromId(preset.Attribute("Type")?.Value);
+
+                var name = preset.Value;
+                if ((type == null) || name.NullOrEmpty())
+                {
+                    Mod.Warning("Skipping invalid default preset");
+                    continue;
+                }
+
+                _instance._defaults[type] = GetPreset<Rules>(type, name);
+            }
         }
     }
 }

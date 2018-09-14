@@ -3,7 +3,6 @@ using System.Linq;
 using PawnRules.Data;
 using PawnRules.Patch;
 using UnityEngine;
-using Verse;
 
 namespace PawnRules.Interface
 {
@@ -71,15 +70,7 @@ namespace PawnRules.Interface
             var buttonGrid = presetGrid[2].GetHGrid(4f, -1f, -1f);
             _listing.Begin(buttonGrid[0]);
 
-            if (_listing.ButtonText(Lang.Get("Button.PresetNew"), Lang.Get("Button.PresetNewDesc"), !EditMode))
-            {
-                Find.WindowStack.Add(new Dialog_PresetName<T>(Type, preset =>
-                                                                    {
-                                                                        _lastSelected = Selected;
-                                                                        ChangeEditMode(true);
-                                                                        ChangeSelected(preset);
-                                                                    }));
-            }
+            if (_listing.ButtonText(Lang.Get("Button.PresetNew"), Lang.Get("Button.PresetNewDesc"), !EditMode)) { Presetable.SetName<T>(Type, CreatePreset); }
 
             if (EditMode)
             {
@@ -102,14 +93,7 @@ namespace PawnRules.Interface
             _listing.End();
             _listing.Begin(buttonGrid[1]);
 
-            if (_listing.ButtonText(Lang.Get("Button.PresetDelete"), Lang.Get("Button.PresetDeleteDesc"), !Selected.IsVoid && Selected.IsPreset && !EditMode))
-            {
-                Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Button.PresetDeleteConfirm", Selected.Name), Dialog_Alert.Buttons.YesNo, () =>
-                                                                                                                                         {
-                                                                                                                                             Registry.DeletePreset(Selected);
-                                                                                                                                             ChangeSelected(Registry.GetVoidPreset<T>(Type));
-                                                                                                                                         }));
-            }
+            if (_listing.ButtonText(Lang.Get("Button.PresetDelete"), Lang.Get("Button.PresetDeleteDesc"), !Selected.IsVoid && Selected.IsPreset && !EditMode)) { Dialog_Alert.Open(Lang.Get("Button.PresetDeleteConfirm", Selected.Name), Dialog_Alert.Buttons.YesNo, DeletePreset); }
 
             if (EditMode)
             {
@@ -123,7 +107,7 @@ namespace PawnRules.Interface
             }
             else if (Selected.IsPreset)
             {
-                if (_listing.ButtonText(Lang.Get("Button.PresetRename"), Lang.Get("Button.PresetRenameDesc"), !Selected.IsVoid && !EditMode)) { Find.WindowStack.Add(new Dialog_PresetName<T>(Selected, ChangeSelected)); }
+                if (_listing.ButtonText(Lang.Get("Button.PresetRename"), Lang.Get("Button.PresetRenameDesc"), !Selected.IsVoid && !EditMode)) { Presetable.SetName(Selected, ChangeSelected); }
             }
             else
             {
@@ -131,6 +115,19 @@ namespace PawnRules.Interface
             }
 
             _listing.End();
+        }
+
+        private void DeletePreset()
+        {
+            Registry.DeletePreset(Selected);
+            ChangeSelected(Registry.GetVoidPreset<T>(Type));
+        }
+
+        private void CreatePreset(T preset)
+        {
+            _lastSelected = Selected;
+            ChangeEditMode(true);
+            ChangeSelected(preset);
         }
 
         public void Revert()

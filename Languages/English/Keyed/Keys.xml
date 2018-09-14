@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <LanguageData>
+
   <PawnRules.Button.OK>OK</PawnRules.Button.OK>
   <PawnRules.Button.Cancel>Cancel</PawnRules.Button.Cancel>
   <PawnRules.Button.Yes>Yes</PawnRules.Button.Yes>
@@ -92,7 +93,22 @@
   <PawnRules.Gizmo.EditRulesDesc>Edit the rules for this {0}.</PawnRules.Gizmo.EditRulesDesc>
 
   <PawnRules.Dialog_Global.Title>Global Options</PawnRules.Dialog_Global.Title>
+  <PawnRules.Dialog_Global.AllowEmergencyFood>Allow any food when malnourished</PawnRules.Dialog_Global.AllowEmergencyFood>
+  <PawnRules.Dialog_Global.AllowTrainingFood>Allow any food when training</PawnRules.Dialog_Global.AllowTrainingFood>
   <PawnRules.Dialog_Global.ShowRule>Show {0}</PawnRules.Dialog_Global.ShowRule>
+  <PawnRules.Dialog_Global.Plans>Import/Export Plans</PawnRules.Dialog_Global.Plans>
+
+  <PawnRules.Dialog_Plans.Title>Import/Export Plans</PawnRules.Dialog_Plans.Title>
+  <PawnRules.Dialog_Plans.NoneFound>No saved plans available for import</PawnRules.Dialog_Plans.NoneFound>
+  <PawnRules.Dialog_Plans.Import>Import selected</PawnRules.Dialog_Plans.Import>
+  <PawnRules.Dialog_Plans.ImportDesc>All rules presets and defaults from this plan will be imported into this game.\nAny current presets that have the same name as an imported one will be overwritten.</PawnRules.Dialog_Plans.ImportDesc>
+  <PawnRules.Dialog_Plans.Delete>Delete selected</PawnRules.Dialog_Plans.Delete>
+  <PawnRules.Dialog_Plans.DeleteDesc>This deletes the selected plan permanently. This cannot be undone.</PawnRules.Dialog_Plans.DeleteDesc>
+  <PawnRules.Dialog_Plans.Export>Export current plan</PawnRules.Dialog_Plans.Export>
+  <PawnRules.Dialog_Plans.ExportDesc>All rules presets and defaults will be saved to your computer in a single plan and can be imported in a different game.</PawnRules.Dialog_Plans.ExportDesc>
+  <PawnRules.Dialog_Plans.ConfirmDelete>Are you sure you want to delete the plan '{0}'?</PawnRules.Dialog_Plans.ConfirmDelete>
+  <PawnRules.Dialog_Plans.LoadSuccess>Plan '{0}' successfully imported.</PawnRules.Dialog_Plans.LoadSuccess>
+  <PawnRules.Dialog_Plans.LoadFail>Plan '{0}' failed to import.</PawnRules.Dialog_Plans.LoadFail>
 
   <PawnRules.Dialog_Rules.Title>Rules for {0}, {1}</PawnRules.Dialog_Rules.Title>
   <PawnRules.Dialog_Rules.TitleDefault>Default Rules for {0}</PawnRules.Dialog_Rules.TitleDefault>
@@ -116,7 +132,12 @@
   <PawnRules.Dialog_Restrictions.TitlePawn>{0} for {1}, {2}</PawnRules.Dialog_Restrictions.TitlePawn>
   <PawnRules.Dialog_Restrictions.HeaderCategory>Category</PawnRules.Dialog_Restrictions.HeaderCategory>
 
-  <PawnRules.Dialog_PresetName.Title>Preset [{0}]</PawnRules.Dialog_PresetName.Title>
-  <PawnRules.Dialog_PresetName.TitleNew>Create Preset</PawnRules.Dialog_PresetName.TitleNew>
-  <PawnRules.Dialog_PresetName.Label>Enter new name:</PawnRules.Dialog_PresetName.Label>
+  <PawnRules.Dialog_SetName.PresetTitle>Preset [{0}]</PawnRules.Dialog_SetName.PresetTitle>
+  <PawnRules.Dialog_SetName.PresetTitleNew>Create Preset</PawnRules.Dialog_SetName.PresetTitleNew>
+  <PawnRules.Dialog_SetName.PresetLabel>Enter new name:</PawnRules.Dialog_SetName.PresetLabel>
+  <PawnRules.Dialog_SetName.PlanTitle>Export</PawnRules.Dialog_SetName.PlanTitle>
+  <PawnRules.Dialog_SetName.PlanLabel>Choose a name for this plan:</PawnRules.Dialog_SetName.PlanLabel>
+
+  <PawnRules.Settings.NoGame>There are no settings for this mod outside of a game.</PawnRules.Settings.NoGame>
+  
 </LanguageData>

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 using PawnRules.Patch;
 using Verse;
 
@@ -29,6 +31,63 @@ namespace PawnRules.Data
         }
 
         public Rules(PawnType type, string name) : base(name) => Type = type;
+
+        public Rules(XElement xml)
+        {
+            Name = xml.Element("Name")?.Value;
+            if (Name.NullOrEmpty())
+            {
+                Mod.Warning("Skipping unnamed rules preset");
+                return;
+            }
+
+            Type = PawnType.FromId(xml.Attribute("Type").Value);
+            if (Type == null)
+            {
+                Mod.Warning("Skipping invalid rules preset type");
+                return;
+            }
+
+            var restrictions = xml.Element("Restrictions")?.Elements();
+            if (restrictions != null)
+            {
+                foreach (var restriction in restrictions)
+                {
+                    var type = RestrictionType.FromId(restriction.Attribute("Type").Value);
+                    if (type == null)
+                    {
+                        Mod.Warning("Skipping invalid restriction type in rules preset");
+                        continue;
+                    }
+
+                    _restrictions.Add(type, Registry.GetPreset<Restriction>(type, restriction.Value));
+                }
+            }
+
+            InitAddons();
+
+            var addons = xml.Element("Addons")?.Elements();
+            if (addons != null)
+            {
+                foreach (var addon in addons)
+                {
+                    var key = addon.Attribute("Key")?.Value;
+                    if (key == null)
+                    {
+                        Mod.Warning("Skipping invalid addon value key in rules preset");
+                        continue;
+                    }
+
+                    _addonValues.Add(AddonManager.GetAddon(key), addon.Value);
+                }
+            }
+
+            var allowCourting = xml.Element("AllowCourting")?.Value;
+            if (allowCourting != null) { AllowCourting = XmlConvert.ToBoolean(allowCourting); }
+
+            var allowArtisan = xml.Element("AllowCourting")?.Value;
+            if (allowArtisan != null) { AllowCourting = XmlConvert.ToBoolean(allowArtisan); }
+        }
 
         public void CopyRules(Rules rules)
         {
@@ -153,5 +212,19 @@ namespace PawnRules.Data
         }
 
         protected override string GetPresetId() => $"Rules_{Type?.Id ?? "Binding"}_{Pawn?.GetUniqueLoadID() ?? Name ?? Id.ToString()}";
+
+        public override XElement ToXml()
+        {
+            var xml = new XElement("Rules", new XAttribute("Type", Type.Id));
+
+            xml.Add(new XElement("Name", Name));
+            xml.Add(new XElement("Restrictions", from restriction in _restrictions where !restriction.Value.IsVoid select new XElement("Restriction", new XAttribute("Type", restriction.Key.Id), restriction.Value.Name)));
+            xml.Add(new XElement("AllowCourting", AllowCourting));
+            xml.Add(new XElement("AllowArtisan", AllowArtisan));
+
+            if (HasAddons) { xml.Add(new XElement("AddonValues", from addon in _addonValues select new XElement("AddonValue", new XAttribute("Key", addon.Key.Key), addon.Value))); }
+
+            return xml;
+        }
     }
 }

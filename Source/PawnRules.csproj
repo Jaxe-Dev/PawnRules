@@ -47,13 +47,13 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_RandomSelectionWeight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Controller.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="Data\IPresetableType.cs" />
     <Compile Include="Data\Lang.cs" />
     <Compile Include="Data\PawnType.cs" />
+    <Compile Include="Data\Persistent.cs" />
     <Compile Include="Data\Presetable.cs" />
     <Compile Include="Data\Registry.cs" />
     <Compile Include="Data\Restriction.cs" />
@@ -70,12 +71,12 @@
     <Compile Include="Data\RestrictionType.cs" />
     <Compile Include="Data\Rules.cs" />
     <Compile Include="Data\ScribePlus.cs" />
-    <Compile Include="Data\Toggle.cs" />
     <Compile Include="Interface\Dialog_Alert.cs" />
     <Compile Include="Interface\Dialog_Global.cs" />
+    <Compile Include="Interface\Dialog_Plans.cs" />
     <Compile Include="Interface\Dialog_Restrictions.cs" />
     <Compile Include="Interface\Dialog_Rules.cs" />
-    <Compile Include="Interface\Dialog_PresetName.cs" />
+    <Compile Include="Interface\Dialog_SetName.cs" />
     <Compile Include="Interface\GuiPlus.cs" />
     <Compile Include="Interface\Listing_Preset.cs" />
     <Compile Include="Interface\Listing_StandardPlus.cs" />
@@ -87,13 +88,17 @@
     <Compile Include="Patch\RimWorld_FoodUtility_BestFoodSourceOnMap.cs" />
     <Compile Include="Patch\RimWorld_FoodUtility_TryFindBestFoodSourceFor.cs" />
     <Compile Include="Patch\RimWorld_GenConstruct_CanConstruct.cs" />
+    <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_RandomSelectionWeight.cs" />
     <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_SuccessChance.cs" />
     <Compile Include="Patch\RimWorld_JoyGiver_Ingest_CanIngestForJoy.cs" />
     <Compile Include="Patch\RimWorld_JobGiver_PackFood_IsGoodPackableFoodFor.cs" />
     <Compile Include="Patch\RimWorld_Pawn_GuestTracker_SetGuestStatus.cs" />
     <Compile Include="Patch\RimWorld_PawnUtility_TrySpawnHatchedOrBornPawn.cs" />
     <Compile Include="Patch\RimWorld_RelationsUtility_TryDevelopBondRelation.cs" />
+    <Compile Include="Patch\RimWorld_WorkGiver_InteractAnimal.cs" />
     <Compile Include="Patch\Verse_Game_FinalizeInit.cs" />
+    <Compile Include="Patch\Verse_Game_InitNewGame.cs" />
+    <Compile Include="Patch\Verse_Game_LoadGame.cs" />
     <Compile Include="Patch\Verse_Pawn_GetGizmos.cs" />
     <Compile Include="Patch\Verse_Pawn_Kill.cs" />
     <Compile Include="Patch\Verse_Pawn_SetFaction.cs" />
@@ -117,12 +122,14 @@
     <Content Include="..\About\ModSync.xml">
       <Link>-\About\ModSync.xml</Link>
     </Content>
+    <Content Include="..\Defs\UpdateFeaturesDef\UpdateFeatures.xml">
+      <Link>-\Defs\UpdateFeaturesDefs\UpdateFeatures.xml</Link>
+    </Content>
     <Content Include="..\Defs\WorldObjectDefs\PawnRules.xml">
       <Link>-\Defs\WorldObjectDefs\PawnRules.xml</Link>
     </Content>
-    <Content Include="..\Languages\English\Keyed\PawnRules.xml">
-      <Link>-\Languages\English\Keyed\PawnRules.xml</Link>
-      <SubType>Designer</SubType>
+    <Content Include="..\Languages\English\Keyed\Keys.xml">
+      <Link>-\Languages\English\Keyed\Keys.xml</Link>
     </Content>
   </ItemGroup>
   <ItemGroup />

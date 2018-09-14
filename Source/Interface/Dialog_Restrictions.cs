@@ -20,7 +20,7 @@ namespace PawnRules.Interface
         private readonly Listing_StandardPlus _membersList = new Listing_StandardPlus();
         private readonly Listing_Preset<Restriction> _presetList;
 
-        public Dialog_Restrictions(RestrictionType type, Rules rules)
+        private Dialog_Restrictions(RestrictionType type, Rules rules)
         {
             _rules = rules;
             _type = type;
@@ -28,6 +28,8 @@ namespace PawnRules.Interface
             _presetList = new Listing_Preset<Restriction>(_type, _rules.GetRestriction(_type), new[] { Registry.GetVoidPreset<Restriction>(_type) }, RefreshTemplate, SaveTemplate, null);
             RefreshTemplate();
         }
+
+        public static void Open(RestrictionType type, Rules rules) => Find.WindowStack.Add(new Dialog_Restrictions(type, rules));
 
         private void RefreshTemplate()
         {
@@ -62,14 +64,14 @@ namespace PawnRules.Interface
                     base.Close(doCloseSound);
                 }
 
-                Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Button.PresetSaveConfirm"), Dialog_Alert.Buttons.YesNo, OnAccept, OnCancel));
+                Dialog_Alert.Open(Lang.Get("Button.PresetSaveConfirm"), Dialog_Alert.Buttons.YesNo, OnAccept, OnCancel);
                 return;
             }
 
             base.Close(doCloseSound);
         }
 
-        public override void DoContent(Rect rect)
+        protected override void DoContent(Rect rect)
         {
             Title = _presetList.EditMode || (_rules.Pawn == null) ? Lang.Get("Dialog_Restrictions.TitlePreset", _type.Label, _presetList.Selected.Name.Bold()) : Lang.Get("Dialog_Restrictions.TitlePawn", _type.Label, _rules.Pawn.Name.ToStringFull.Bold(), _rules.Type.Label);
 

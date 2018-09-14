@@ -68,6 +68,14 @@ namespace PawnRules.Interface
             return result;
         }
 
+        public bool CheckboxLabeled(string label, bool checkOn, string tooltip = null, bool enabled = true)
+        {
+            var value = checkOn;
+            base.CheckboxLabeled(label, ref value, tooltip);
+
+            return enabled ? value : checkOn;
+        }
+
         public bool CheckboxLabeled(string label, ref bool checkOn, string tooltip = null, bool enabled = true)
         {
             var value = checkOn;

@@ -25,7 +25,7 @@ namespace PawnRules.Interface
                                                                                 icon = EditRulesTexture,
                                                                                 defaultLabel = Lang.Get("Gizmo.EditRulesLabel"),
                                                                                 defaultDesc = Lang.Get("Gizmo.EditRulesDesc", pawn.GetTargetType()?.Label.ToLower() ?? "pawn"),
-                                                                                action = () => Dialog_Rules.OpenFromPawn(pawn)
+                                                                                action = () => Dialog_Rules.Open(pawn)
                                                                     };
 
         public static bool ButtonText(Rect rect, string label, string tooltip = null, bool enabled = true)

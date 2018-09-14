@@ -38,7 +38,7 @@ namespace PawnRules.Interface
             _floatMenuAssign = GetAssignmentOptions();
         }
 
-        public static void OpenFromPawn(Pawn pawn) => Find.WindowStack.Add(new Dialog_Rules(pawn, Registry.GetOrNewRules(pawn)));
+        public static void Open(Pawn pawn) => Find.WindowStack.Add(new Dialog_Rules(pawn, Registry.GetOrNewRules(pawn)));
 
         private void ChangeType(PawnType type)
         {
@@ -63,11 +63,11 @@ namespace PawnRules.Interface
 
             if (!presets.Any() && _template.GetRestriction(type).IsVoid)
             {
-                Find.WindowStack.Add(new Dialog_Restrictions(type, _template));
+                Dialog_Restrictions.Open(type, _template);
                 return;
             }
 
-            list.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.EditRestriction"), () => Find.WindowStack.Add(new Dialog_Restrictions(type, _template))));
+            list.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.EditRestriction"), () => Dialog_Restrictions.Open(type, _template)));
 
             var voidPreset = Registry.GetVoidPreset<Restriction>(type);
             if (!_template.GetRestriction(type).IsVoid) { list.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.ClearRestriction", voidPreset.Type.Categorization.ToLower()), () => _template.SetRestriction(type, voidPreset))); }
@@ -87,7 +87,7 @@ namespace PawnRules.Interface
                     UpdateSelected();
                 }
 
-                Find.WindowStack.Add(new Dialog_PresetName<Rules>(_preset.Type, OnCommit));
+                Presetable.SetName<Rules>(_preset.Type, OnCommit);
                 return;
             }
 
@@ -139,7 +139,7 @@ namespace PawnRules.Interface
             if (GetOtherPawnsOfType(false).Any()) { options.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.AssignAll", _preset.Type.LabelPlural.ToLower()), () => AssignAll(false))); }
             if ((_type == null) && _pawn.RaceProps.Animal && otherPawnsOfType.Any(kind => kind.kindDef == _pawn.kindDef)) { options.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.AssignAll", _pawn.kindDef.GetLabelPlural().ToLower()), () => AssignAll(true))); }
             options.AddRange(Find.CurrentMap.mapPawns.AllPawns.Where(pawn => ((_type != null) || (pawn != _pawn)) && (pawn.GetTargetType() == _preset.Type)).Select(pawn => new FloatMenuOption(Lang.Get("Dialog_Rules.AssignSpecific", pawn.Name.ToString().Italic()), () => AssignSpecific(pawn))));
-            if ((_type == null) && _preset.Selected.IsPreset) { options.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.AssignDefault", _preset.Type.LabelPlural.ToLower()), () => Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Dialog_Rules.AssignDefaultConfirm", _preset.Type.LabelPlural.ToLower(), _preset.Selected.Name.Bold()), Dialog_Alert.Buttons.YesNo, () => Registry.SetDefaultRules(_preset.Selected))))); }
+            if ((_type == null) && _preset.Selected.IsPreset) { options.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.AssignDefault", _preset.Type.LabelPlural.ToLower()), () => Dialog_Alert.Open(Lang.Get("Dialog_Rules.AssignDefaultConfirm", _preset.Type.LabelPlural.ToLower(), _preset.Selected.Name.Bold()), Dialog_Alert.Buttons.YesNo, () => Registry.SetDefaultRules(_preset.Selected)))); }
 
             return options;
         }
@@ -154,14 +154,14 @@ namespace PawnRules.Interface
             }
 
             var count = pawns.Count();
-            Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Dialog_Rules.AssignAllConfirm", GetPresetNameDefinite(), count.ToString().Bold(), byKind ? _pawn.kindDef.GetLabelPlural(count) : count > 1 ? _preset.Selected.Type.LabelPlural : _preset.Selected.Type.Label), Dialog_Alert.Buttons.YesNo, OnAccept));
+            Dialog_Alert.Open(Lang.Get("Dialog_Rules.AssignAllConfirm", GetPresetNameDefinite(), count.ToString().Bold(), byKind ? _pawn.kindDef.GetLabelPlural(count) : count > 1 ? _preset.Selected.Type.LabelPlural : _preset.Selected.Type.Label), Dialog_Alert.Buttons.YesNo, OnAccept);
         }
 
         private void AssignSpecific(Pawn pawn)
         {
             void OnAccept() => Registry.ReplaceRules(pawn, _preset.Selected.IsPreset ? _preset.Selected : _template.ClonePreset());
 
-            Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Dialog_Rules.AssignSpecificConfirm", GetPresetNameDefinite(), pawn.Name.ToString().Italic()), Dialog_Alert.Buttons.YesNo, OnAccept));
+            Dialog_Alert.Open(Lang.Get("Dialog_Rules.AssignSpecificConfirm", GetPresetNameDefinite(), pawn.Name.ToString().Italic()), Dialog_Alert.Buttons.YesNo, OnAccept);
         }
 
         private static string GetRestrictionDisplayName(Presetable restriction) => restriction.IsPreset && !restriction.IsVoid ? restriction.Name.Bold() : restriction.Name;
@@ -182,7 +182,7 @@ namespace PawnRules.Interface
                     base.Close(doCloseSound);
                 }
 
-                Find.WindowStack.Add(new Dialog_Alert(Lang.Get("Button.PresetSaveConfirm"), Dialog_Alert.Buttons.YesNo, OnAccept, OnCancel));
+                Dialog_Alert.Open(Lang.Get("Button.PresetSaveConfirm"), Dialog_Alert.Buttons.YesNo, OnAccept, OnCancel);
                 return;
             }
 
@@ -190,7 +190,7 @@ namespace PawnRules.Interface
             base.Close(doCloseSound);
         }
 
-        public override void DoContent(Rect rect)
+        protected override void DoContent(Rect rect)
         {
             if (!Registry.IsActive)
             {
@@ -232,7 +232,7 @@ namespace PawnRules.Interface
                 if (Registry.ShowAllowArtisan) { listing.CheckboxLabeled(Lang.Get("Rules.AllowArtisan"), ref _template.AllowArtisan, Lang.Get("Rules.AllowArtisanDesc"), editMode); }
             }
 
-            if ((Registry.ShowFoodPolicy || Registry.ShowBondingPolicy || Registry.ShowAllowCourting || Registry.ShowAllowArtisan)) { listing.GapLine(); }
+            if (Registry.ShowFoodPolicy || Registry.ShowBondingPolicy || Registry.ShowAllowCourting || Registry.ShowAllowArtisan) { listing.GapLine(); }
 
             listing.End();
 
@@ -257,7 +257,7 @@ namespace PawnRules.Interface
 
             GUI.EndGroup();
 
-            if (GuiPlus.ButtonText(new Rect(rect.xMax - (80f - Margin), rect.yMax + (Margin * 2), OptionButtonSize, CloseButSize.y), Lang.Get("Button.GlobalOptions"), Lang.Get("Button.GlobalOptionsDesc"))) { Find.WindowStack.Add(new Dialog_Global()); }
+            if (GuiPlus.ButtonText(new Rect(rect.xMax - (80f - Margin), rect.yMax + (Margin * 2), OptionButtonSize, CloseButSize.y), Lang.Get("Button.GlobalOptions"), Lang.Get("Button.GlobalOptionsDesc"))) { Dialog_Global.Open(); }
             GUI.BeginGroup(windowRect);
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
+using RimWorld;
 using Verse;
 
 namespace PawnRules.Data
@@ -15,7 +17,27 @@ namespace PawnRules.Data
 
         public Restriction(RestrictionType type, string name) : base(name) => Type = type;
 
-        public Restriction GetRenamed(string name) => new Restriction(Type, name) { _defs = _defs };
+        public Restriction(XElement xml)
+        {
+            Name = xml.Element("Name")?.Value;
+            if (Name.NullOrEmpty())
+            {
+                Mod.Warning("Skipping unnamed restriction preset");
+                return;
+            }
+
+            Type = RestrictionType.FromId(xml.Attribute("Type").Value);
+            if (Type == null)
+            {
+                Mod.Warning("Skipping invalid restriction type");
+                return;
+            }
+
+            var defs = xml.Element("Defs")?.Elements();
+            if (defs == null) { return; }
+
+            foreach (var def in defs) { _defs.Add(def.Value); }
+        }
 
         public bool Matches(RestrictionTemplate template) => _defs.SequenceEqual(from category in template.Categories from member in category.Members where !member.Value select member.Def.defName);
 
@@ -26,6 +48,7 @@ namespace PawnRules.Data
         }
 
         public bool Allows(Def def) => !_defs.Contains(def.defName);
+        public bool AllowsFood(ThingDef def, Pawn pawn) => !_defs.Contains(def.defName) || (Registry.AllowEmergencyFood && (pawn.health?.hediffSet?.HasHediff(HediffDefOf.Malnutrition) ?? false));
 
         protected override void ExposePresetData()
         {
@@ -36,5 +59,15 @@ namespace PawnRules.Data
         internal override bool IsIgnored() => _defs.Count == 0;
 
         protected override string GetPresetId() => $"Restriction_{Type.Id}_{Name}";
+
+        public override XElement ToXml()
+        {
+            var xml = new XElement("Restriction", new XAttribute("Type", Type.Id));
+
+            xml.Add(new XElement("Name", Name));
+            xml.Add(new XElement("Defs", from def in _defs select new XElement("Def", def)));
+
+            return xml;
+        }
     }
 }

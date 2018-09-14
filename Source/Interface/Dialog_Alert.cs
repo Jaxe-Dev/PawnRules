@@ -15,7 +15,7 @@ namespace PawnRules.Interface
         private readonly Action _onCancel;
         private bool _isAccepted;
 
-        public Dialog_Alert(string message, Buttons buttons = Buttons.Ok, Action onAccept = null, Action onCancel = null)
+        private Dialog_Alert(string message, Buttons buttons = Buttons.Ok, Action onAccept = null, Action onCancel = null)
         {
             doCloseButton = false;
             closeOnAccept = true;
@@ -32,6 +32,8 @@ namespace PawnRules.Interface
             InitialSize = new Vector2(400f, 72f + Text.CalcHeight(_message, 364f));
             Text.WordWrap = wrap;
         }
+
+        public static void Open(string message, Buttons buttons = Buttons.Ok, Action onAccept = null, Action onCancel = null) => Find.WindowStack.Add(new Dialog_Alert(message, buttons, onAccept, onCancel));
 
         public override void DoWindowContents(Rect rect)
         {

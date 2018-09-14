@@ -12,7 +12,7 @@ namespace PawnRules.Patch
         {
             var rules = Registry.GetRules(pawn);
             var restriction = rules?.GetRestriction(RestrictionType.Food);
-            if (pawn.InMentalState || (restriction == null) || restriction.IsVoid || restriction.Allows(t.def)) { return true; }
+            if (pawn.InMentalState || (restriction == null) || restriction.IsVoid || restriction.AllowsFood(t.def, pawn)) { return true; }
 
             __result = false;
             return false;

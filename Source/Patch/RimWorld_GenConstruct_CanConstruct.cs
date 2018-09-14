@@ -18,7 +18,7 @@ namespace PawnRules.Patch
             var rules = Registry.GetRules(p);
             if (!checkConstructionSkill || (rules == null) || rules.AllowArtisan || !((ThingDef) t.def.entityDefToBuild).HasComp(typeof(CompQuality)))
             {
-                if (forced && !JobFailReason.HaveReason) { JobFailReason.Is(Lang.Get("Rules.NotArtisanReason"), Lang.Get("Rules.NotArtisanJob", t.LabelCap)); }
+                if (forced && !JobFailReason.HaveReason && !rules.AllowArtisan) { JobFailReason.Is(Lang.Get("Rules.NotArtisanReason"), Lang.Get("Rules.NotArtisanJob", t.LabelCap)); }
                 return;
             }
 

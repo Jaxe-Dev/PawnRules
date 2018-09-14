@@ -6,7 +6,7 @@ namespace PawnRules.Interface
     internal abstract class WindowPlus : Window
     {
         public override Vector2 InitialSize { get; }
-        public string Title { get; set; }
+        protected string Title { get; set; }
 
         protected WindowPlus(Vector2 size) : this(null, size)
         { }
@@ -24,7 +24,7 @@ namespace PawnRules.Interface
             Title = title;
         }
 
-        public abstract void DoContent(Rect rect);
+        protected abstract void DoContent(Rect rect);
 
         public override void DoWindowContents(Rect rect)
         {
