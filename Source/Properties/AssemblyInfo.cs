@@ -1,9 +1,7 @@
 ﻿using System.Reflection;
 using PawnRules;
 
-[assembly: AssemblyTitle(Mod.Id)]
-[assembly: AssemblyProduct(Mod.Id)]
-[assembly: AssemblyCompany(Mod.Author)]
+[assembly: AssemblyTitle(Mod.Name)]
+[assembly: AssemblyProduct("RimWorld Mods by Jaxe")]
 [assembly: AssemblyCopyright("© " + Mod.Author)]
-[assembly: AssemblyVersion(Mod.Version + ".0")]
-[assembly: AssemblyFileVersion(Mod.Version + ".0")]
+[assembly: AssemblyVersion(Mod.Version)]

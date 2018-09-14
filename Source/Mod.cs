@@ -16,7 +16,7 @@ namespace PawnRules
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
         public const string Author = "Jaxe";
-        public const string Version = "1.1.1";
+        public const string Version = "1.1.2";
 
         public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(GenFilePaths.ConfigFolderPath).CreateSubdirectory(Id);
 
