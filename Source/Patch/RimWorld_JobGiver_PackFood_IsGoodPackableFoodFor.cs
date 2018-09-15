@@ -12,10 +12,10 @@ namespace PawnRules.Patch
         {
             if (!Registry.IsActive) { return; }
 
-            var rules = Registry.GetRules(forPawn);
-            if (forPawn.InMentalState || (rules == null) || rules.GetRestriction(RestrictionType.Food).IsVoid) { return; }
+            var restriction = Registry.GetRules(forPawn)?.GetRestriction(RestrictionType.Food);
+            if (forPawn.InMentalState || (restriction == null) || restriction.IsVoid) { return; }
 
-            __result = __result && rules.GetRestriction(RestrictionType.Food).AllowsFood(food.def, forPawn);
+            __result = __result && restriction.AllowsFood(food.def, forPawn);
         }
     }
 }

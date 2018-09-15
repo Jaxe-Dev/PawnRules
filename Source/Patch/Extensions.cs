@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using PawnRules.Data;
 using RimWorld;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace PawnRules.Patch
         public static string Italic(this string self) => "<i>" + self + "</i>";
         public static string Bold(this string self) => "<b>" + self + "</b>";
 
-        public static int LastIndex(this Array self) => self.Length - 1;
+        public static int LastIndex(this IList self) => self.Count - 1;
         public static int ToInt(this string self, int defaultValue = 0) => int.TryParse(self, out var result) ? result : defaultValue;
         public static float ToFloat(this string self, float defaultValue = 0f) => float.TryParse(self, out var result) ? result : defaultValue;
 

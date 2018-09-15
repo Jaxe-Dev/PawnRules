@@ -15,7 +15,7 @@ namespace PawnRules.Data
         private const string ExportsExtension = ".xml";
         private const string ExportPrefix = "Plan_";
 
-        private static readonly Regex ValidNameRegex = new Regex("^(?:[a-zA-Z0-9_\\-]|[a-zA-Z0-9_\\-]+[a-zA-Z0-9_\\- ]*[a-zA-Z0-9_\\-]+)$");
+        private static readonly Regex ValidNameRegex = new Regex("^(?:[\\p{L}\\p{N}_\\-]|[\\p{L}\\p{N}_\\-]+[\\p{L}\\p{N}_\\- ]*[\\p{L}\\p{N}_\\-]+)$");
 
         private static readonly DirectoryInfo ExportsDirectory = Mod.ConfigDirectory.CreateSubdirectory(ExportsDirectoryName);
 
@@ -28,7 +28,6 @@ namespace PawnRules.Data
         {
             var file = GetPlanFile(name);
 
-            Mod.Warning($"Delete => {file.FullName}");
             if (!file.Exists) { return; }
 
             file.Delete();

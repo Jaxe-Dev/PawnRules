@@ -15,7 +15,6 @@ namespace PawnRules.Patch
         private static readonly MethodInfo Method_RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper = AccessTools.Method(typeof(FoodUtility), "IsFoodSourceOnMapSociallyProper");
         private static readonly MethodInfo Method_RimWorld_FoodUtility_SpawnedFoodSearchInnerScan = AccessTools.Method(typeof(FoodUtility), "SpawnedFoodSearchInnerScan");
         private static readonly FieldInfo Field_RimWorld_FoodUtility_Filtered = AccessTools.Field(typeof(FoodUtility), "filtered");
-        private static readonly FieldInfo Field_RimWorld_Pawn_GuestTracker_Pawn = AccessTools.Field(typeof(Pawn_GuestTracker), "pawn");
         private static readonly FieldInfo Field_Verse_LoadedModManager_RunningMods = AccessTools.Field(typeof(LoadedModManager), "runningMods");
 
         public static Pawn Method_RimWorld_FoodUtility_BestPawnToHuntForPredator_Call(Pawn predator, bool forceScanWholeMap) => (Pawn) Method_RimWorld_FoodUtility_BestPawnToHuntForPredator.Invoke(null, new object[] { predator, forceScanWholeMap });
@@ -23,7 +22,6 @@ namespace PawnRules.Patch
         public static bool Method_RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper_Call(Thing thing, Pawn getter, Pawn eater, bool allowSociallyImproper) => (bool) Method_RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper.Invoke(null, new object[] { thing, getter, eater, allowSociallyImproper });
         public static Thing Method_RimWorld_FoodUtility_SpawnedFoodSearchInnerScan_Call(Pawn eater, IntVec3 root, List<Thing> searchSet, PathEndMode peMode, TraverseParms traverseParams, float maxDistance = 9999f, Predicate<Thing> validator = null) => (Thing) Method_RimWorld_FoodUtility_SpawnedFoodSearchInnerScan.Invoke(null, new object[] { eater, root, searchSet, peMode, traverseParams, maxDistance, validator });
         public static HashSet<Thing> Field_RimWorld_FoodUtility_Filtered_Get() => (HashSet<Thing>) Field_RimWorld_FoodUtility_Filtered.GetValue(null);
-        public static Pawn Field_RimWorld_Pawn_GuestTracker_Pawn_Get(Pawn_GuestTracker instance) => (Pawn) Field_RimWorld_Pawn_GuestTracker_Pawn.GetValue(instance);
         public static List<ModContentPack> Field_Verse_LoadedModManager_RunningMods_Get() => (List<ModContentPack>) Field_Verse_LoadedModManager_RunningMods.GetValue(null);
     }
 }

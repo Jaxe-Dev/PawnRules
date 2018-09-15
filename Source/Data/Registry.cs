@@ -23,13 +23,15 @@ namespace PawnRules.Data
 
         private static bool _isDeactivating;
 
-        public static bool AllowEmergencyFood { get => _instance._allowEmergencyFood; set => _instance._allowEmergencyFood = value; }
-        public static bool AllowTrainingFood { get => _instance._allowTrainingFood; set => _instance._allowTrainingFood = value; }
 
         public static bool ShowFoodPolicy { get => _instance._showFoodPolicy; set => _instance._showFoodPolicy = value; }
         public static bool ShowBondingPolicy { get => _instance._showBondingPolicy; set => _instance._showBondingPolicy = value; }
         public static bool ShowAllowCourting { get => _instance._showAllowCourting; set => _instance._showAllowCourting = value; }
         public static bool ShowAllowArtisan { get => _instance._showAllowArtisan; set => _instance._showAllowArtisan = value; }
+
+        public static bool AllowEmergencyFood { get => _instance._allowEmergencyFood; set => _instance._allowEmergencyFood = value; }
+        public static bool AllowTrainingFood { get => _instance._allowTrainingFood; set => _instance._allowTrainingFood = value; }
+        public static Pawn ExemptedTrainer { get; set; }
 
         private string _loadedVersion;
 
@@ -42,13 +44,13 @@ namespace PawnRules.Data
         private List<Binding> _savedBindings = new List<Binding>();
         private List<Binding> _savedDefaults = new List<Binding>();
 
-        private bool _allowEmergencyFood;
-        private bool _allowTrainingFood;
-
         private bool _showFoodPolicy = true;
         private bool _showBondingPolicy = true;
         private bool _showAllowCourting = true;
         private bool _showAllowArtisan = true;
+
+        private bool _allowEmergencyFood;
+        private bool _allowTrainingFood;
 
         public static void Initialize()
         {
@@ -316,13 +318,13 @@ namespace PawnRules.Data
                 _savedBindings.AddRange(_rules.Where(rules => rules.Key.CanHaveRules()).Select(rules => new Binding(rules.Key, rules.Value.IsIgnored() ? null : rules.Value)).ToArray());
             }
 
-            Scribe_Values.Look(ref _allowEmergencyFood, "allowEmergencyFood");
-            Scribe_Values.Look(ref _allowTrainingFood, "allowTrainingFood");
-
             Scribe_Values.Look(ref _showFoodPolicy, "showFoodPolicy", true);
             Scribe_Values.Look(ref _showBondingPolicy, "showBondingPolicy", true);
             Scribe_Values.Look(ref _showAllowCourting, "showAllowCourting", true);
             Scribe_Values.Look(ref _showAllowArtisan, "showAllowArtisan", true);
+
+            Scribe_Values.Look(ref _allowEmergencyFood, "allowEmergencyFood");
+            Scribe_Values.Look(ref _allowTrainingFood, "allowTrainingFood");
 
             Scribe_Collections.Look(ref _savedPresets, "presets", LookMode.Deep);
             Scribe_Collections.Look(ref _savedBindings, "bindings", LookMode.Deep);

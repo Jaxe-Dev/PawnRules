@@ -3,5 +3,5 @@ using PawnRules;
 
 [assembly: AssemblyTitle(Mod.Name)]
 [assembly: AssemblyProduct("RimWorld Mods by Jaxe")]
-[assembly: AssemblyCopyright("© " + Mod.Author)]
+[assembly: AssemblyCopyright("© Jaxe")]
 [assembly: AssemblyVersion(Mod.Version)]

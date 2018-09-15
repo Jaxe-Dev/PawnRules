@@ -10,21 +10,19 @@ namespace PawnRules.Patch
     [HarmonyPatch(typeof(FoodUtility), "BestFoodSourceOnMap")]
     internal static class RimWorld_FoodUtility_BestFoodSourceOnMap
     {
-        public static Pawn ExemptTrainer { get; set; }
-
         private static bool Prefix(ref Thing __result, Pawn getter, Pawn eater, bool desperate, out ThingDef foodDef, FoodPreferability maxPref = FoodPreferability.MealLavish, bool allowPlant = true, bool allowDrug = true, bool allowCorpse = true, bool allowDispenserFull = true, bool allowDispenserEmpty = true, bool allowForbidden = false, bool allowSociallyImproper = false, bool allowHarvest = false, bool forceScanWholeMap = false)
         {
             foodDef = null;
 
-            if (!Registry.IsActive) { return true; }
-            if (ExemptTrainer != null)
+            if (Registry.ExemptedTrainer != null)
             {
-                ExemptTrainer = null;
+                Registry.ExemptedTrainer = null;
                 return true;
             }
+            if (!Registry.IsActive) { return true; }
 
-            var rules = Registry.GetRules(eater);
-            if (eater.InMentalState || (rules == null) || rules.GetRestriction(RestrictionType.Food).IsVoid) { return true; }
+            var restriction = Registry.GetRules(eater)?.GetRestriction(RestrictionType.Food);
+            if (eater.InMentalState || (restriction == null) || restriction.IsVoid) { return true; }
 
             var filtered = Access.Field_RimWorld_FoodUtility_Filtered_Get();
 
@@ -45,7 +43,7 @@ namespace PawnRules.Patch
                                                         else if ((thing.def.ingestible.preferability < minPref) || (thing.def.ingestible.preferability > maxPref) || !eater.RaceProps.WillAutomaticallyEat(thing) || !thing.def.IsNutritionGivingIngestible || !thing.IngestibleNow || (!allowCorpse && thing is Corpse) || (!allowDrug && thing.def.IsDrug) || (!allowForbidden && thing.IsForbidden(getter)) || (!desperate && thing.IsNotFresh()) || thing.IsDessicated() || !Access.Method_RimWorld_FoodUtility_IsFoodSourceOnMapSociallyProper_Call(thing, getter, eater, allowSociallyImproper) || (!getter.AnimalAwareOf(thing) && !forceScanWholeMap) || !getter.CanReserve(thing)) { return false; }
 
                                                         // Pawn Rules - Food check below
-                                                        return rules.GetRestriction(RestrictionType.Food).AllowsFood(thing.def, eater);
+                                                        return restriction.AllowsFood(thing.def, eater);
                                                     });
 
             var req = ((eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) == FoodTypeFlags.None) || !allowPlant ? ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree) : ThingRequest.ForGroup(ThingRequestGroup.FoodSource);
@@ -64,7 +62,7 @@ namespace PawnRules.Patch
                         var harvestedThingDef = plant.def.plant.harvestedThingDef;
 
                         // Pawn Rules - Food check below
-                        return harvestedThingDef.IsNutritionGivingIngestible && eater.RaceProps.CanEverEat(harvestedThingDef) && getter.CanReserve(plant) && (allowForbidden || !plant.IsForbidden(getter)) && ((bestThing == null) || (FoodUtility.GetFinalIngestibleDef(bestThing).ingestible.preferability < harvestedThingDef.ingestible.preferability)) && rules.GetRestriction(RestrictionType.Food).AllowsFood(plant.def, eater);
+                        return harvestedThingDef.IsNutritionGivingIngestible && eater.RaceProps.CanEverEat(harvestedThingDef) && getter.CanReserve(plant) && (allowForbidden || !plant.IsForbidden(getter)) && ((bestThing == null) || (FoodUtility.GetFinalIngestibleDef(bestThing).ingestible.preferability < harvestedThingDef.ingestible.preferability)) && restriction.AllowsFood(plant.def, eater);
                     }
 
                     var foodSource = GenClosest.ClosestThingReachable(getter.Position, getter.Map, ThingRequest.ForGroup(ThingRequestGroup.HarvestablePlant), PathEndMode.Touch, TraverseParms.For(getter), 9999f, Validator, null, 0, searchRegionsMax);

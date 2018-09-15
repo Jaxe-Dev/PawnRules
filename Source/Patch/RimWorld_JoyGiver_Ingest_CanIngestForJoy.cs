@@ -10,8 +10,7 @@ namespace PawnRules.Patch
     {
         private static bool Prefix(ref bool __result, Pawn pawn, Thing t)
         {
-            var rules = Registry.GetRules(pawn);
-            var restriction = rules?.GetRestriction(RestrictionType.Food);
+            var restriction = Registry.GetRules(pawn)?.GetRestriction(RestrictionType.Food);
             if (pawn.InMentalState || (restriction == null) || restriction.IsVoid || restriction.AllowsFood(t.def, pawn)) { return true; }
 
             __result = false;

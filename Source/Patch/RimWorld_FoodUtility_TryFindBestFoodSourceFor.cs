@@ -15,8 +15,8 @@ namespace PawnRules.Patch
 
             if (!Registry.IsActive) { return true; }
 
-            var rules = Registry.GetRules(eater);
-            if (eater.InMentalState || (rules == null) || rules.GetRestriction(RestrictionType.Food).IsVoid) { return true; }
+            var restriction = Registry.GetRules(eater)?.GetRestriction(RestrictionType.Food);
+            if (eater.InMentalState || (restriction == null) || restriction.IsVoid) { return true; }
 
             var hasInventory = getter.RaceProps.ToolUser && getter.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
             var allowDrug = !eater.IsTeetotaler();

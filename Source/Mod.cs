@@ -6,6 +6,7 @@ using Harmony;
 using PawnRules.Data;
 using PawnRules.Interface;
 using PawnRules.Patch;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -15,19 +16,22 @@ namespace PawnRules
     {
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
-        public const string Author = "Jaxe";
-        public const string Version = "1.1.2";
+        public const string Version = "1.1.3";
 
-        public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(GenFilePaths.ConfigFolderPath).CreateSubdirectory(Id);
+        public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 
         public static Mod Instance { get; private set; }
+        public static bool FirstTimeUser { get; private set; }
 
         public Mod(ModContentPack contentPack) : base(contentPack)
         {
             Instance = this;
             Log("Loaded");
 
-            TryRegisterHugsLibUpdateFeature();
+            FirstTimeUser = !ConfigDirectory.Exists;
+            ConfigDirectory.Create();
+
+            if (!FirstTimeUser) { TryRegisterHugsLibUpdateFeature(); }
         }
 
         private static void TryRegisterHugsLibUpdateFeature()
@@ -35,19 +39,16 @@ namespace PawnRules
             var hugsLib = (from assembly in AppDomain.CurrentDomain.GetAssemblies() from type in assembly.GetTypes() where type.Name == "HugsLibController" select type).FirstOrDefault();
             if (hugsLib == null) { return; }
 
-            var controllerField = AccessTools.Field(hugsLib, "instance");
-            var controller = controllerField.GetValue(null);
+            var updateFeatures = Traverse.Create(hugsLib)?.Field("instance")?.Property("UpdateFeatures")?.GetValue();
+            if (updateFeatures == null) { return; }
 
-            var updateFeaturesField = AccessTools.Property(controller.GetType(), "UpdateFeatures");
-            var updateFeatures = updateFeaturesField.GetValue(controller, null);
-
-            var inspectActiveModMethod = AccessTools.Method(updateFeatures.GetType(), "InspectActiveMod");
-            inspectActiveModMethod.Invoke(updateFeatures, new object[] { Id, Assembly.GetExecutingAssembly().GetName().Version });
+            AccessTools.Method(updateFeatures.GetType(), "InspectActiveMod")?.Invoke(updateFeatures, new object[] { Id, Assembly.GetExecutingAssembly().GetName().Version });
         }
 
         public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));
         public static void Warning(string message) => Verse.Log.Warning(PrefixMessage(message));
         public static void Error(string message) => Verse.Log.Error(PrefixMessage(message));
+        public static void Message(string message) => Messages.Message(message, MessageTypeDefOf.TaskCompletion, false);
 
         public static string PrefixMessage(string message) => $"[{Name} v{Version}] {message}";
         public override string SettingsCategory() => Name;

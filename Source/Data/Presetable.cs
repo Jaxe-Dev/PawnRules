@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using PawnRules.Interface;
+using PawnRules.Patch;
 using Verse;
 
 namespace PawnRules.Data
@@ -12,7 +13,7 @@ namespace PawnRules.Data
 
         public static readonly string VoidName = Lang.Get("Preset.None");
 
-        private static readonly Regex ValidNameRegex = new Regex("^(?:[a-zA-Z0-9]|[a-zA-Z0-9]+[a-zA-Z0-9 ]*[a-zA-Z0-9]+)$");
+        private static readonly Regex ValidNameRegex = new Regex("^(?:[\\p{L}\\p{N}]|[\\p{L}\\p{N}]+[\\p{L}\\p{N} ]*[\\p{L}\\p{N}])$");
 
         private static int _count;
         protected readonly int Id;
@@ -54,7 +55,7 @@ namespace PawnRules.Data
             var localPreset = preset;
             void OnCommit(string name) => onRename(Registry.RenamePreset(localPreset, name));
 
-            Dialog_SetName.Open(Lang.Get("Dialog_SetName.PresetTitle", preset.Name), Lang.Get("Dialog_SetName.PresetLabel"), OnCommit, name => NameIsValid<T>(preset.Type, name), preset.Name);
+            Dialog_SetName.Open(Lang.Get("Dialog_SetName.PresetTitle", preset.Name.Bold()), Lang.Get("Dialog_SetName.PresetLabel"), OnCommit, name => NameIsValid<T>(preset.Type, name), preset.Name);
         }
 
         public static bool NameIsValid<T>(IPresetableType type, string name) => (name.Length <= MaxIdLength) && !string.Equals(name, Lang.Get("Preset.None"), StringComparison.OrdinalIgnoreCase) && !string.Equals(name, Lang.Get("Preset.Personalized"), StringComparison.OrdinalIgnoreCase) && ValidNameRegex.IsMatch(name) && !Registry.PresetNameExists<T>(type, name);

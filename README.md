@@ -1,5 +1,5 @@
 # Pawn Rules
-![](https://img.shields.io/badge/Mod_Version-1.1.2-blue.svg)
+![](https://img.shields.io/badge/Mod_Version-1.1.3-blue.svg)
 ![](https://img.shields.io/badge/Built_for_RimWorld-B19-blue.svg)
 ![](https://img.shields.io/badge/Powered_by_Harmony-1.2.0.1-blue.svg)
 
@@ -53,11 +53,13 @@ Prefix  : RimWorld.FoodUtility.TryFindBestFoodSourceFor
 Postfix : RimWorld.GenConstruct.CanConstruct
 Prefix  : RimWorld.InteractionWorker_RomanceAttempt.RandomSelectionWeight
 Prefix  : RimWorld.InteractionWorker_RomanceAttempt.SuccessChance
+Prefix  : RimWorld.JobDriver_InteractAnimal.StartFeedAnimal
 Postfix : RimWorld.JobGiver_PackFood.IsGoodPackableFoodFor
 Prefix  : RimWorld.JoyGiver_Ingest.CanIngestForJoy
 Prefix  : RimWorld.Pawn_GuestTracker.SetGuestStatus
 Postfix : RimWorld.PawnUtility.TrySpawnHatchedOrBornPawn
 Prefix  : RimWorld.RelationsUtility.TryDevelopBondRelation
+Prefix  : RimWorld.WorkGiver_InteractAnimal.HasFoodToInteractAnimal
 Prefix  : RimWorld.WorkGiver_InteractAnimal.TakeFoodForAnimalInteractJob
 Postfix : Verse.Game.FinalizeInit
 Prefix  : Verse.Game.InitNewGame

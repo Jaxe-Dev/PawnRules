@@ -10,13 +10,7 @@
   <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
     <defName>PawnRules_1_1_1</defName>
     <assemblyVersion>1.1.1</assemblyVersion>
-    <content>- Re-fixed "not allowed artisan builds" tooltip\n\n- Fixed "Could not find player faction" error on new game\n\n- Fixed ability to train animals if an animal has a food policy set\n\n- New Global option: Allow food if malnourished (if a pawn is is suffering from malnutrition they will ignore all food rules) [Default: False]\n\n- New Global option: Allow food if training (if an animal is being trained they ignore all food rules) [Default: False]\n\n- Plans can be imported/exported between games. A plan consists of all rule presets and defaults bundled into one file.</content>
-  </HugsLib.UpdateFeatureDef>
-
-  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
-    <defName>PawnRules_1_1_2</defName>
-    <assemblyVersion>1.1.2</assemblyVersion>
-    <content>- Fixed null reference error when a pawn without rules attempts to build</content>
+    <content>- New Global option: Allow food if malnourished (if a pawn is is suffering from malnutrition they will ignore all food rules) [Default: False]\n\n- New Global option: Allow food if training (if an animal is being trained they ignore all food rules) [Default: False]\n\n- Plans can be imported/exported between games. A plan consists of all rule presets and defaults bundled into one file.</content>
   </HugsLib.UpdateFeatureDef>
 
 </Defs>

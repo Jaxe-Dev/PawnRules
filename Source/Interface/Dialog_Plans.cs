@@ -13,7 +13,7 @@ namespace PawnRules.Interface
         private IEnumerable<string> _plans;
         private string _selected;
 
-        private Dialog_Plans() : base(Lang.Get("Dialog_Plans.Title"), new Vector2(500f, 600f))
+        private Dialog_Plans() : base(Lang.Get("Dialog_Plans.Title").Bold(), new Vector2(500f, 600f))
         {
             doCloseButton = false;
 

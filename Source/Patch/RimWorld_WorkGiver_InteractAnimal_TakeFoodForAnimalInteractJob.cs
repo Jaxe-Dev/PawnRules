@@ -16,7 +16,7 @@ namespace PawnRules.Patch
 
             var required = JobDriver_InteractAnimal.RequiredNutritionPerFeed(tamee) * 2f * 4f;
 
-            RimWorld_FoodUtility_BestFoodSourceOnMap.ExemptTrainer = pawn;
+            Registry.ExemptedTrainer = pawn;
             var foodSource = FoodUtility.BestFoodSourceOnMap(pawn, tamee, false, out var foodDef, FoodPreferability.RawTasty, false, false, false, false, false);
 
             if (foodSource == null)

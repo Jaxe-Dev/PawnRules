@@ -43,7 +43,6 @@ namespace PawnRules.Interface
             var header = new Listing_StandardPlus();
 
             header.Begin(rect);
-            Text.Font = GameFont.Medium;
             header.LabelMedium(Title);
             header.GapLine();
             header.End();
