@@ -17,12 +17,11 @@ namespace PawnRules.Data
         private const string WorldObjectDefName = "PawnRules_Registry";
         private const string CurrentVersion = "v" + Mod.Version;
 
-        public static bool IsActive => !_isDeactivating && (_instance != null) && (Current.Game != null);
+        public static bool IsActive => !_isDeactivating && (_instance != null) && (Find.GameInitData.playerFaction != null);
 
         private static Registry _instance;
 
         private static bool _isDeactivating;
-
 
         public static bool ShowFoodPolicy { get => _instance._showFoodPolicy; set => _instance._showFoodPolicy = value; }
         public static bool ShowBondingPolicy { get => _instance._showBondingPolicy; set => _instance._showBondingPolicy = value; }
@@ -31,7 +30,7 @@ namespace PawnRules.Data
 
         public static bool AllowEmergencyFood { get => _instance._allowEmergencyFood; set => _instance._allowEmergencyFood = value; }
         public static bool AllowTrainingFood { get => _instance._allowTrainingFood; set => _instance._allowTrainingFood = value; }
-        public static Pawn ExemptedTrainer { get; set; }
+        public static Pawn ExemptedTrainer { get => _instance._exemptedTrainer; set => _instance._exemptedTrainer = value; }
 
         private string _loadedVersion;
 
@@ -52,6 +51,8 @@ namespace PawnRules.Data
         private bool _allowEmergencyFood;
         private bool _allowTrainingFood;
 
+        private Pawn _exemptedTrainer;
+
         public static void Initialize()
         {
             var worldObjects = Current.Game.World.worldObjects;
@@ -67,7 +68,7 @@ namespace PawnRules.Data
             worldObjects.Add(instance);
         }
 
-        public static void Reset() => _instance = null;
+        public static void Clear() => _instance = null;
 
         public static T GetVoidPreset<T>(IPresetableType type) where T : Presetable => (T) _instance._voidPresets[typeof(T)][type];
 
@@ -372,7 +373,7 @@ namespace PawnRules.Data
             var version = xml.Attribute("Version")?.Value;
             if (version != CurrentVersion) { Mod.Warning($"Loaded xml from a different mod version ({version ?? "vNULL"} loaded, current is {CurrentVersion})"); }
 
-            var presets = xml.Element("Presets")?.Elements();
+            var presets = xml.Element("Presets")?.Elements().ToArray();
             if (presets == null) { return; }
 
             foreach (var restriction in presets.Where(preset => preset.Name == "Restriction").Select(preset => new Restriction(preset))) { AddPreset(restriction); }

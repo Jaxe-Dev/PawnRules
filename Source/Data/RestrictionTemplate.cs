@@ -12,7 +12,7 @@ namespace PawnRules.Data
         private static readonly ThingDef[] FoodCache = DefDatabase<ThingDef>.AllDefs.Where(food => food.IsNutritionGivingIngestible).ToList().OrderBy(food => food.category).ThenBy(food => food.FirstThingCategory?.index).ThenBy(food => food.label).ToArray();
         public readonly IEnumerable<Category> Categories;
 
-        public RestrictionTemplate(IEnumerable<Category> list) => Categories = list;
+        private RestrictionTemplate(IEnumerable<Category> list) => Categories = list;
 
         public void ToggleAll(bool value)
         {

@@ -11,9 +11,7 @@ namespace PawnRules.Patch
     {
         private static void Postfix(ref bool __result, Thing t, Pawn p, bool checkConstructionSkill = true, bool forced = false)
         {
-            if (!Registry.IsActive) { return; }
-
-            if (__result == false) { return; }
+            if (!Registry.IsActive || (__result == false)) { return; }
 
             var rules = Registry.GetRules(p);
             if ((rules == null) || rules.AllowArtisan || !checkConstructionSkill || !((ThingDef) t.def.entityDefToBuild).HasComp(typeof(CompQuality))) { return; }

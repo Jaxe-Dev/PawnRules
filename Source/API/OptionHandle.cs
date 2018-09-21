@@ -48,13 +48,13 @@ namespace PawnRules.API
 
         internal void ChangeValue<T>(Pawn pawn, T newValue)
         {
-            var handle = this as OptionHandle<T>;
+            if (!(this is OptionHandle<T> handle)) { throw new Mod.Exception($"Invalid OptionHandle for type {typeof(T).Name}"); }
             handle.SetValue(pawn, handle.OnChangeForPawnForPawn == null ? newValue : handle.OnChangeForPawnForPawn(pawn, handle.GetValue(pawn), newValue));
         }
 
         internal void ChangePresetValue<T>(Rules rules, T newValue)
         {
-            var handle = this as OptionHandle<T>;
+            if (!(this is OptionHandle<T> handle)) { throw new Mod.Exception($"Invalid OptionHandle for type {typeof(T).Name}"); }
             rules.SetAddonValueDirect(handle.Addon, handle.OnChangeForForPreset == null ? newValue : handle.OnChangeForForPreset(rules.Type.AsTarget, rules.GetAddonValue(handle.Addon, (T) handle.Addon.DefaultValue), newValue));
         }
 

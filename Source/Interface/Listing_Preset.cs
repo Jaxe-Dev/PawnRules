@@ -46,7 +46,7 @@ namespace PawnRules.Interface
         public void DoContent(Rect rect)
         {
             var selectedIsIgnored = Selected.IsIgnored();
-            var presets = Registry.GetPresets<T>(Type);
+            var presets = Registry.GetPresets<T>(Type).ToArray();
 
             _listing.Begin(rect);
             foreach (var preset in FixedPresets)

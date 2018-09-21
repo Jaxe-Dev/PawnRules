@@ -26,7 +26,7 @@ namespace PawnRules.Data
                 return;
             }
 
-            Type = RestrictionType.FromId(xml.Attribute("Type").Value);
+            Type = RestrictionType.FromId(xml.Attribute("Type")?.Value);
             if (Type == null)
             {
                 Mod.Warning("Skipping invalid restriction type");

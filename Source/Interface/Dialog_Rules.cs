@@ -59,7 +59,7 @@ namespace PawnRules.Interface
         {
             var list = new List<FloatMenuOption>();
 
-            var presets = Registry.GetPresets<Restriction>(type).Where(preset => preset != _template.GetRestriction(type));
+            var presets = Registry.GetPresets<Restriction>(type).Where(preset => preset != _template.GetRestriction(type)).ToArray();
 
             if (!presets.Any() && _template.GetRestriction(type).IsVoid)
             {
@@ -146,7 +146,7 @@ namespace PawnRules.Interface
 
         private void AssignAll(bool byKind)
         {
-            var pawns = GetOtherPawnsOfType(byKind);
+            var pawns = GetOtherPawnsOfType(byKind).ToArray();
 
             void OnAccept()
             {

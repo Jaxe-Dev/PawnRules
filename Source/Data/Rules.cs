@@ -41,7 +41,7 @@ namespace PawnRules.Data
                 return;
             }
 
-            Type = PawnType.FromId(xml.Attribute("Type").Value);
+            Type = PawnType.FromId(xml.Attribute("Type")?.Value);
             if (Type == null)
             {
                 Mod.Warning("Skipping invalid rules preset type");
@@ -53,7 +53,7 @@ namespace PawnRules.Data
             {
                 foreach (var restriction in restrictions)
                 {
-                    var type = RestrictionType.FromId(restriction.Attribute("Type").Value);
+                    var type = RestrictionType.FromId(restriction.Attribute("Type")?.Value);
                     if (type == null)
                     {
                         Mod.Warning("Skipping invalid restriction type in rules preset");

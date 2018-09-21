@@ -1,5 +1,5 @@
 # Pawn Rules
-![](https://img.shields.io/badge/Mod_Version-1.1.3-blue.svg)
+![](https://img.shields.io/badge/Mod_Version-1.1.4-blue.svg)
 ![](https://img.shields.io/badge/Built_for_RimWorld-B19-blue.svg)
 ![](https://img.shields.io/badge/Powered_by_Harmony-1.2.0.1-blue.svg)
 
@@ -62,10 +62,9 @@ Prefix  : RimWorld.RelationsUtility.TryDevelopBondRelation
 Prefix  : RimWorld.WorkGiver_InteractAnimal.HasFoodToInteractAnimal
 Prefix  : RimWorld.WorkGiver_InteractAnimal.TakeFoodForAnimalInteractJob
 Postfix : Verse.Game.FinalizeInit
-Prefix  : Verse.Game.InitNewGame
-Prefix  : Verse.Game.LoadGame
 Postfix : Verse.Pawn.GetGizmos
 Postfix : Verse.Pawn.Kill
 Prefix  : Verse.Pawn.SetFaction
 Postfix : Verse.PawnGenerator.GeneratePawn
+Prefix  : Verse.Profile.MemoryUtility.ClearAllMapsAndWorld
 ```

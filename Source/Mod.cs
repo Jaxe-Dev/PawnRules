@@ -1,9 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using Harmony;
+﻿using System.IO;
 using PawnRules.Data;
+using PawnRules.Integration;
 using PawnRules.Interface;
 using PawnRules.Patch;
 using RimWorld;
@@ -16,7 +13,7 @@ namespace PawnRules
     {
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
-        public const string Version = "1.1.3";
+        public const string Version = "1.1.4";
 
         public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 
@@ -31,18 +28,7 @@ namespace PawnRules
             FirstTimeUser = !ConfigDirectory.Exists;
             ConfigDirectory.Create();
 
-            if (!FirstTimeUser) { TryRegisterHugsLibUpdateFeature(); }
-        }
-
-        private static void TryRegisterHugsLibUpdateFeature()
-        {
-            var hugsLib = (from assembly in AppDomain.CurrentDomain.GetAssemblies() from type in assembly.GetTypes() where type.Name == "HugsLibController" select type).FirstOrDefault();
-            if (hugsLib == null) { return; }
-
-            var updateFeatures = Traverse.Create(hugsLib)?.Field("instance")?.Property("UpdateFeatures")?.GetValue();
-            if (updateFeatures == null) { return; }
-
-            AccessTools.Method(updateFeatures.GetType(), "InspectActiveMod")?.Invoke(updateFeatures, new object[] { Id, Assembly.GetExecutingAssembly().GetName().Version });
+            if (!FirstTimeUser) { HugsLib.RegisterUpdateFeature(); }
         }
 
         public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));

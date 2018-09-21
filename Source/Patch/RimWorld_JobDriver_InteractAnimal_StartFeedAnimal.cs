@@ -23,26 +23,29 @@ namespace PawnRules.Patch
                                   PawnUtility.ForceWait(target, 270, actor);
 
                                   Registry.ExemptedTrainer = actor;
-                                  var thing1 = FoodUtility.BestFoodInInventory(actor, target, FoodPreferability.NeverForNutrition, FoodPreferability.RawTasty);
-                                  if (thing1 == null) { actor.jobs.EndCurrentJob(JobCondition.Incompletable); }
+
+                                  var bestFoodInInventory = FoodUtility.BestFoodInInventory(actor, target, FoodPreferability.NeverForNutrition, FoodPreferability.RawTasty);
+
+                                  if (bestFoodInInventory == null) { actor.jobs.EndCurrentJob(JobCondition.Incompletable); }
                                   else
                                   {
                                       actor.mindState.lastInventoryRawFoodUseTick = Find.TickManager.TicksGame;
 
-                                      var stackCountForNutrition = FoodUtility.StackCountForNutrition(feedNutritionLeft.Value, thing1.GetStatValue(StatDefOf.Nutrition));
-                                      var stackCount = thing1.stackCount;
-                                      var thing2 = actor.inventory.innerContainer.Take(thing1, Mathf.Min(stackCountForNutrition, stackCount));
+                                      var stackCountForNutrition = FoodUtility.StackCountForNutrition(feedNutritionLeft.Value, bestFoodInInventory.GetStatValue(StatDefOf.Nutrition));
+                                      var stackCount = bestFoodInInventory.stackCount;
+                                      var bestFood = actor.inventory.innerContainer.Take(bestFoodInInventory, Mathf.Min(stackCountForNutrition, stackCount));
 
-                                      actor.carryTracker.TryStartCarry(thing2);
-                                      actor.CurJob.SetTarget(TargetIndex.B, thing2);
+                                      actor.carryTracker.TryStartCarry(bestFood);
+                                      actor.CurJob.SetTarget(TargetIndex.B, bestFood);
 
-                                      var nutrition = thing2.stackCount * thing2.GetStatValue(StatDefOf.Nutrition);
-                                      __instance.ticksLeftThisToil = Mathf.CeilToInt((270f * (nutrition / JobDriver_InteractAnimal.RequiredNutritionPerFeed(target))));
+                                      var nutrition = bestFood.stackCount * bestFood.GetStatValue(StatDefOf.Nutrition);
+                                      __instance.ticksLeftThisToil = Mathf.CeilToInt(270f * (nutrition / JobDriver_InteractAnimal.RequiredNutritionPerFeed(target)));
 
                                       if (stackCountForNutrition <= stackCount) { Traverse.Create(__instance).Field<float>("feedNutritionLeft").Value = 0f; }
                                       else
                                       {
                                           feedNutritionLeft.Value -= nutrition;
+
                                           if (feedNutritionLeft.Value >= 0.001f) { return; }
                                           feedNutritionLeft.Value = 0f;
                                       }
@@ -50,8 +53,8 @@ namespace PawnRules.Patch
                               };
 
             toil.defaultCompleteMode = ToilCompleteMode.Delay;
-
             __result = toil;
+
             return false;
         }
     }

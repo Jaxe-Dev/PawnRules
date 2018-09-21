@@ -46,14 +46,16 @@ namespace PawnRules.Patch
                                                         return restriction.AllowsFood(thing.def, eater);
                                                     });
 
-            var req = ((eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) == FoodTypeFlags.None) || !allowPlant ? ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree) : ThingRequest.ForGroup(ThingRequestGroup.FoodSource);
+            var request = ((eater.RaceProps.foodType & (FoodTypeFlags.Plant | FoodTypeFlags.Tree)) == FoodTypeFlags.None) || !allowPlant ? ThingRequest.ForGroup(ThingRequestGroup.FoodSourceNotPlantOrTree) : ThingRequest.ForGroup(ThingRequestGroup.FoodSource);
             Thing bestThing;
             if (getter.RaceProps.Humanlike)
             {
-                bestThing = Access.Method_RimWorld_FoodUtility_SpawnedFoodSearchInnerScan_Call(eater, getter.Position, getter.Map.listerThings.ThingsMatching(req), PathEndMode.ClosestTouch, TraverseParms.For(getter), 9999f, foodValidator);
+                bestThing = Access.Method_RimWorld_FoodUtility_SpawnedFoodSearchInnerScan_Call(eater, getter.Position, getter.Map.listerThings.ThingsMatching(request), PathEndMode.ClosestTouch, TraverseParms.For(getter), 9999f, foodValidator);
+
                 if (allowHarvest && getterCanManipulate)
                 {
                     var searchRegionsMax = !forceScanWholeMap || (bestThing != null) ? 30 : -1;
+                    var firstBestThing = bestThing;
 
                     bool Validator(Thing thing)
                     {
@@ -62,7 +64,7 @@ namespace PawnRules.Patch
                         var harvestedThingDef = plant.def.plant.harvestedThingDef;
 
                         // Pawn Rules - Food check below
-                        return harvestedThingDef.IsNutritionGivingIngestible && eater.RaceProps.CanEverEat(harvestedThingDef) && getter.CanReserve(plant) && (allowForbidden || !plant.IsForbidden(getter)) && ((bestThing == null) || (FoodUtility.GetFinalIngestibleDef(bestThing).ingestible.preferability < harvestedThingDef.ingestible.preferability)) && restriction.AllowsFood(plant.def, eater);
+                        return harvestedThingDef.IsNutritionGivingIngestible && eater.RaceProps.CanEverEat(harvestedThingDef) && getter.CanReserve(plant) && (allowForbidden || !plant.IsForbidden(getter)) && ((firstBestThing == null) || (FoodUtility.GetFinalIngestibleDef(firstBestThing).ingestible.preferability < harvestedThingDef.ingestible.preferability)) && restriction.AllowsFood(plant.def, eater);
                     }
 
                     var foodSource = GenClosest.ClosestThingReachable(getter.Position, getter.Map, ThingRequest.ForGroup(ThingRequestGroup.HarvestablePlant), PathEndMode.Touch, TraverseParms.For(getter), 9999f, Validator, null, 0, searchRegionsMax);
@@ -88,28 +90,13 @@ namespace PawnRules.Patch
 
                 var ignoreEntirelyForbiddenRegions = !allowForbidden && ForbidUtility.CaresAboutForbidden(getter, true) && (getter.playerSettings?.EffectiveAreaRestrictionInPawnCurrentMap != null);
                 var predicate = (Predicate<Thing>) (thing => foodValidator(thing) && !filtered.Contains(thing) && (thing is Building_NutrientPasteDispenser || (thing.def.ingestible.preferability > FoodPreferability.DesperateOnly)) && !thing.IsNotFresh());
-                var position1 = getter.Position;
-                var map1 = getter.Map;
-                var thingReq1 = req;
-                var traverseParams1 = TraverseParms.For(getter);
-                var validator1 = predicate;
-                var ignoreEntirelyForbiddenRegions1 = ignoreEntirelyForbiddenRegions;
+                var traverseParams = TraverseParms.For(getter);
+                var validator = predicate;
 
-                bestThing = GenClosest.ClosestThingReachable(position1, map1, thingReq1, PathEndMode.ClosestTouch, traverseParams1, 9999f, validator1, null, 0, maxRegionsToScan, false, RegionType.Set_Passable, ignoreEntirelyForbiddenRegions1);
+                bestThing = GenClosest.ClosestThingReachable(getter.Position, getter.Map, request, PathEndMode.ClosestTouch, traverseParams, 9999f, validator, null, 0, maxRegionsToScan, false, RegionType.Set_Passable, ignoreEntirelyForbiddenRegions);
                 filtered.Clear();
 
-                if (bestThing == null)
-                {
-                    desperate = true;
-                    var position2 = getter.Position;
-                    var map2 = getter.Map;
-                    var thingReq2 = req;
-                    var traverseParams2 = TraverseParms.For(getter);
-                    var validator2 = foodValidator;
-                    var ignoreEntirelyForbiddenRegions2 = ignoreEntirelyForbiddenRegions;
-                    bestThing = GenClosest.ClosestThingReachable(position2, map2, thingReq2, PathEndMode.ClosestTouch, traverseParams2, 9999f, validator2, null, 0, maxRegionsToScan, false, RegionType.Set_Passable, ignoreEntirelyForbiddenRegions2);
-                }
-
+                if (bestThing == null) { bestThing = GenClosest.ClosestThingReachable(getter.Position, getter.Map, request, PathEndMode.ClosestTouch, traverseParams, 9999f, foodValidator, null, 0, maxRegionsToScan, false, RegionType.Set_Passable, ignoreEntirelyForbiddenRegions); }
                 if (bestThing != null) { foodDef = FoodUtility.GetFinalIngestibleDef(bestThing); }
             }
 
