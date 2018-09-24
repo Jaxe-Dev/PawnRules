@@ -13,7 +13,7 @@ namespace PawnRules
     {
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
-        public const string Version = "1.1.4";
+        public const string Version = "1.1.5";
 
         public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 

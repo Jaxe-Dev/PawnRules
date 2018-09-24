@@ -14,8 +14,7 @@ namespace PawnRules.Integration
             var rules = Registry.GetRules(pawn);
             if (rules == null) { return null; }
 
-            var name = rules.IsPreset ? rules.Name : Lang.Get("Preset.Personalized");
-            return name;
+            return rules.IsPreset ? rules.Name : Lang.Get("Preset.Personalized");
         }
     }
 }

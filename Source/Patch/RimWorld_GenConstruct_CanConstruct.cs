@@ -14,7 +14,9 @@ namespace PawnRules.Patch
             if (!Registry.IsActive || (__result == false)) { return; }
 
             var rules = Registry.GetRules(p);
-            if ((rules == null) || rules.AllowArtisan || !checkConstructionSkill || !((ThingDef) t.def.entityDefToBuild).HasComp(typeof(CompQuality))) { return; }
+            if ((rules == null) || rules.AllowArtisan || !checkConstructionSkill) { return; }
+
+            if (!(t.def.entityDefToBuild is ThingDef thingDef) || !thingDef.HasComp(typeof(CompQuality))) { return; }
 
             if (forced && !JobFailReason.HaveReason && !rules.AllowArtisan) { JobFailReason.Is(Lang.Get("Rules.NotArtisanReason"), Lang.Get("Rules.NotArtisanJob", t.LabelCap)); }
 

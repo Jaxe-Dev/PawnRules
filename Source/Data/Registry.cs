@@ -17,7 +17,7 @@ namespace PawnRules.Data
         private const string WorldObjectDefName = "PawnRules_Registry";
         private const string CurrentVersion = "v" + Mod.Version;
 
-        public static bool IsActive => !_isDeactivating && (_instance != null) && (Find.GameInitData.playerFaction != null);
+        public static bool IsActive => !_isDeactivating && (_instance != null) && (Current.ProgramState == ProgramState.Playing);
 
         private static Registry _instance;
 
