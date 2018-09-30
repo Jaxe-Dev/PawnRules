@@ -1,7 +1,10 @@
 # Pawn Rules
-![](https://img.shields.io/badge/Mod_Version-1.1.5-blue.svg)
-![](https://img.shields.io/badge/Built_for_RimWorld-B19-blue.svg)
-![](https://img.shields.io/badge/Powered_by_Harmony-1.2.0.1-blue.svg)
+![Mod Version](https://img.shields.io/badge/Mod_Version-1.1.6-blue.svg)
+![RimWorld Version](https://img.shields.io/badge/Built_for_RimWorld-B19-blue.svg)
+![Harmony Version](https://img.shields.io/badge/Powered_by_Harmony-1.2.0.1-blue.svg)\
+![Steam Subscribers](https://img.shields.io/badge/dynamic/xml.svg?label=Steam+Subscribers&query=//table/tr[2]/td[1]&colorB=blue&url=https://steamcommunity.com/sharedfiles/filedetails/%3Fid=1499843448&suffix=+total)
+![GitHub Downloads](https://img.shields.io/github/downloads/Jaxe-Dev/PawnRules/total.svg?colorB=blue&label=GitHub+Downloads)
+
 
 [Link to Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=1499843448)\
 [Link to Ludeon Forum thread](https://ludeon.com/forums/index.php?topic=43086.0)

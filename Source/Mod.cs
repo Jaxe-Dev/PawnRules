@@ -13,7 +13,7 @@ namespace PawnRules
     {
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
-        public const string Version = "1.1.5";
+        public const string Version = "1.1.6";
 
         public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 
@@ -23,12 +23,13 @@ namespace PawnRules
         public Mod(ModContentPack contentPack) : base(contentPack)
         {
             Instance = this;
-            Log("Loaded");
 
             FirstTimeUser = !ConfigDirectory.Exists;
             ConfigDirectory.Create();
 
             if (!FirstTimeUser) { HugsLib.RegisterUpdateFeature(); }
+
+            Log("Initialized");
         }
 
         public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));
@@ -52,6 +53,12 @@ namespace PawnRules
             else { listing.Label(Lang.Get("Settings.NoGame")); }
 
             listing.End();
+        }
+
+        public static void LoadWorld()
+        {
+            AddonManager.AcceptingAddons = false;
+            Registry.Initialize();
         }
 
         internal class Exception : System.Exception

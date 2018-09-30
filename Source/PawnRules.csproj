@@ -13,18 +13,6 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\Assemblies\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <LangVersion>default</LangVersion>
-    <DocumentationFile>..\Assemblies\PawnRules.xml</DocumentationFile>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
@@ -56,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mod.cs" />
-    <Compile Include="Controller.cs" />
+    <Compile Include="Compatibility\PrisonLabor.cs" />
     <Compile Include="Data\AddonManager.cs" />
     <Compile Include="Data\AddonOption.cs" />
     <Compile Include="Data\Binding.cs" />
@@ -86,6 +74,7 @@
     <Compile Include="Interface\WindowPlus.cs" />
     <Compile Include="Patch\Extensions.cs" />
     <Compile Include="Patch\Access.cs" />
+    <Compile Include="Patch\Patcher.cs" />
     <Compile Include="Patch\RimWorld_FoodUtility_BestFoodInInventory.cs" />
     <Compile Include="Patch\RimWorld_FoodUtility_BestFoodSourceOnMap.cs" />
     <Compile Include="Patch\RimWorld_FoodUtility_TryFindBestFoodSourceFor.cs" />

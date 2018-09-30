@@ -1,4 +1,5 @@
 ﻿using PawnRules.Data;
+using PawnRules.Interface;
 using Verse;
 
 namespace PawnRules.Integration
@@ -11,10 +12,17 @@ namespace PawnRules.Integration
         {
             if (!Registry.IsActive) { return null; }
 
-            var rules = Registry.GetRules(pawn);
+            var rules = Registry.GetOrNewRules(pawn);
             if (rules == null) { return null; }
 
-            return rules.IsPreset ? rules.Name : Lang.Get("Preset.Personalized");
+            return rules.IsPreset ? rules.IsVoid ? null : rules.Name : Lang.Get("Preset.Personalized");
+        }
+
+        public static void OpenRulesDialog(Pawn pawn)
+        {
+            if (!Registry.IsActive) { return; }
+
+            Dialog_Rules.Open(pawn);
         }
     }
 }
