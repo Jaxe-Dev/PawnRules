@@ -13,7 +13,7 @@ namespace PawnRules.Patch
         {
             if (!Registry.IsActive || (__result == false)) { return; }
 
-            var rules = Registry.GetRules(p);
+            var rules = p.GetRules();
             if ((rules == null) || rules.AllowArtisan || !checkConstructionSkill) { return; }
 
             if (!(t.def.entityDefToBuild is ThingDef thingDef) || !thingDef.HasComp(typeof(CompQuality))) { return; }

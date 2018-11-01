@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A4DC7884-6BF7-4787-A274-ABF85D361DE0}</ProjectGuid>
+    <ProjectGuid>{3FF09E26-F6F3-4A1E-8ED9-F096C870EFBD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PawnRules</RootNamespace>
@@ -22,6 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>..\Assemblies\PawnRules.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -44,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mod.cs" />
-    <Compile Include="Compatibility\PrisonLabor.cs" />
+    <Compile Include="API\OptionHandle.cs" />
+    <Compile Include="API\OptionTarget.cs" />
+    <Compile Include="API\PawnRulesLink.cs" />
     <Compile Include="Data\AddonManager.cs" />
     <Compile Include="Data\AddonOption.cs" />
     <Compile Include="Data\Binding.cs" />
@@ -72,18 +75,17 @@
     <Compile Include="Interface\Listing_StandardPlus.cs" />
     <Compile Include="Interface\OptionWidget.cs" />
     <Compile Include="Interface\WindowPlus.cs" />
-    <Compile Include="Patch\Extensions.cs" />
     <Compile Include="Patch\Access.cs" />
+    <Compile Include="Patch\Extensions.cs" />
     <Compile Include="Patch\Patcher.cs" />
-    <Compile Include="Patch\RimWorld_FoodUtility_BestFoodInInventory.cs" />
-    <Compile Include="Patch\RimWorld_FoodUtility_BestFoodSourceOnMap.cs" />
-    <Compile Include="Patch\RimWorld_FoodUtility_TryFindBestFoodSourceFor.cs" />
+    <Compile Include="Patch\PawnColumnWorker_Rules.cs" />
+    <Compile Include="Patch\RimWorld_FoodRestriction_Allows.cs" />
+    <Compile Include="Patch\RimWorld_FoodUtility_WillEat.cs" />
     <Compile Include="Patch\RimWorld_GenConstruct_CanConstruct.cs" />
     <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_RandomSelectionWeight.cs" />
     <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_SuccessChance.cs" />
-    <Compile Include="Patch\RimWorld_JobDriver_InteractAnimal_StartFeedAnimal.cs" />
-    <Compile Include="Patch\RimWorld_JobGiver_PackFood_IsGoodPackableFoodFor.cs" />
-    <Compile Include="Patch\RimWorld_JoyGiver_Ingest_CanIngestForJoy.cs" />
+    <Compile Include="Patch\RimWorld_Pawn_FoodRestrictionTracker_Configurable.cs" />
+    <Compile Include="Patch\RimWorld_Pawn_FoodRestrictionTracker_CurrentFoodRestriction.cs" />
     <Compile Include="Patch\RimWorld_Pawn_GuestTracker_SetGuestStatus.cs" />
     <Compile Include="Patch\RimWorld_PawnUtility_TrySpawnHatchedOrBornPawn.cs" />
     <Compile Include="Patch\RimWorld_RelationsUtility_TryDevelopBondRelation.cs" />
@@ -95,9 +97,6 @@
     <Compile Include="Patch\Verse_Pawn_SetFaction.cs" />
     <Compile Include="Patch\Verse_PawnGenerator_GeneratePawn.cs" />
     <Compile Include="Patch\Verse_Profile_MemoryUtility_ClearAllMapsAndWorld.cs" />
-    <Compile Include="API\OptionHandle.cs" />
-    <Compile Include="API\OptionTarget.cs" />
-    <Compile Include="API\PawnRulesLink.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md">
@@ -111,8 +110,8 @@
     <Content Include="..\About\About.xml">
       <Link>-\About\About.xml</Link>
     </Content>
-    <Content Include="..\About\ModSync.xml">
-      <Link>-\About\ModSync.xml</Link>
+    <Content Include="..\About\Manifest.xml">
+      <Link>-\About\Manifest.xml</Link>
     </Content>
     <Content Include="..\Defs\UpdateFeaturesDef\UpdateFeatures.xml">
       <Link>-\Defs\UpdateFeaturesDefs\UpdateFeatures.xml</Link>
@@ -123,7 +122,10 @@
     <Content Include="..\Languages\English\Keyed\Keys.xml">
       <Link>-\Languages\English\Keyed\Keys.xml</Link>
     </Content>
+    <Content Include="..\Patches\PawnRulesPatch.xml">
+      <Link>-\Patches\PawnRulesPatch.xml</Link>
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

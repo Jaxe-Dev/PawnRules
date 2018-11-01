@@ -57,7 +57,7 @@ namespace PawnRules.Interface
                 {
                     if (_presetList.IsUnsaved)
                     {
-                        Registry.DeletePreset(_presetList.Selected);
+                        //Registry.DeletePreset(_presetList.Selected);
                         _presetList.Revert();
                     }
 
@@ -108,7 +108,7 @@ namespace PawnRules.Interface
         private void DoCategories(Rect rect)
         {
             var vGrid = rect.GetVGrid(4f, -1f, 30f);
-            _categoryList.Begin(vGrid[0]);
+            _categoryList.Begin(vGrid[0], true);
 
             foreach (var category in _template.Categories)
             {

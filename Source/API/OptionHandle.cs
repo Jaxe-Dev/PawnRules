@@ -1,4 +1,5 @@
 ﻿using PawnRules.Data;
+using PawnRules.Patch;
 using Verse;
 
 namespace PawnRules.API
@@ -42,7 +43,7 @@ namespace PawnRules.API
         /// <returns></returns>
         public bool IsUsedBy(Pawn pawn)
         {
-            var rules = Registry.GetRules(pawn);
+            var rules = pawn.GetRules();
             return (rules != null) && rules.HasAddon(Addon);
         }
 
@@ -117,7 +118,7 @@ namespace PawnRules.API
         /// <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
         public T GetValue(Pawn pawn, T invalidValue = default(T))
         {
-            var rules = Registry.GetRules(pawn);
+            var rules = pawn.GetRules();
             return rules == null ? invalidValue : rules.GetAddonValue(Addon, invalidValue);
         }
 
@@ -137,7 +138,7 @@ namespace PawnRules.API
         /// <returns>Returns true if the option was successfully set.</returns>
         public bool SetValue(Pawn pawn, T value)
         {
-            var rules = Registry.GetRules(pawn);
+            var rules = pawn.GetRules();
             return (rules != null) && rules.SetAddonValueDirect(Addon, value);
         }
     }

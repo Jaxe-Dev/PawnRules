@@ -52,7 +52,7 @@ namespace PawnRules.Interface
             foreach (var preset in FixedPresets)
             {
                 var isSelected = (Selected == preset) || (Selected.Name == preset.Name);
-                if (_listing.RadioButtonInverted((preset.IsPreset ? preset.Name : Lang.Get("Preset.Personalized")).Italic(), isSelected, null, !EditMode || isSelected)) { ChangeSelected(preset); }
+                if (_listing.RadioButtonInverted(preset.GetDisplayName().Italic(), isSelected, null, !EditMode || isSelected)) { ChangeSelected(preset); }
             }
             if (presets.Any()) { _listing.GapLine(); }
             _listing.End();

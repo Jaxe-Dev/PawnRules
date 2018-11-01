@@ -48,7 +48,7 @@ namespace PawnRules.Data
         }
 
         public bool Allows(Def def) => !_defs.Contains(def.defName);
-        public bool AllowsFood(ThingDef def, Pawn pawn) => !_defs.Contains(def.defName) || (Registry.AllowEmergencyFood && (pawn.health?.hediffSet?.HasHediff(HediffDefOf.Malnutrition) ?? false));
+        public bool AllowsFood(ThingDef def, Pawn pawn) => IsVoid || pawn.InMentalState || !_defs.Contains(def.defName) || (Registry.AllowEmergencyFood && (pawn.health?.hediffSet?.HasHediff(HediffDefOf.Malnutrition) ?? false));
 
         protected override void ExposePresetData()
         {

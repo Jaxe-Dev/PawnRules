@@ -1,5 +1,5 @@
 # Pawn Rules
-![Mod Version](https://img.shields.io/badge/Mod_Version-1.1.6-blue.svg)
+![Mod Version](https://img.shields.io/badge/Mod_Version-1.2.0-blue.svg)
 ![RimWorld Version](https://img.shields.io/badge/Built_for_RimWorld-B19-blue.svg)
 ![Harmony Version](https://img.shields.io/badge/Powered_by_Harmony-1.2.0.1-blue.svg)\
 ![Steam Subscribers](https://img.shields.io/badge/dynamic/xml.svg?label=Steam+Subscribers&query=//table/tr[2]/td[1]&colorB=blue&url=https://steamcommunity.com/sharedfiles/filedetails/%3Fid=1499843448&suffix=+total)
@@ -49,25 +49,27 @@ Supports addons created by other modders by allowing easy creation of new rule o
 ---
 
 The following base methods are patched with Harmony:
-```C#
-Prefix  : RimWorld.FoodUtility.BestFoodSourceOnMap
-Prefix  : RimWorld.FoodUtility.BestFoodInInventory
-Prefix  : RimWorld.FoodUtility.TryFindBestFoodSourceFor
+```
+Postfix : RimWorld.FoodRestriction.Allows
+Postfix : RimWorld.FoodUtility.WillEat
 Postfix : RimWorld.GenConstruct.CanConstruct
-Prefix  : RimWorld.InteractionWorker_RomanceAttempt.RandomSelectionWeight
-Prefix  : RimWorld.InteractionWorker_RomanceAttempt.SuccessChance
-Prefix  : RimWorld.JobDriver_InteractAnimal.StartFeedAnimal
-Postfix : RimWorld.JobGiver_PackFood.IsGoodPackableFoodFor
-Prefix  : RimWorld.JoyGiver_Ingest.CanIngestForJoy
+Prefix* : RimWorld.InteractionWorker_RomanceAttempt.RandomSelectionWeight
+Prefix* : RimWorld.InteractionWorker_RomanceAttempt.SuccessChance
+Prefix* : RimWorld.Pawn_FoodRestrictionTracker.Configurable
+Prefix* : RimWorld.Pawn_FoodRestrictionTracker.CurrentFoodRestriction
 Prefix  : RimWorld.Pawn_GuestTracker.SetGuestStatus
 Postfix : RimWorld.PawnUtility.TrySpawnHatchedOrBornPawn
-Prefix  : RimWorld.RelationsUtility.TryDevelopBondRelation
+Prefix* : RimWorld.RelationsUtility.TryDevelopBondRelation
 Prefix  : RimWorld.WorkGiver_InteractAnimal.HasFoodToInteractAnimal
+Postfix : RimWorld.WorkGiver_InteractAnimal.HasFoodToInteractAnimal
 Prefix  : RimWorld.WorkGiver_InteractAnimal.TakeFoodForAnimalInteractJob
+Postfix : RimWorld.WorkGiver_InteractAnimal.TakeFoodForAnimalInteractJob
 Postfix : Verse.Game.FinalizeInit
 Postfix : Verse.Pawn.GetGizmos
 Postfix : Verse.Pawn.Kill
 Prefix  : Verse.Pawn.SetFaction
 Postfix : Verse.PawnGenerator.GeneratePawn
 Prefix  : Verse.Profile.MemoryUtility.ClearAllMapsAndWorld
+
+A prefix marked by a * denotes that in some circumstances the original method will be bypassed
 ```

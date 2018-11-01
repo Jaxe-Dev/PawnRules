@@ -12,8 +12,8 @@ namespace PawnRules.Patch
         {
             if (!Registry.IsActive) { return true; }
 
-            var initiatorCanCourt = Registry.GetRules(initiator)?.AllowCourting ?? true;
-            var recipientCanCourt = Registry.GetRules(recipient)?.AllowCourting ?? true;
+            var initiatorCanCourt = initiator.GetRules()?.AllowCourting ?? true;
+            var recipientCanCourt = recipient.GetRules()?.AllowCourting ?? true;
 
             if (initiatorCanCourt && recipientCanCourt) { return true; }
 

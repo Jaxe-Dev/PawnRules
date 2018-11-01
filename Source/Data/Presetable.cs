@@ -11,7 +11,7 @@ namespace PawnRules.Data
     {
         private const int MaxIdLength = 20;
 
-        public static readonly string VoidName = Lang.Get("Preset.None");
+        private static readonly string VoidName = Lang.Get("Preset.None");
 
         private static readonly Regex ValidNameRegex = new Regex("^(?:[\\p{L}\\p{N}]|[\\p{L}\\p{N}]+[\\p{L}\\p{N} ]*[\\p{L}\\p{N}])$");
 

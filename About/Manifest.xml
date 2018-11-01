@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<Manifest>
+  <identifier>PawnRules</identifier>
+  <version>1.2.0</version>
+  <manifestUri>https://raw.githubusercontent.com/Jaxe-Dev/PawnRules/master/About/Manifest.xml</manifestUri>
+  <downloadUri>https://github.com/Jaxe-Dev/PawnRules/releases/latest</downloadUri>
+</Manifest>

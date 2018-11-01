@@ -25,6 +25,10 @@ namespace PawnRules.Patch
             return null;
         }
 
+        public static Rules GetRules(this Pawn self) => Registry.GetRules(self);
+
+        public static string GetDisplayName(this Presetable self) => self == null ? Lang.Get("Preset.None") : self.Name ?? Lang.Get("Preset.Personalized");
+
         public static Rect AdjustedBy(this Rect self, float x, float y, float width, float height) => new Rect(self.x + x, self.y + y, self.width + width, self.height + height);
 
         public static Rect[] GetHGrid(this Rect self, float spacing, params float[] widths)

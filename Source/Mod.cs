@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using PawnRules.Data;
 using PawnRules.Integration;
 using PawnRules.Interface;
@@ -13,7 +13,7 @@ namespace PawnRules
     {
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
-        public const string Version = "1.1.6";
+        public const string Version = "1.2.0";
 
         public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 
@@ -34,7 +34,6 @@ namespace PawnRules
 
         public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));
         public static void Warning(string message) => Verse.Log.Warning(PrefixMessage(message));
-        public static void Error(string message) => Verse.Log.Error(PrefixMessage(message));
         public static void Message(string message) => Messages.Message(message, MessageTypeDefOf.TaskCompletion, false);
 
         public static string PrefixMessage(string message) => $"[{Name} v{Version}] {message}";
@@ -63,7 +62,7 @@ namespace PawnRules
 
         internal class Exception : System.Exception
         {
-            public Exception(string message) : base($"[{Name} v{Version} : EXCEPTION] {message}")
+            public Exception(string message) : base(PrefixMessage(message))
             { }
         }
     }

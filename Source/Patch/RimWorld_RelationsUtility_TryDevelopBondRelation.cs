@@ -12,7 +12,7 @@ namespace PawnRules.Patch
         {
             if (!Registry.IsActive || (humanlike == null) || (animal == null) || !humanlike.CanHaveRules()) { return true; }
 
-            var rules = Registry.GetRules(humanlike);
+            var rules = humanlike.GetRules();
             var restriction = rules?.GetRestriction(RestrictionType.Bonding);
             if ((restriction == null) || restriction.IsVoid || restriction.Allows(animal.def)) { return true; }
 

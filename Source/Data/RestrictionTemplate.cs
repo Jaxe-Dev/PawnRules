@@ -9,7 +9,7 @@ namespace PawnRules.Data
     internal class RestrictionTemplate
     {
         private static readonly PawnKindDef[] AnimalCache = DefDatabase<PawnKindDef>.AllDefs.Where(kindDef => kindDef.RaceProps.Animal).OrderBy(animal => animal.label).ToArray();
-        private static readonly ThingDef[] FoodCache = DefDatabase<ThingDef>.AllDefs.Where(food => food.IsNutritionGivingIngestible).ToList().OrderBy(food => food.category).ThenBy(food => food.FirstThingCategory?.index).ThenBy(food => food.label).ToArray();
+        public static readonly ThingDef[] FoodCache = DefDatabase<ThingDef>.AllDefs.Where(food => food.IsNutritionGivingIngestible).ToList().OrderBy(food => food.category).ThenBy(food => food.FirstThingCategory?.index).ThenBy(food => food.label).ToArray();
         public readonly IEnumerable<Category> Categories;
 
         private RestrictionTemplate(IEnumerable<Category> list) => Categories = list;
@@ -44,14 +44,14 @@ namespace PawnRules.Data
             var list = new Dictionary<string, Category>();
 
             var categories = new[]
-                             {
-                                         Lang.Get("AnimalCategory.Pet"),
-                                         Lang.Get("AnimalCategory.Farm"),
-                                         Lang.Get("AnimalCategory.Herd"),
-                                         Lang.Get("AnimalCategory.Predator"),
-                                         Lang.Get("AnimalCategory.Insect"),
-                                         Lang.Get("AnimalCategory.Other")
-                             };
+            {
+                        Lang.Get("AnimalCategory.Pet"),
+                        Lang.Get("AnimalCategory.Farm"),
+                        Lang.Get("AnimalCategory.Herd"),
+                        Lang.Get("AnimalCategory.Predator"),
+                        Lang.Get("AnimalCategory.Insect"),
+                        Lang.Get("AnimalCategory.Other")
+            };
 
             foreach (var animal in AnimalCache)
             {

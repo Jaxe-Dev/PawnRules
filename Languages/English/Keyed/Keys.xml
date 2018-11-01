@@ -140,4 +140,6 @@
 
   <PawnRules.Settings.NoGame>There are no settings for this mod outside of a game.</PawnRules.Settings.NoGame>
 
+  <PawnRules.FoodRestrictionsOverridden>&lt;Overridden&gt;</PawnRules.FoodRestrictionsOverridden>
+
 </LanguageData>

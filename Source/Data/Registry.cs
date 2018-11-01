@@ -123,7 +123,7 @@ namespace PawnRules.Data
                 foreach (var rule in _instance._rules.Where(rule => rule.Value == preset).ToArray()) { _instance._rules[rule.Key] = GetVoidPreset<Rules>(rule.Value.Type).CloneRulesFor(rule.Key); }
                 foreach (var rule in _instance._defaults.Where(rule => rule.Value == preset).ToArray()) { _instance._defaults[rule.Key] = GetVoidPreset<Rules>(rule.Value.Type); }
             }
-            else if (typeof(T) == typeof(Restriction))
+            else if ((typeof(T) == typeof(Restriction)) && !_instance._presets.ContainsKey(typeof(Rules)))
             {
                 foreach (var rulesType in _instance._presets[typeof(Rules)].Values.ToArray())
                 {

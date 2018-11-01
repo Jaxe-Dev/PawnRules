@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Defs/PawnColumnDef[defName = "FoodRestriction"]/label</xpath>
+    <value>
+      <label>rules</label>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Defs/PawnColumnDef[defName = "FoodRestriction"]/workerClass</xpath>
+    <value>
+      <workerClass>PawnRules.Patch.PawnColumnWorker_Rules</workerClass>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Defs/PawnTableDef[defName = "Assign"]/columns</xpath>
+    <value>
+      <columns>
+        <li>Label</li>
+        <li>HostilityResponse</li>
+        <li>MedicalCare</li>
+        <li>GapTiny</li>
+        <li>FoodRestriction</li>
+        <li>GapTiny</li>
+        <li>Outfit</li>
+        <li>GapTiny</li>
+        <li>DrugPolicy</li>
+        <li>RemainingSpace</li>
+      </columns>
+    </value>
+  </Operation>
+</Patch>

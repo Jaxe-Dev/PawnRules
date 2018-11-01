@@ -21,12 +21,12 @@ namespace PawnRules.Interface
         private static readonly Texture2D EditRulesTexture = ContentFinder<Texture2D>.Get("PawnRules/EditRules");
 
         public static Command_Action EditRulesCommand(Pawn pawn) => new Command_Action
-                                                                    {
-                                                                                icon = EditRulesTexture,
-                                                                                defaultLabel = Lang.Get("Gizmo.EditRulesLabel"),
-                                                                                defaultDesc = Lang.Get("Gizmo.EditRulesDesc", pawn.GetTargetType()?.Label.ToLower() ?? "pawn"),
-                                                                                action = () => Dialog_Rules.Open(pawn)
-                                                                    };
+        {
+                    icon = EditRulesTexture,
+                    defaultLabel = Lang.Get("Gizmo.EditRulesLabel"),
+                    defaultDesc = Lang.Get("Gizmo.EditRulesDesc", pawn.GetTargetType()?.Label.ToLower() ?? "pawn"),
+                    action = () => Dialog_Rules.Open(pawn)
+        };
 
         public static bool ButtonText(Rect rect, string label, string tooltip = null, bool enabled = true)
         {

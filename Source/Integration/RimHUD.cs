@@ -1,5 +1,6 @@
 ﻿using PawnRules.Data;
 using PawnRules.Interface;
+using PawnRules.Patch;
 using Verse;
 
 namespace PawnRules.Integration
@@ -8,17 +9,15 @@ namespace PawnRules.Integration
     {
         public static bool HideGizmo { get; set; } = false;
 
-        public static string GetRulesInfo(Pawn pawn)
+        public static string GetRules(Pawn pawn)
         {
             if (!Registry.IsActive) { return null; }
 
             var rules = Registry.GetOrNewRules(pawn);
-            if (rules == null) { return null; }
-
-            return rules.IsPreset ? rules.IsVoid ? null : rules.Name : Lang.Get("Preset.Personalized");
+            return rules?.GetDisplayName();
         }
 
-        public static void OpenRulesDialog(Pawn pawn)
+        public static void OpenRules(Pawn pawn)
         {
             if (!Registry.IsActive) { return; }
 
