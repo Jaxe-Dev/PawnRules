@@ -13,7 +13,7 @@ namespace PawnRules
     {
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
-        public const string Version = "1.2.1";
+        public const string Version = "1.2.2";
 
         public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 
@@ -40,7 +40,7 @@ namespace PawnRules
         public override string SettingsCategory() => Name;
         public override void DoSettingsWindowContents(Rect inRect)
         {
-            var rect = inRect.GetHGrid(1f, -1f, 400f, -1f)[1];
+            var rect = inRect.GetHGrid(1f, -1f, 400f, -1f)[2];
 
             var listing = new Listing_Standard();
             listing.Begin(rect);

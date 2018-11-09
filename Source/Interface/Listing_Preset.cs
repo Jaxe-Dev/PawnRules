@@ -59,7 +59,7 @@ namespace PawnRules.Interface
 
             var presetGrid = rect.GetVGrid(4f, _listing.CurHeight, -1f, 62f);
 
-            _presetListing.Begin(presetGrid[1], true);
+            _presetListing.Begin(presetGrid[2], true);
             foreach (var preset in presets)
             {
                 var isSelected = (Selected == preset) || (Selected.Name == preset.Name);
@@ -67,8 +67,8 @@ namespace PawnRules.Interface
             }
             _presetListing.End();
 
-            var buttonGrid = presetGrid[2].GetHGrid(4f, -1f, -1f);
-            _listing.Begin(buttonGrid[0]);
+            var buttonGrid = presetGrid[3].GetHGrid(4f, -1f, -1f);
+            _listing.Begin(buttonGrid[1]);
 
             if (_listing.ButtonText(Lang.Get("Button.PresetNew"), Lang.Get("Button.PresetNewDesc"), !EditMode)) { Presetable.SetName<T>(Type, CreatePreset); }
 
@@ -91,7 +91,7 @@ namespace PawnRules.Interface
             }
 
             _listing.End();
-            _listing.Begin(buttonGrid[1]);
+            _listing.Begin(buttonGrid[2]);
 
             if (_listing.ButtonText(Lang.Get("Button.PresetDelete"), Lang.Get("Button.PresetDeleteDesc"), !Selected.IsVoid && Selected.IsPreset && !EditMode)) { Dialog_Alert.Open(Lang.Get("Button.PresetDeleteConfirm", Selected.Name), Dialog_Alert.Buttons.YesNo, DeletePreset); }
 

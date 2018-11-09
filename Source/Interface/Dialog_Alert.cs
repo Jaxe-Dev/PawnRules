@@ -40,13 +40,13 @@ namespace PawnRules.Interface
             var listing = new Listing_Standard();
             var vGrid = rect.GetVGrid(4f, -1f, 30f);
 
-            listing.Begin(vGrid[0]);
+            listing.Begin(vGrid[1]);
             listing.Label(_message);
             listing.End();
 
-            var hGrid = vGrid[1].GetHGrid(4f, 100f, -1f);
+            var hGrid = vGrid[2].GetHGrid(4f, 100f, -1f);
 
-            listing.Begin(_buttons == Buttons.Ok ? vGrid[1] : hGrid[0]);
+            listing.Begin(_buttons == Buttons.Ok ? vGrid[3] : hGrid[1]);
 
             if (listing.ButtonText(_buttons == Buttons.YesNo ? Lang.Get("Button.Yes") : Lang.Get("Button.OK")))
             {
@@ -59,7 +59,7 @@ namespace PawnRules.Interface
 
             if (_buttons == Buttons.Ok) { return; }
 
-            listing.Begin(hGrid[1]);
+            listing.Begin(hGrid[2]);
             if (listing.ButtonText(_buttons == Buttons.YesNo ? Lang.Get("Button.No") : Lang.Get("Button.Cancel"))) { Close(); }
             listing.End();
         }

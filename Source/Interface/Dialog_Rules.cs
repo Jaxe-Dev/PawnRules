@@ -202,16 +202,16 @@ namespace PawnRules.Interface
 
             var listing = new Listing_StandardPlus();
             var hGrid = rect.GetHGrid(8f, 200f, -1f);
-            var lGrid = hGrid[0].GetVGrid(4f, 42f, -1f);
+            var lGrid = hGrid[1].GetVGrid(4f, 42f, -1f);
 
-            listing.Begin(lGrid[0]);
+            listing.Begin(lGrid[1]);
             listing.Label(Lang.Get("Preset.Header").Italic().Bold());
             listing.GapLine();
             listing.End();
-            _preset.DoContent(lGrid[1]);
+            _preset.DoContent(lGrid[2]);
 
-            var vGrid = hGrid[1].GetVGrid(4f, 42f, -1f, 62f);
-            listing.Begin(vGrid[0]);
+            var vGrid = hGrid[2].GetVGrid(4f, 42f, -1f, 62f);
+            listing.Begin(vGrid[1]);
             listing.Label(Lang.Get("Dialog_Rules.Configuration").Italic().Bold());
             listing.GapLine();
             listing.End();
@@ -221,7 +221,7 @@ namespace PawnRules.Interface
             var color = GUI.color;
             if (!editMode) { GUI.color = GuiPlus.ReadOnlyColor; }
 
-            listing.Begin(vGrid[1]);
+            listing.Begin(vGrid[2]);
             if (Registry.ShowFoodPolicy && listing.ButtonText(Lang.Get("Rules.FoodRestrictions", GetRestrictionDisplayName(_template.GetRestriction(RestrictionType.Food))), Lang.Get("Rules.FoodRestrictionsDesc")) && editMode) { ChangeRestriction(RestrictionType.Food); }
             if (_template.Type == PawnType.Colonist)
             {
@@ -238,7 +238,7 @@ namespace PawnRules.Interface
 
             if (_template.HasAddons)
             {
-                var addonsRect = vGrid[1].GetVGrid(4f, listing.CurHeight, -1f)[1];
+                var addonsRect = vGrid[2].GetVGrid(4f, listing.CurHeight, -1f)[2];
                 _addons.Begin(addonsRect, addonsRect.height <= _template.AddonsRectHeight);
                 GuiPlus.DoAddonsListing(_addons, _template, editMode);
                 _addons.End();
@@ -246,12 +246,12 @@ namespace PawnRules.Interface
 
             GUI.color = color;
 
-            var optionGrid = vGrid[2].GetVGrid(2f, -1f, -1f);
-            listing.Begin(optionGrid[0]);
+            var optionGrid = vGrid[3].GetVGrid(2f, -1f, -1f);
+            listing.Begin(optionGrid[1]);
             if (listing.ButtonText(Lang.Get("Button.AssignTo"), Lang.Get("Button.AssignToDesc"), (_floatMenuAssign.Count > 0) && (!editMode || (_template == _personalized)))) { Find.WindowStack.Add(new FloatMenu(_floatMenuAssign)); }
             listing.End();
 
-            listing.Begin(optionGrid[1]);
+            listing.Begin(optionGrid[2]);
             if (listing.ButtonText(_type == null ? Lang.Get("Button.ViewType", Lang.Get("PawnType.Individual")) : Lang.Get("Button.ViewTypeDefault", _type.LabelPlural), Lang.Get("Button.ViewTypeDesc"), !editMode || (_template == _personalized))) { Find.WindowStack.Add(new FloatMenu(_floatMenuViews)); }
             listing.End();
 

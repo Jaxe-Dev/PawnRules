@@ -52,8 +52,8 @@
   <PawnRules.Preset.None>Unrestricted</PawnRules.Preset.None>
   <PawnRules.Preset.Personalized>Personalized</PawnRules.Preset.Personalized>
 
-  <PawnRules.RestrictionType.Food>Ingestible Policy</PawnRules.RestrictionType.Food>
-  <PawnRules.RestrictionType.FoodPlural>Ingestible Policies</PawnRules.RestrictionType.FoodPlural>
+  <PawnRules.RestrictionType.Food>Food Policy</PawnRules.RestrictionType.Food>
+  <PawnRules.RestrictionType.FoodPlural>Food Policies</PawnRules.RestrictionType.FoodPlural>
   <PawnRules.RestrictionType.FoodCategorization>Ingestibles</PawnRules.RestrictionType.FoodCategorization>
   <PawnRules.RestrictionType.Bonding>Bonding Policy</PawnRules.RestrictionType.Bonding>
   <PawnRules.RestrictionType.BondingPlural>Bonding Policies</PawnRules.RestrictionType.BondingPlural>
@@ -71,8 +71,8 @@
   <PawnRules.PawnType.PersonPlural>Persons</PawnRules.PawnType.PersonPlural>
   <PawnRules.PawnType.Individual>Individual</PawnRules.PawnType.Individual>
 
-  <PawnRules.Rules.FoodRestrictions>Ingestible policy: {0}</PawnRules.Rules.FoodRestrictions>
-  <PawnRules.Rules.FoodRestrictionsDesc>Click to choose which ingestibles can be consumed.</PawnRules.Rules.FoodRestrictionsDesc>
+  <PawnRules.Rules.FoodRestrictions>Food policy: {0}</PawnRules.Rules.FoodRestrictions>
+  <PawnRules.Rules.FoodRestrictionsDesc>Click to choose which foods, drinks or other ingestibles can be consumed.</PawnRules.Rules.FoodRestrictionsDesc>
   <PawnRules.Rules.BondingRestrictions>Bonding policy: {0}</PawnRules.Rules.BondingRestrictions>
   <PawnRules.Rules.BondingRestrictionsDesc>Click to choose which animals can be bonded with.</PawnRules.Rules.BondingRestrictionsDesc>
   <PawnRules.Rules.AllowCourting>Allow Courting</PawnRules.Rules.AllowCourting>
@@ -95,6 +95,7 @@
   <PawnRules.Dialog_Global.Title>Global Options</PawnRules.Dialog_Global.Title>
   <PawnRules.Dialog_Global.AllowEmergencyFood>Allow any food when malnourished</PawnRules.Dialog_Global.AllowEmergencyFood>
   <PawnRules.Dialog_Global.AllowTrainingFood>Allow any food when training</PawnRules.Dialog_Global.AllowTrainingFood>
+  <PawnRules.Dialog_Global.AllowDrugsRestriction>Allow drugs to be restricted</PawnRules.Dialog_Global.AllowDrugsRestriction>
   <PawnRules.Dialog_Global.ShowRule>Show {0}</PawnRules.Dialog_Global.ShowRule>
   <PawnRules.Dialog_Global.Plans>Import/Export Plans</PawnRules.Dialog_Global.Plans>
 

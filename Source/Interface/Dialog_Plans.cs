@@ -57,7 +57,7 @@ namespace PawnRules.Interface
             var hasPlans = _plans.Any();
             if (hasPlans)
             {
-                _listing.Begin(vGrid[0], true);
+                _listing.Begin(vGrid[1], true);
                 foreach (var plan in _plans)
                 {
                     if (_listing.RadioButton(plan, _selected == plan)) { _selected = plan; }
@@ -65,17 +65,17 @@ namespace PawnRules.Interface
             }
             else
             {
-                _listing.Begin(vGrid[0]);
+                _listing.Begin(vGrid[1]);
                 _listing.Label(Lang.Get("Dialog_Plans.NoneFound"));
             }
             _listing.End();
 
-            var tGrid = vGrid[1].GetHGrid(4f, -1f, -1f);
-            var bGrid = vGrid[2].GetHGrid(4f, -1f, -1f);
-            if (GuiPlus.ButtonText(tGrid[0], Lang.Get("Dialog_Plans.Import"), Lang.Get("Dialog_Plans.ImportDesc"), !_selected.NullOrEmpty())) { LoadPlan(); }
-            if (GuiPlus.ButtonText(tGrid[1], Lang.Get("Dialog_Plans.Delete"), Lang.Get("Dialog_Plans.DeleteDesc"), !_selected.NullOrEmpty())) { Dialog_Alert.Open(Lang.Get("Dialog_Plans.ConfirmDelete", _selected), Dialog_Alert.Buttons.YesNo, DeletePlan); }
-            if (GuiPlus.ButtonText(bGrid[0], Lang.Get("Dialog_Plans.Export"), Lang.Get("Dialog_Plans.ExportDesc"))) { Dialog_SetName.Open(Lang.Get("Dialog_SetName.PlanTitle"), Lang.Get("Dialog_SetName.PlanLabel"), SavePlan, Persistent.NameIsValid, Persistent.CreateDefaultName()); }
-            if (GuiPlus.ButtonText(bGrid[1], "CloseButton".Translate())) { Close(); }
+            var tGrid = vGrid[2].GetHGrid(4f, -1f, -1f);
+            var bGrid = vGrid[3].GetHGrid(4f, -1f, -1f);
+            if (GuiPlus.ButtonText(tGrid[1], Lang.Get("Dialog_Plans.Import"), Lang.Get("Dialog_Plans.ImportDesc"), !_selected.NullOrEmpty())) { LoadPlan(); }
+            if (GuiPlus.ButtonText(tGrid[2], Lang.Get("Dialog_Plans.Delete"), Lang.Get("Dialog_Plans.DeleteDesc"), !_selected.NullOrEmpty())) { Dialog_Alert.Open(Lang.Get("Dialog_Plans.ConfirmDelete", _selected), Dialog_Alert.Buttons.YesNo, DeletePlan); }
+            if (GuiPlus.ButtonText(bGrid[1], Lang.Get("Dialog_Plans.Export"), Lang.Get("Dialog_Plans.ExportDesc"))) { Dialog_SetName.Open(Lang.Get("Dialog_SetName.PlanTitle"), Lang.Get("Dialog_SetName.PlanLabel"), SavePlan, Persistent.NameIsValid, Persistent.CreateDefaultName()); }
+            if (GuiPlus.ButtonText(bGrid[2], "CloseButton".Translate())) { Close(); }
         }
     }
 }

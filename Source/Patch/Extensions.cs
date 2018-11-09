@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using PawnRules.Data;
 using RimWorld;
 using UnityEngine;
@@ -30,13 +31,15 @@ namespace PawnRules.Patch
         public static string GetDisplayName(this Presetable self) => self == null ? Lang.Get("Preset.None") : self.Name ?? Lang.Get("Preset.Personalized");
 
         public static Rect AdjustedBy(this Rect self, float x, float y, float width, float height) => new Rect(self.x + x, self.y + y, self.width + width, self.height + height);
+        public static Rect Round(this Rect self) => new Rect(Mathf.Round(self.x), Mathf.Round(self.y), Mathf.Round(self.width), Mathf.Round(self.height));
 
-        public static Rect[] GetHGrid(this Rect self, float spacing, params float[] widths)
+        public static Rect[] GetHGrid(this Rect self, float padding, params float[] widths)
         {
             var unfixedCount = 0;
             var currentX = self.x;
             var fixedWidths = 0f;
-            var rects = new Rect[widths.Length];
+
+            var rects = new List<Rect> { self };
 
             for (var index = 0; index < widths.Length; index++)
             {
@@ -44,37 +47,38 @@ namespace PawnRules.Patch
                 if (width >= 0f) { fixedWidths += width; }
                 else { unfixedCount++; }
 
-                if (index != widths.LastIndex()) { fixedWidths += spacing; }
+                if (index != widths.LastIndex()) { fixedWidths += padding; }
             }
 
-            var unfixedWidth = unfixedCount > 0 ? (self.width - fixedWidths) / unfixedCount : 0f;
+            var unfixedWidth = unfixedCount > 0 ? Mathf.Max(0f, (self.width - fixedWidths) / unfixedCount) : 0f;
 
-            for (var index = 0; index < widths.Length; index++)
+            foreach (var width in widths)
             {
-                var width = widths[index];
                 float newWidth;
+
                 if (width >= 0f)
                 {
                     newWidth = width;
-                    rects[index] = new Rect(currentX, self.y, newWidth, self.height);
+                    rects.Add(new Rect(currentX, self.y, newWidth, self.height).Round());
                 }
                 else
                 {
                     newWidth = unfixedWidth;
-                    rects[index] = new Rect(currentX, self.y, newWidth, self.height);
+                    rects.Add(new Rect(currentX, self.y, newWidth, self.height).Round());
                 }
-                currentX += newWidth + spacing;
+
+                currentX = Mathf.Min(self.xMax, currentX + newWidth + (newWidth > 0f ? padding : 0f));
             }
 
-            return rects;
+            return rects.ToArray();
         }
-
-        public static Rect[] GetVGrid(this Rect self, float spacing, params float[] heights)
+        public static Rect[] GetVGrid(this Rect self, float padding, params float[] heights)
         {
             var unfixedCount = 0;
             var currentY = self.y;
             var fixedHeights = 0f;
-            var rects = new Rect[heights.Length];
+
+            var rects = new List<Rect> { self };
 
             for (var index = 0; index < heights.Length; index++)
             {
@@ -82,29 +86,31 @@ namespace PawnRules.Patch
                 if (height >= 0f) { fixedHeights += height; }
                 else { unfixedCount++; }
 
-                if (index != heights.LastIndex()) { fixedHeights += spacing; }
+                if (index != heights.LastIndex()) { fixedHeights += padding; }
             }
 
-            var unfixedWidth = unfixedCount > 0 ? (self.height - fixedHeights) / unfixedCount : 0f;
+            var unfixedHeight = unfixedCount > 0 ? Mathf.Max(0f, (self.height - fixedHeights) / unfixedCount) : 0f;
 
-            for (var index = 0; index < heights.Length; index++)
+            foreach (var height in heights)
             {
-                var height = heights[index];
                 float newHeight;
+
                 if (height >= 0f)
                 {
                     newHeight = height;
-                    rects[index] = new Rect(self.x, currentY, self.width, newHeight);
+                    rects.Add(new Rect(self.x, currentY, self.width, newHeight).Round());
                 }
                 else
                 {
-                    newHeight = unfixedWidth;
-                    rects[index] = new Rect(self.x, currentY, self.width, newHeight);
+                    newHeight = unfixedHeight;
+                    rects.Add(new Rect(self.x, currentY, self.width, newHeight).Round());
                 }
-                currentY += newHeight + spacing;
+
+                currentY = Mathf.Min(self.yMax, currentY + newHeight + (newHeight > 0f ? padding : 0f));
             }
 
-            return rects;
+            return rects.ToArray();
         }
+
     }
 }

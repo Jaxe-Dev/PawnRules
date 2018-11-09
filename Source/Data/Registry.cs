@@ -28,6 +28,7 @@ namespace PawnRules.Data
         public static bool ShowAllowCourting { get => _instance._showAllowCourting; set => _instance._showAllowCourting = value; }
         public static bool ShowAllowArtisan { get => _instance._showAllowArtisan; set => _instance._showAllowArtisan = value; }
 
+        public static bool AllowDrugsRestriction { get => _instance._allowDrugsRestriction; set => _instance._allowDrugsRestriction = value; }
         public static bool AllowEmergencyFood { get => _instance._allowEmergencyFood; set => _instance._allowEmergencyFood = value; }
         public static bool AllowTrainingFood { get => _instance._allowTrainingFood; set => _instance._allowTrainingFood = value; }
         public static Pawn ExemptedTrainer { get => _instance._exemptedTrainer; set => _instance._exemptedTrainer = value; }
@@ -48,6 +49,7 @@ namespace PawnRules.Data
         private bool _showAllowCourting = true;
         private bool _showAllowArtisan = true;
 
+        private bool _allowDrugsRestriction;
         private bool _allowEmergencyFood;
         private bool _allowTrainingFood;
 
@@ -324,6 +326,7 @@ namespace PawnRules.Data
             Scribe_Values.Look(ref _showAllowCourting, "showAllowCourting", true);
             Scribe_Values.Look(ref _showAllowArtisan, "showAllowArtisan", true);
 
+            Scribe_Values.Look(ref _allowDrugsRestriction, "allowDrugsRestriction");
             Scribe_Values.Look(ref _allowEmergencyFood, "allowEmergencyFood");
             Scribe_Values.Look(ref _allowTrainingFood, "allowTrainingFood");
 

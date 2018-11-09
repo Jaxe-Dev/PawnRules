@@ -22,6 +22,14 @@ namespace PawnRules.Data
             }
         }
 
+        public static bool IsValidDefName(string defName, RestrictionType type)
+        {
+            if (type == RestrictionType.Food) { return FoodCache.Any(def => def.defName == defName); }
+            if (type == RestrictionType.Bonding) { return AnimalCache.Any(def => def.defName == defName); }
+
+            throw new Mod.Exception("Invalid restriction type");
+        }
+
         private static RestrictionTemplate GetFoodsCategorized(Restriction restriction)
         {
             var list = new Dictionary<string, Category> { [ThingCategoryDefOf.FoodMeals.LabelCap] = new Category(ThingCategoryDefOf.FoodMeals.LabelCap) };

@@ -36,7 +36,7 @@ namespace PawnRules.Data
             var defs = xml.Element("Defs")?.Elements();
             if (defs == null) { return; }
 
-            foreach (var def in defs) { _defs.Add(def.Value); }
+            foreach (var def in defs.Where(def => RestrictionTemplate.IsValidDefName(def.Value, Type))) { _defs.Add(def.Value); }
         }
 
         public bool Matches(RestrictionTemplate template) => _defs.SequenceEqual(from category in template.Categories from member in category.Members where !member.Value select member.Def.defName);
@@ -48,7 +48,7 @@ namespace PawnRules.Data
         }
 
         public bool Allows(Def def) => !_defs.Contains(def.defName);
-        public bool AllowsFood(ThingDef def, Pawn pawn) => IsVoid || pawn.InMentalState || !_defs.Contains(def.defName) || (Registry.AllowEmergencyFood && (pawn.health?.hediffSet?.HasHediff(HediffDefOf.Malnutrition) ?? false));
+        public bool AllowsFood(ThingDef def, Pawn pawn) => IsVoid || pawn.InMentalState || (def.IsDrug && !Registry.AllowDrugsRestriction) || !_defs.Contains(def.defName) || (Registry.AllowEmergencyFood && (pawn.health?.hediffSet?.HasHediff(HediffDefOf.Malnutrition) ?? false));
 
         protected override void ExposePresetData()
         {

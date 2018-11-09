@@ -56,11 +56,11 @@ namespace PawnRules.Interface
 
             var grid = rect.AdjustedBy(0f, listing.CurHeight, 0f, -listing.CurHeight).GetHGrid(4f, -1f, -1f);
 
-            listing.Begin(grid[0]);
+            listing.Begin(grid[1]);
             if (listing.ButtonText(Lang.Get("Button.OK"), null, NameIsValid())) { CommitName(); }
             listing.End();
 
-            listing.Begin(grid[1]);
+            listing.Begin(grid[2]);
             if (listing.ButtonText(Lang.Get("Button.Cancel"))) { Close(); }
             listing.End();
         }
