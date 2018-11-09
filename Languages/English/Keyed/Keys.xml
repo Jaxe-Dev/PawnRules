@@ -52,9 +52,9 @@
   <PawnRules.Preset.None>Unrestricted</PawnRules.Preset.None>
   <PawnRules.Preset.Personalized>Personalized</PawnRules.Preset.Personalized>
 
-  <PawnRules.RestrictionType.Food>Food Policy</PawnRules.RestrictionType.Food>
-  <PawnRules.RestrictionType.FoodPlural>Food Policies</PawnRules.RestrictionType.FoodPlural>
-  <PawnRules.RestrictionType.FoodCategorization>Edibles</PawnRules.RestrictionType.FoodCategorization>
+  <PawnRules.RestrictionType.Food>Ingestible Policy</PawnRules.RestrictionType.Food>
+  <PawnRules.RestrictionType.FoodPlural>Ingestible Policies</PawnRules.RestrictionType.FoodPlural>
+  <PawnRules.RestrictionType.FoodCategorization>Ingestibles</PawnRules.RestrictionType.FoodCategorization>
   <PawnRules.RestrictionType.Bonding>Bonding Policy</PawnRules.RestrictionType.Bonding>
   <PawnRules.RestrictionType.BondingPlural>Bonding Policies</PawnRules.RestrictionType.BondingPlural>
   <PawnRules.RestrictionType.BondingCategorization>Animals</PawnRules.RestrictionType.BondingCategorization>
@@ -71,8 +71,8 @@
   <PawnRules.PawnType.PersonPlural>Persons</PawnRules.PawnType.PersonPlural>
   <PawnRules.PawnType.Individual>Individual</PawnRules.PawnType.Individual>
 
-  <PawnRules.Rules.FoodRestrictions>Food policy: {0}</PawnRules.Rules.FoodRestrictions>
-  <PawnRules.Rules.FoodRestrictionsDesc>Click to choose which foods can be eaten.</PawnRules.Rules.FoodRestrictionsDesc>
+  <PawnRules.Rules.FoodRestrictions>Ingestible policy: {0}</PawnRules.Rules.FoodRestrictions>
+  <PawnRules.Rules.FoodRestrictionsDesc>Click to choose which ingestibles can be consumed.</PawnRules.Rules.FoodRestrictionsDesc>
   <PawnRules.Rules.BondingRestrictions>Bonding policy: {0}</PawnRules.Rules.BondingRestrictions>
   <PawnRules.Rules.BondingRestrictionsDesc>Click to choose which animals can be bonded with.</PawnRules.Rules.BondingRestrictionsDesc>
   <PawnRules.Rules.AllowCourting>Allow Courting</PawnRules.Rules.AllowCourting>

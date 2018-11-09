@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <ModMetaData>
   <name>Pawn Rules</name>
   <author>Jaxe</author>
   <targetVersion>1.0.0</targetVersion>
-  <description>Mod Version: 1.2.0\n\n\nPawn Rules is a mod that allows custom rules to be assigned individually to your colonists, animals, guests and prisoners.\n\nCurrently the following rules can be applied:\n\n- Disallow certain foods\n- Disallow bonding with certain animals\n- Disallow new romances\n- Disallow constructing items that have a quality level\n\nAny of these rules can be disabled and hidden from the rules window. Rules presets and defaults can be imported and exported between games.</description>
+  <description>Mod Version: 1.2.1\n\n\nPawn Rules is a mod that allows custom rules to be assigned individually to your colonists, animals, guests and prisoners.\n\nCurrently the following rules can be applied:\n\n- Disallow certain foods\n- Disallow bonding with certain animals\n- Disallow new romances\n- Disallow constructing items that have a quality level\n\nAny of these rules can be disabled and hidden from the rules window. Rules presets and defaults can be imported and exported between games.</description>
 </ModMetaData>

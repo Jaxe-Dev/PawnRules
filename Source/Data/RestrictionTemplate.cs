@@ -9,7 +9,7 @@ namespace PawnRules.Data
     internal class RestrictionTemplate
     {
         private static readonly PawnKindDef[] AnimalCache = DefDatabase<PawnKindDef>.AllDefs.Where(kindDef => kindDef.RaceProps.Animal).OrderBy(animal => animal.label).ToArray();
-        public static readonly ThingDef[] FoodCache = DefDatabase<ThingDef>.AllDefs.Where(food => food.IsNutritionGivingIngestible).ToList().OrderBy(food => food.category).ThenBy(food => food.FirstThingCategory?.index).ThenBy(food => food.label).ToArray();
+        private static readonly ThingDef[] FoodCache = DefDatabase<ThingDef>.AllDefs.Where(food => food.IsIngestible).ToList().OrderBy(food => food.category).ThenBy(food => food.FirstThingCategory?.index).ThenBy(food => food.label).ToArray();
         public readonly IEnumerable<Category> Categories;
 
         private RestrictionTemplate(IEnumerable<Category> list) => Categories = list;
