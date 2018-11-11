@@ -111,6 +111,5 @@ namespace PawnRules.Patch
 
             return rects.ToArray();
         }
-
     }
 }

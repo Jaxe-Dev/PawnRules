@@ -185,7 +185,8 @@ namespace PawnRules.Data
         private static void ChangeTypeOrCreateRules(Pawn pawn, PawnType type)
         {
             if (type == pawn.GetTargetType()) { return; }
-            _instance._rules[pawn] = GetDefaultRules(type);
+            var defaultRules = GetDefaultRules(type);
+            _instance._rules[pawn] = defaultRules.IsVoid ? defaultRules.CloneRulesFor(pawn) : defaultRules;
         }
 
         public static Rules CloneRules(Pawn original, Pawn cloner)
