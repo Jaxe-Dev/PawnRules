@@ -45,7 +45,7 @@ namespace PawnRules.Data
             return new RestrictionTemplate(list.Values.ToArray());
         }
 
-        private static string GetFoodCategory(ThingDef self) => self.category == ThingCategory.Item ? self.FirstThingCategory.LabelCap : self.category.ToString();
+        private static string GetFoodCategory(ThingDef self) => (self.category == ThingCategory.Item) && (self.FirstThingCategory != null) ? self.FirstThingCategory.LabelCap : self.category.ToString();
 
         private static RestrictionTemplate GetAnimalsCategorized(Restriction restriction)
         {

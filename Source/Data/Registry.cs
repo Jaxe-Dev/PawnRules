@@ -118,6 +118,8 @@ namespace PawnRules.Data
         {
             if ((preset == null) || preset.IsVoid) { throw new Mod.Exception("Tried to delete void preset"); }
 
+            if (!_instance._presets.ContainsKey(preset.GetType()) || !_instance._presets[preset.GetType()].ContainsKey(preset.Type)) { return; }
+
             _instance._presets[preset.GetType()][preset.Type].Remove(preset.Name);
 
             if (typeof(T) == typeof(Rules))
@@ -125,7 +127,7 @@ namespace PawnRules.Data
                 foreach (var rule in _instance._rules.Where(rule => rule.Value == preset).ToArray()) { _instance._rules[rule.Key] = GetVoidPreset<Rules>(rule.Value.Type).CloneRulesFor(rule.Key); }
                 foreach (var rule in _instance._defaults.Where(rule => rule.Value == preset).ToArray()) { _instance._defaults[rule.Key] = GetVoidPreset<Rules>(rule.Value.Type); }
             }
-            else if ((typeof(T) == typeof(Restriction)) && !_instance._presets.ContainsKey(typeof(Rules)))
+            else if ((typeof(T) == typeof(Restriction)) && _instance._presets.ContainsKey(typeof(Rules)))
             {
                 foreach (var rulesType in _instance._presets[typeof(Rules)].Values.ToArray())
                 {
