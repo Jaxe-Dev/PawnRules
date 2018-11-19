@@ -20,6 +20,10 @@ namespace PawnRules.Patch
             {
                 if (!Registry.IsActive) { return; }
 
+                if (Registry.ExemptedTrainer == getter) { return; }
+
+                if (Registry.AllowTrainingFood && (getter?.CurJobDef != null) && ((getter.CurJobDef == JobDefOf.Tame) || (getter.CurJobDef == JobDefOf.Train))) { return; }
+
                 if (!p.RaceProps.CanEverEat(food))
                 {
                     __result = false;
@@ -29,7 +33,7 @@ namespace PawnRules.Patch
                 var restriction = p.GetRules()?.GetRestriction(RestrictionType.Food);
                 if (p.InMentalState || (restriction == null) || restriction.IsVoid) { return; }
 
-                __result = restriction.AllowsFood(food, p) || ((Registry.ExemptedTrainer == getter) && (food.IsWithinCategory(ThingCategoryDefOf.Foods) || food.IsWithinCategory(ThingCategoryDefOf.Corpses)));
+                __result = restriction.AllowsFood(food, p);
             }
         }
     }

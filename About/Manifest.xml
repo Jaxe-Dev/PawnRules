@@ -2,7 +2,7 @@
 
 <Manifest>
   <identifier>PawnRules</identifier>
-  <version>1.2.4</version>
+  <version>1.2.5</version>
   <manifestUri>https://raw.githubusercontent.com/Jaxe-Dev/PawnRules/master/About/Manifest.xml</manifestUri>
   <downloadUri>https://github.com/Jaxe-Dev/PawnRules/releases/latest</downloadUri>
 </Manifest>
