@@ -38,7 +38,20 @@ namespace PawnRules.Interface
             _floatMenuAssign = GetAssignmentOptions();
         }
 
+        private Dialog_Rules(PawnType type) : base(new Vector2(700f, 600f))
+        {
+            var defaultRules = Registry.GetDefaultRules(type);
+            _type = type;
+            _template = defaultRules.ClonePreset();
+            _preset = new Listing_Preset<Rules>(type, defaultRules, new[] { Registry.GetVoidPreset<Rules>(type) }, UpdateSelected, CommitTemplate, RevertTemplate);
+
+            foreach (var pawnType in PawnType.List) { _floatMenuViews.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.DefaultType", pawnType.Label), () => ChangeType(pawnType))); }
+
+            _floatMenuAssign = GetAssignmentOptions();
+        }
+
         public static void Open(Pawn pawn) => Find.WindowStack.Add(new Dialog_Rules(pawn, Registry.GetOrNewRules(pawn)));
+        public static void OpenDefaults(PawnType type) => Find.WindowStack.Add(new Dialog_Rules(type));
 
         private void ChangeType(PawnType type)
         {
@@ -143,7 +156,7 @@ namespace PawnRules.Interface
 
             return options;
         }
-
+       
         private void AssignAll(bool byKind)
         {
             var pawns = GetOtherPawnsOfType(byKind).ToArray();

@@ -1,16 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Defs>
-
   <HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase">
     <modNameReadable>Pawn Rules</modNameReadable>
     <modIdentifier>PawnRules</modIdentifier>
   </HugsLib.UpdateFeatureDef>
-
   <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
-    <defName>PawnRules_1_1_1</defName>
-    <assemblyVersion>1.1.1</assemblyVersion>
-    <content>- New Global option: Allow food if malnourished (if a pawn is is suffering from malnutrition they will ignore all food rules) [Default: False]\n\n- New Global option: Allow food if training (if an animal is being trained they ignore all food rules) [Default: False]\n\n- Plans can be imported/exported between games. A plan consists of all rule presets and defaults bundled into one file.</content>
+    <defName>PawnRules_1_3_0</defName>
+    <assemblyVersion>1.3.0</assemblyVersion>
+    <content>- Pawns should now properly respect food rules for inventory and deliveries\n\n- Assign tab is no longer replaced, this should now play nice with other mods\n\n- Presets sorted by name
+    </content>
   </HugsLib.UpdateFeatureDef>
-
 </Defs>

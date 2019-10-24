@@ -1,5 +1,5 @@
 # Pawn Rules
-![Mod Version](https://img.shields.io/badge/Mod_Version-1.2.5-blue.svg)
+![Mod Version](https://img.shields.io/badge/Mod_Version-1.3.0-blue.svg)
 ![RimWorld Version](https://img.shields.io/badge/Built_for_RimWorld-1.0-blue.svg)
 ![Harmony Version](https://img.shields.io/badge/Powered_by_Harmony-1.2.0.1-blue.svg)\
 ![Steam Subscribers](https://img.shields.io/badge/dynamic/xml.svg?label=Steam+Subscribers&query=//table/tr[2]/td[1]&colorB=blue&url=https://steamcommunity.com/sharedfiles/filedetails/%3Fid=1499843448&suffix=+total)
@@ -58,6 +58,9 @@ Prefix* : RimWorld.InteractionWorker_RomanceAttempt.SuccessChance
 Prefix* : RimWorld.Pawn_FoodRestrictionTracker.Configurable
 Prefix* : RimWorld.Pawn_FoodRestrictionTracker.CurrentFoodRestriction
 Prefix  : RimWorld.Pawn_GuestTracker.SetGuestStatus
+Prefix* : RimWorld.PawnColumnWorker_FoodRestriction.Compare
+Prefix* : RimWorld.PawnColumnWorker_FoodRestriction.DoAssignFoodRestrictionButtons
+Prefix* : RimWorld.PawnColumnWorker_FoodRestriction.DoHeader
 Postfix : RimWorld.PawnUtility.TrySpawnHatchedOrBornPawn
 Prefix* : RimWorld.RelationsUtility.TryDevelopBondRelation
 Prefix  : RimWorld.WorkGiver_InteractAnimal.HasFoodToInteractAnimal
@@ -70,6 +73,7 @@ Postfix : Verse.Pawn.Kill
 Prefix  : Verse.Pawn.SetFaction
 Postfix : Verse.PawnGenerator.GeneratePawn
 Prefix  : Verse.Profile.MemoryUtility.ClearAllMapsAndWorld
+Postfix : Verse.Root.Start
 
 A prefix marked by a * denotes that in some circumstances the original method will be bypassed
 ```

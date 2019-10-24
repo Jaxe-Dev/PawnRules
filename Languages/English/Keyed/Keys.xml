@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <LanguageData>
-
   <PawnRules.Button.OK>OK</PawnRules.Button.OK>
   <PawnRules.Button.Cancel>Cancel</PawnRules.Button.Cancel>
   <PawnRules.Button.Yes>Yes</PawnRules.Button.Yes>
@@ -45,7 +43,7 @@
   <PawnRules.Button.RestrictionsAllowOn>Allow all</PawnRules.Button.RestrictionsAllowOn>
   <PawnRules.Button.RestrictionsAllowOff>Disallow all</PawnRules.Button.RestrictionsAllowOff>
 
-  <PawnRules.PresetType.Rules>Rules Preset</PawnRules.PresetType.Rules>
+  <PawnRules.PresetType.Rules>Rules</PawnRules.PresetType.Rules>
   <PawnRules.PresetType.Restriction>Policy</PawnRules.PresetType.Restriction>
 
   <PawnRules.Preset.Header>Presets</PawnRules.Preset.Header>
@@ -128,6 +126,7 @@
   <PawnRules.Dialog_Rules.EditRestriction>Edit policies...</PawnRules.Dialog_Rules.EditRestriction>
   <PawnRules.Dialog_Rules.ClearRestriction>Allow all {0}</PawnRules.Dialog_Rules.ClearRestriction>
   <PawnRules.Dialog_Rules.ChangeRestriction>Set to {0}</PawnRules.Dialog_Rules.ChangeRestriction>
+  <PawnRules.Dialog_Rules.OpenDefaults>Manage default rules</PawnRules.Dialog_Rules.OpenDefaults>
 
   <PawnRules.Dialog_Restrictions.TitlePreset>{0} [{1}]</PawnRules.Dialog_Restrictions.TitlePreset>
   <PawnRules.Dialog_Restrictions.TitlePawn>{0} for {1}, {2}</PawnRules.Dialog_Restrictions.TitlePawn>
@@ -142,5 +141,4 @@
   <PawnRules.Settings.NoGame>There are no settings for this mod outside of a game.</PawnRules.Settings.NoGame>
 
   <PawnRules.FoodRestrictionsOverridden>&lt;Overridden&gt;</PawnRules.FoodRestrictionsOverridden>
-
 </LanguageData>

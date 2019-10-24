@@ -85,7 +85,7 @@ namespace PawnRules.Data
         {
             if (!_instance._presets.ContainsKey(typeof(T)) || !_instance._presets[typeof(T)].ContainsKey(type)) { return new T[] { }; }
 
-            return _instance._presets[typeof(T)][type].Values.Cast<T>().ToArray();
+            return _instance._presets[typeof(T)][type].Values.Cast<T>().OrderBy(preset => preset.Name).ToArray();
         }
 
         private static void AddPreset(Presetable preset)

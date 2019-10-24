@@ -13,7 +13,6 @@ namespace PawnRules.Patch
             if (!Registry.IsActive) { return; }
 
             Registry.FactionUpdate(Traverse.Create(__instance).Field<Pawn>("pawn").Value, newHost, !prisoner);
-            //Registry.FactionUpdate(Access.Field_RimWorld_Pawn_GuestTracker_Pawn_Get(__instance), newHost, !prisoner);
         }
     }
 }

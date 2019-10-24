@@ -13,7 +13,7 @@ namespace PawnRules
     {
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
-        public const string Version = "1.2.5";
+        public const string Version = "1.3.0";
 
         public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 
@@ -38,6 +38,7 @@ namespace PawnRules
 
         public static string PrefixMessage(string message) => $"[{Name} v{Version}] {message}";
         public override string SettingsCategory() => Name;
+
         public override void DoSettingsWindowContents(Rect inRect)
         {
             var rect = inRect.GetHGrid(1f, -1f, 400f, -1f)[2];
@@ -54,6 +55,8 @@ namespace PawnRules
             listing.End();
         }
 
+        public static void OnStartup() => Patcher.ApplyLanguageOverrides();
+
         public static void LoadWorld()
         {
             AddonManager.AcceptingAddons = false;
@@ -62,8 +65,7 @@ namespace PawnRules
 
         internal class Exception : System.Exception
         {
-            public Exception(string message) : base(PrefixMessage(message))
-            { }
+            public Exception(string message) : base(PrefixMessage(message)) { }
         }
     }
 }
