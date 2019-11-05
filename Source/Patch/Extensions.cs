@@ -17,9 +17,10 @@ namespace PawnRules.Patch
         public static float ToFloat(this string self, float defaultValue = 0f) => float.TryParse(self, out var result) ? result : defaultValue;
 
         public static bool CanHaveRules(this Pawn self) => (self != null) && !self.Dead && (self.GetTargetType() != null);
+
         public static PawnType GetTargetType(this Pawn self)
         {
-            if (self == null) { return null; }
+            if (!Registry.IsActive || (self == null)) { return null; }
             if ((self.Faction == Faction.OfPlayer) && self.IsColonist) { return PawnType.Colonist; }
             if ((self.Faction == Faction.OfPlayer) && self.RaceProps.Animal) { return PawnType.Animal; }
             if (self.HostFaction == Faction.OfPlayer) { return self.IsPrisonerOfColony ? PawnType.Prisoner : PawnType.Guest; }
@@ -72,6 +73,7 @@ namespace PawnRules.Patch
 
             return rects.ToArray();
         }
+
         public static Rect[] GetVGrid(this Rect self, float padding, params float[] heights)
         {
             var unfixedCount = 0;

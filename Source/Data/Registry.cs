@@ -145,7 +145,7 @@ namespace PawnRules.Data
         public static Rules GetDefaultRules(PawnType type) => _instance._defaults[type];
         public static void SetDefaultRules(Rules rules) => _instance._defaults[rules.Type] = rules;
 
-        public static T GetAddonDefaultValue<T>(OptionTarget target, AddonOption addon, T invalidValue = default(T))
+        public static T GetAddonDefaultValue<T>(OptionTarget target, AddonOption addon, T invalidValue = default)
         {
             var rules = GetDefaultRules(PawnType.FromTarget(target));
             if ((rules == null) || !addon.AllowedInPreset) { return invalidValue; }
@@ -211,7 +211,7 @@ namespace PawnRules.Data
 
         public static void FactionUpdate(Thing thing, Faction newFaction, bool? guest = null)
         {
-            if (!(thing is Pawn pawn) || pawn.Dead) { return; }
+            if (!IsActive || !(thing is Pawn pawn) || pawn.Dead) { return; }
 
             var oldFaction = guest == null ? pawn.Faction : pawn.HostFaction;
             PawnType type;
@@ -282,17 +282,13 @@ namespace PawnRules.Data
             InitDefaults();
         }
 
-        public override void SpawnSetup()
-        { }
+        public override void SpawnSetup() { }
 
-        public override void PostRemove()
-        { }
+        public override void PostRemove() { }
 
-        public override void Print(LayerSubMesh subMesh)
-        { }
+        public override void Print(LayerSubMesh subMesh) { }
 
-        public override void Draw()
-        { }
+        public override void Draw() { }
 
         public override void ExposeData()
         {
