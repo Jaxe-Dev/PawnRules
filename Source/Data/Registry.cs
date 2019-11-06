@@ -311,10 +311,7 @@ namespace PawnRules.Data
                 _savedDefaults.Clear();
                 _savedBindings.Clear();
 
-                foreach (var classType in _presets.Values)
-                {
-                    foreach (var type in classType.Values) { _savedPresets.AddRange(type.Values.ToArray()); }
-                }
+                foreach (var type in _presets.Values.SelectMany(classType => classType.Values)) { _savedPresets.AddRange(type.Values.ToArray()); }
 
                 _savedDefaults.AddRange(_defaults.Values.Where(preset => !preset.IsVoid).Select(preset => new Binding(preset.Type, preset)).ToArray());
                 _savedBindings.AddRange(_rules.Where(rules => rules.Key.CanHaveRules()).Select(rules => new Binding(rules.Key, rules.Value.IsIgnored() ? null : rules.Value)).ToArray());
