@@ -19,9 +19,9 @@ namespace PawnRules.Patch
 
         public static PawnType GetTargetType(this Pawn self)
         {
-            if (self.Faction.IsPlayer && self.IsColonist) { return PawnType.Colonist; }
-            if (self.Faction.IsPlayer && self.RaceProps.Animal) { return PawnType.Animal; }
-            if (self.HostFaction.IsPlayer) { return self.IsPrisonerOfColony ? PawnType.Prisoner : PawnType.Guest; }
+            if ((self.Faction?.IsPlayer ?? false) && self.IsColonist) { return PawnType.Colonist; }
+            if ((self.Faction?.IsPlayer ?? false) && self.RaceProps.Animal) { return PawnType.Animal; }
+            if (self.HostFaction?.IsPlayer ?? false) { return self.IsPrisonerOfColony ? PawnType.Prisoner : PawnType.Guest; }
             return null;
         }
 

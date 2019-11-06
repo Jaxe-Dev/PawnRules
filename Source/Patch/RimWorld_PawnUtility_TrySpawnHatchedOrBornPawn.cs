@@ -10,7 +10,7 @@ namespace PawnRules.Patch
     {
         private static void Postfix(bool __result, Pawn pawn, Thing motherOrEgg)
         {
-            if (!Registry.IsActive || !__result || (pawn == null) || !(motherOrEgg is Pawn mother) || (!mother.Faction.IsPlayer)) { return; }
+            if (!Registry.IsActive || !__result || (pawn == null) || !(motherOrEgg is Pawn mother) || (!mother.Faction?.IsPlayer ?? false)) { return; }
             Registry.CloneRules(mother, pawn);
         }
     }
