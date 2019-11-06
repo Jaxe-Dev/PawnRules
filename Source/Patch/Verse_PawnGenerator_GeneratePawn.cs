@@ -12,7 +12,7 @@ namespace PawnRules.Patch
         {
             if (!Registry.IsActive) { return; }
 
-            if ((__result == null) || ((__result.Faction != Faction.OfPlayer) && (__result.HostFaction != Faction.OfPlayer))) { return; }
+            if ((__result == null) || ((!__result.Faction.IsPlayer) && (!__result.HostFaction.IsPlayer))) { return; }
 
             Registry.GetOrDefaultRules(__result);
         }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using PawnRules.Data;
-using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -20,10 +19,9 @@ namespace PawnRules.Patch
 
         public static PawnType GetTargetType(this Pawn self)
         {
-            if (!Registry.IsActive || (self == null)) { return null; }
-            if ((self.Faction == Faction.OfPlayer) && self.IsColonist) { return PawnType.Colonist; }
-            if ((self.Faction == Faction.OfPlayer) && self.RaceProps.Animal) { return PawnType.Animal; }
-            if (self.HostFaction == Faction.OfPlayer) { return self.IsPrisonerOfColony ? PawnType.Prisoner : PawnType.Guest; }
+            if (self.Faction.IsPlayer && self.IsColonist) { return PawnType.Colonist; }
+            if (self.Faction.IsPlayer && self.RaceProps.Animal) { return PawnType.Animal; }
+            if (self.HostFaction.IsPlayer) { return self.IsPrisonerOfColony ? PawnType.Prisoner : PawnType.Guest; }
             return null;
         }
 

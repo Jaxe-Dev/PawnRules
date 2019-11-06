@@ -216,12 +216,12 @@ namespace PawnRules.Data
             var oldFaction = guest == null ? pawn.Faction : pawn.HostFaction;
             PawnType type;
 
-            if (newFaction == Faction.OfPlayer)
+            if (newFaction.IsPlayer)
             {
-                if ((guest == null) || (pawn.Faction == Faction.OfPlayer)) { type = pawn.RaceProps.Animal ? PawnType.Animal : PawnType.Colonist; }
+                if ((guest == null) || pawn.Faction.IsPlayer) { type = pawn.RaceProps.Animal ? PawnType.Animal : PawnType.Colonist; }
                 else { type = guest.Value ? PawnType.Guest : PawnType.Prisoner; }
             }
-            else if ((oldFaction == Faction.OfPlayer) && (newFaction != null))
+            else if (oldFaction.IsPlayer)
             {
                 DeleteRules(pawn);
                 return;
