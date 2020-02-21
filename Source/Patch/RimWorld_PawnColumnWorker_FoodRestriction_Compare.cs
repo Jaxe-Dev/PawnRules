@@ -1,9 +1,10 @@
 ﻿using System;
-using Harmony;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 
-namespace PawnRules.Patch {
+namespace PawnRules.Patch
+{
     [HarmonyPatch(typeof(PawnColumnWorker_FoodRestriction), "Compare")]
     internal static class RimWorld_PawnColumnWorker_FoodRestriction_Compare
     {

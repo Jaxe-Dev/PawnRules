@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Harmony;
+using HarmonyLib;
 using PawnRules.Data;
 using PawnRules.Integration;
 using PawnRules.Interface;

@@ -12,10 +12,10 @@ namespace PawnRules.Data
 
         public static readonly PawnType[] List =
         {
-                    Colonist,
-                    Animal,
-                    Guest,
-                    Prisoner
+            Colonist,
+            Animal,
+            Guest,
+            Prisoner
         };
 
         public string Id { get; }
@@ -24,7 +24,7 @@ namespace PawnRules.Data
 
         public OptionTarget AsTarget { get; }
 
-        private PawnType(string id, string label, string labelPlural, OptionTarget target = default(OptionTarget))
+        private PawnType(string id, string label, string labelPlural, OptionTarget target = default)
         {
             Id = id;
             Label = label;
@@ -32,7 +32,7 @@ namespace PawnRules.Data
             AsTarget = target;
         }
 
-        public bool IsTargetted(OptionTarget target) => (AsTarget != default(OptionTarget)) && ((AsTarget & target) == AsTarget);
+        public bool IsTargetted(OptionTarget target) => (AsTarget != default) && ((AsTarget & target) == AsTarget);
 
         public static PawnType FromTarget(OptionTarget target) => List.FirstOrDefault(type => type.AsTarget == target);
         public static PawnType FromId(string id) => List.FirstOrDefault(type => type.Id == id);

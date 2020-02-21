@@ -22,10 +22,10 @@ namespace PawnRules.Interface
 
         public static Command_Action EditRulesCommand(Pawn pawn) => new Command_Action
         {
-                    icon = EditRulesTexture,
-                    defaultLabel = Lang.Get("Gizmo.EditRulesLabel"),
-                    defaultDesc = Lang.Get("Gizmo.EditRulesDesc", pawn.GetTargetType()?.Label.ToLower() ?? "pawn"),
-                    action = () => Dialog_Rules.Open(pawn)
+            icon = EditRulesTexture,
+            defaultLabel = Lang.Get("Gizmo.EditRulesLabel"),
+            defaultDesc = Lang.Get("Gizmo.EditRulesDesc", pawn.GetTargetType()?.Label.ToLower() ?? "pawn"),
+            action = () => Dialog_Rules.Open(pawn)
         };
 
         public static bool ButtonText(Rect rect, string label, string tooltip = null, bool enabled = true)
@@ -53,7 +53,7 @@ namespace PawnRules.Interface
             Text.Anchor = anchor;
             var labelClicked = Widgets.ButtonInvisible(rect);
             var radioClicked = Widgets.RadioButton(rect.x, (rect.y + (rect.height / 2f)) - (RadioButtonSize / 2f), chosen);
-            if (labelClicked && !radioClicked && !chosen) { SoundDefOf.RadioButtonClicked.PlayOneShotOnCamera(); }
+            if (labelClicked && !radioClicked && !chosen) { SoundDefOf.Click.PlayOneShotOnCamera(); }
 
             return enabled && labelClicked;
         }

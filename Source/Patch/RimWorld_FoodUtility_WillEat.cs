@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using PawnRules.Data;
 using RimWorld;
 using Verse;
@@ -7,14 +7,14 @@ namespace PawnRules.Patch
 {
     internal static class RimWorld_FoodUtility_WillEat
     {
-        [HarmonyPatch(typeof(FoodUtility), "WillEat", typeof(Pawn), typeof(Thing), typeof(Pawn))]
-        public static class FromThing
+        [HarmonyPatch(typeof(FoodUtility), "WillEat", typeof(Pawn), typeof(Thing), typeof(Pawn), typeof(bool))]
+        public static class ByThing
         {
-            private static void Postfix(ref bool __result, Pawn p, Thing food, Pawn getter = null) => FromThingDef.Postfix(ref __result, p, food.def, getter);
+            private static void Postfix(ref bool __result, Pawn p, Thing food, Pawn getter = null) => ByThingDef.Postfix(ref __result, p, food.def, getter);
         }
 
-        [HarmonyPatch(typeof(FoodUtility), "WillEat", typeof(Pawn), typeof(ThingDef), typeof(Pawn))]
-        private static class FromThingDef
+        [HarmonyPatch(typeof(FoodUtility), "WillEat", typeof(Pawn), typeof(ThingDef), typeof(Pawn), typeof(bool))]
+        private static class ByThingDef
         {
             public static void Postfix(ref bool __result, Pawn p, ThingDef food, Pawn getter = null)
             {

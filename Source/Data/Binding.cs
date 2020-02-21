@@ -12,8 +12,7 @@ namespace PawnRules.Data
         private Rules _individual;
         private Rules _preset;
 
-        public Binding()
-        { }
+        public Binding() { }
 
         public Binding(Pawn pawn, Rules rules) : this()
         {

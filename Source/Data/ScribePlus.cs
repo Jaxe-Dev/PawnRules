@@ -21,7 +21,7 @@ namespace PawnRules.Data
             return reference ?? defaultValue;
         }
 
-        public static T LookValue<T>(T value, string key, T defaultValue = default(T))
+        public static T LookValue<T>(T value, string key, T defaultValue = default)
         {
             Scribe_Values.Look(ref value, key, defaultValue);
             return value;

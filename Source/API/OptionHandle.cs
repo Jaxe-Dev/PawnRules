@@ -107,8 +107,7 @@ namespace PawnRules.API
         /// </summary>
         public string Tooltip { get => Addon.Tooltip; set => Addon.Tooltip = value; }
 
-        internal OptionHandle(AddonOption addon) : base(addon)
-        { }
+        internal OptionHandle(AddonOption addon) : base(addon) { }
 
         /// <summary>
         ///     Gets the value of this option for the given pawn.
@@ -116,7 +115,7 @@ namespace PawnRules.API
         /// <param name="pawn">The pawn to get the value from.</param>
         /// <param name="invalidValue">The value returned if unable to retrieve the option.</param>
         /// <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
-        public T GetValue(Pawn pawn, T invalidValue = default(T))
+        public T GetValue(Pawn pawn, T invalidValue = default)
         {
             var rules = pawn.GetRules();
             return rules == null ? invalidValue : rules.GetAddonValue(Addon, invalidValue);
@@ -128,7 +127,7 @@ namespace PawnRules.API
         /// <param name="target">The default rules target to get the value from.</param>
         /// <param name="invalidValue">The value returned if unable to retrieve the option.</param>
         /// <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
-        public T GetDefaultValue(OptionTarget target, T invalidValue = default(T)) => Registry.GetAddonDefaultValue<T>(target, Addon);
+        public T GetDefaultValue(OptionTarget target, T invalidValue = default) => Registry.GetAddonDefaultValue<T>(target, Addon);
 
         /// <summary>
         ///     Sets the value of this option for the given pawn.

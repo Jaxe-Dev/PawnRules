@@ -7,8 +7,7 @@ namespace PawnRules.Interface
 {
     internal class Dialog_Global : WindowPlus
     {
-        private Dialog_Global() : base(Lang.Get("Dialog_Global.Title").Bold(), new Vector2(300f, 450f))
-        { }
+        private Dialog_Global() : base(Lang.Get("Dialog_Global.Title").Bold(), new Vector2(300f, 450f)) { }
 
         public static void Open() => Find.WindowStack.Add(new Dialog_Global());
 

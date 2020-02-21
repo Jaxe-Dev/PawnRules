@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using PawnRules.Data;
 using RimWorld;
 using Verse;
@@ -9,12 +9,12 @@ namespace PawnRules.Patch
     [HarmonyPatch(typeof(GenConstruct), "CanConstruct")]
     internal static class RimWorld_GenConstruct_CanConstruct
     {
-        private static void Postfix(ref bool __result, Thing t, Pawn p, bool checkConstructionSkill = true, bool forced = false)
+        private static void Postfix(ref bool __result, Thing t, Pawn p, bool checkSkills = true, bool forced = false)
         {
             if (!Registry.IsActive || (__result == false)) { return; }
 
             var rules = p.GetRules();
-            if ((rules == null) || rules.AllowArtisan || !checkConstructionSkill) { return; }
+            if ((rules == null) || rules.AllowArtisan || !checkSkills) { return; }
 
             if (!(t.def.entityDefToBuild is ThingDef thingDef) || !thingDef.HasComp(typeof(CompQuality))) { return; }
 

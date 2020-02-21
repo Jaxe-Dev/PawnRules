@@ -9,8 +9,8 @@ namespace PawnRules.Data
 
         public static readonly RestrictionType[] List =
         {
-                    Food,
-                    Bonding
+            Food,
+            Bonding
         };
 
         public string Id { get; }

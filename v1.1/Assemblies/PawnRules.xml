@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PawnRules</name>
+    </assembly>
+    <members>
+        <member name="T:PawnRules.API.OptionHandle">
+            <summary>
+                The base class of a rules option handle.
+            </summary>
+        </member>
+        <member name="T:PawnRules.API.OptionHandle.OnButtonClickHandler">
+            <summary>
+                Called when the button for this option is clicked. Setting the value must be handled by the delegate. Unused if this option does not implement a button widget.
+            </summary>
+            <param name="pawn">The pawn being displayed when the button was clicked.</param>
+            <returns>Currently unused but as practice return true if the value was changed.</returns>
+        </member>
+        <member name="T:PawnRules.API.OptionHandle.OnDefaultButtonClickHandler">
+            <summary>
+                Called when the button for this option is clicked in the default rules dialog. Setting the value must be handled by the delegate. Unused if this option does not implement a button widget.
+            </summary>
+            <param name="target">The target of the default rule.</param>
+            <returns>Currently unused but as practice return true if the value was changed.</returns>
+        </member>
+        <member name="P:PawnRules.API.OptionHandle.OnButtonClick">
+            <summary>
+                Called when the button for this option is clicked. Unused if this option does not implement a button widget.
+            </summary>
+        </member>
+        <member name="P:PawnRules.API.OptionHandle.OnDefaultButtonClick">
+            <summary>
+                Called when the button for this option is clicked in the default rules dialog. Unused if this option does not implement a button widget.
+            </summary>
+        </member>
+        <member name="M:PawnRules.API.OptionHandle.IsUsedBy(Verse.Pawn)">
+            <summary>
+                Used to see if a given pawn has this option.
+            </summary>
+            <param name="pawn">The pawn to query.</param>
+            <returns></returns>
+        </member>
+        <member name="T:PawnRules.API.OptionHandle`1">
+            <summary>
+                Provides a handle for a rules option. This class may not be instantiated manually, create a <see cref="T:PawnRules.API.PawnRulesLink" /> to add one.
+            </summary>
+            <typeparam name="T">The value type.</typeparam>
+        </member>
+        <member name="T:PawnRules.API.OptionHandle`1.OnChangeForPawnHandler">
+            <summary>
+                This is called when the value of the option is changing for a pawn. Unused if the option implements a button.
+            </summary>
+            <param name="pawn">The pawn whose rule option is being changed.</param>
+            <param name="oldValue">The original value of the option.</param>
+            <param name="inputValue">The new value of the option entered in the rules dialog.</param>
+            <returns>The return value will be the value set for the option.</returns>
+        </member>
+        <member name="T:PawnRules.API.OptionHandle`1.OnChangeForPresetHandler">
+            <summary>
+                This is called when the value of the option is changing for a preset. Unused if the option implements a button.
+            </summary>
+            <param name="target">The target of the preset that is being changed.</param>
+            <param name="oldValue">The original value of the option.</param>
+            <param name="inputValue">The new value of the option entered in the rules dialog.</param>
+            <returns>The return value will be the value set for the option.</returns>
+        </member>
+        <member name="P:PawnRules.API.OptionHandle`1.OnChangeForPawnForPawn">
+            <summary>
+                This is called when the value of the option is changing for a pawn. Unused if option option implements a button.
+            </summary>
+        </member>
+        <member name="P:PawnRules.API.OptionHandle`1.OnChangeForForPreset">
+            <summary>
+                This is called when the value of the option is changing for a preset type. Unused if the option implements a button.
+            </summary>
+        </member>
+        <member name="P:PawnRules.API.OptionHandle`1.Label">
+            <summary>
+                Gets or sets the displayed label of this option.
+            </summary>
+        </member>
+        <member name="P:PawnRules.API.OptionHandle`1.Tooltip">
+            <summary>
+                Gets or sets the tooltip of this option.
+            </summary>
+        </member>
+        <member name="M:PawnRules.API.OptionHandle`1.GetValue(Verse.Pawn,`0)">
+            <summary>
+                Gets the value of this option for the given pawn.
+            </summary>
+            <param name="pawn">The pawn to get the value from.</param>
+            <param name="invalidValue">The value returned if unable to retrieve the option.</param>
+            <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
+        </member>
+        <member name="M:PawnRules.API.OptionHandle`1.GetDefaultValue(PawnRules.API.OptionTarget,`0)">
+            <summary>
+                Gets the default value of this option for the given target.
+            </summary>
+            <param name="target">The default rules target to get the value from.</param>
+            <param name="invalidValue">The value returned if unable to retrieve the option.</param>
+            <returns>Returns the value if the option is found or <see paramref="invalidValue" /> if not.</returns>
+        </member>
+        <member name="M:PawnRules.API.OptionHandle`1.SetValue(Verse.Pawn,`0)">
+            <summary>
+                Sets the value of this option for the given pawn.
+            </summary>
+            <param name="pawn">The pawn to set the value to.</param>
+            <param name="value">The new value for the option.</param>
+            <returns>Returns true if the option was successfully set.</returns>
+        </member>
+        <member name="T:PawnRules.API.OptionTarget">
+            <summary>
+                Used to set the target type of the pawn that a rule will be applied to. Multiple flags may be set.
+            </summary>
+        </member>
+        <member name="F:PawnRules.API.OptionTarget.Colonist">
+            <summary>
+                For all colonists part of the player's faction.
+            </summary>
+        </member>
+        <member name="F:PawnRules.API.OptionTarget.Animal">
+            <summary>
+                For all animals part of the player's faction.
+            </summary>
+        </member>
+        <member name="F:PawnRules.API.OptionTarget.Guest">
+            <summary>
+                For all guests that are currently staying with the player's faction.
+            </summary>
+        </member>
+        <member name="F:PawnRules.API.OptionTarget.Prisoner">
+            <summary>
+                For all prisoners that are being held by the player's faction.
+            </summary>
+        </member>
+        <member name="T:PawnRules.API.PawnRulesLink">
+            <summary>
+                Provides a link to Pawn Rules and is used to add options to the rules dialog.
+            </summary>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.#ctor">
+            <summary>
+                Initializes a link to Pawn Rules. Only one plugin per mod is allowed.
+            </summary>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.AddToggle(System.String,PawnRules.API.OptionTarget,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+                Adds a new Toggle to the Rules dialog that sets a <see cref="T:System.Boolean" />.
+            </summary>
+            <param name="key">The key used in the save file. Will be automatically prefixed with your Mod Identifier.</param>
+            <param name="target">The type(s) of pawns this option will apply to.</param>
+            <param name="label">The label of the widget displayed.</param>
+            <param name="tooltip">The tooltip displayed for the widget.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
+            <returns>Returns a handle for this option.</returns>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.AddEntry(System.String,PawnRules.API.OptionTarget,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+                Adds a new Entry to the Rules dialog that sets a <see cref="T:System.String" /> value.
+            </summary>
+            <param name="key">The key used in the save file. Will be automatically prefixed with your Mod Identifier.</param>
+            <param name="target">The type(s) of pawns this option will apply to.</param>
+            <param name="label">The label of the widget displayed.</param>
+            <param name="tooltip">The tooltip displayed for the widget.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
+            <returns>Returns a handle for this option.</returns>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.AddEntry(System.String,PawnRules.API.OptionTarget,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+                Adds a new Entry to the Rules dialog that sets an <see cref="T:System.Int32" /> value.
+            </summary>
+            <param name="key">The key used in the save file. Will be automatically prefixed with your Mod Identifier.</param>
+            <param name="target">The type(s) of pawns this option will apply to.</param>
+            <param name="label">The label of the widget displayed.</param>
+            <param name="tooltip">The tooltip displayed for the widget.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
+            <returns>Returns a handle for this option.</returns>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.AddEntry(System.String,PawnRules.API.OptionTarget,System.String,System.String,System.Single,System.Boolean)">
+            <summary>
+                Adds a new Entry to the Rules dialog that sets a <see cref="T:System.Single" /> value.
+            </summary>
+            <param name="key">The key used in the save file. Will be automatically prefixed with your Mod Identifier.</param>
+            <param name="target">The type(s) of pawns this option will apply to.</param>
+            <param name="label">The label of the widget displayed.</param>
+            <param name="tooltip">The tooltip displayed for the widget.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
+            <returns>Returns a handle for this option.</returns>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.AddButton(System.String,PawnRules.API.OptionTarget,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+                Adds a new Button to the Rules dialog that sets a <see cref="T:System.String" /> value. Buttons require <see cref="P:PawnRules.API.OptionHandle.OnButtonClick" /> to be used to set the value.
+            </summary>
+            <param name="key">The key used in the save file. Will be automatically prefixed with your Mod Identifier.</param>
+            <param name="target">The type(s) of pawns this option will apply to.</param>
+            <param name="label">The label of the widget displayed.</param>
+            <param name="tooltip">The tooltip displayed for the widget.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
+            <returns>Returns a handle for this option.</returns>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.AddButton(System.String,PawnRules.API.OptionTarget,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+                Adds a new Button to the Rules dialog that sets a <see cref="T:System.Boolean" /> value. Buttons require <see cref="P:PawnRules.API.OptionHandle.OnButtonClick" /> to be used to set the value.
+            </summary>
+            <param name="key">The key used in the save file. Will be automatically prefixed with your Mod Identifier.</param>
+            <param name="target">The type(s) of pawns this option will apply to.</param>
+            <param name="label">The label of the widget displayed.</param>
+            <param name="tooltip">The tooltip displayed for the widget.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
+            <returns>Returns a handle for this option.</returns>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.AddButton(System.String,PawnRules.API.OptionTarget,System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+                Adds a new Button to the Rules dialog that sets an <see cref="T:System.Int32" /> value. Buttons require <see cref="P:PawnRules.API.OptionHandle.OnButtonClick" /> to be used to set the value.
+            </summary>
+            <param name="key">The key used in the save file. Will be automatically prefixed with your Mod Identifier.</param>
+            <param name="target">The type(s) of pawns this option will apply to.</param>
+            <param name="label">The label of the widget displayed.</param>
+            <param name="tooltip">The tooltip displayed for the widget.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
+            <returns>Returns a handle for this option.</returns>
+        </member>
+        <member name="M:PawnRules.API.PawnRulesLink.AddButton(System.String,PawnRules.API.OptionTarget,System.String,System.String,System.Single,System.Boolean)">
+            <summary>
+                Adds a new Button to the Rules dialog that sets a <see cref="T:System.Single" /> value. Buttons <see cref="P:PawnRules.API.OptionHandle.OnButtonClick" /> to be used to set the value.
+            </summary>
+            <param name="key">The key used in the save file. Will be automatically prefixed with your Mod Identifier.</param>
+            <param name="target">The type(s) of pawns this option will apply to.</param>
+            <param name="label">The label of the widget displayed.</param>
+            <param name="tooltip">The tooltip displayed for the widget.</param>
+            <param name="defaultValue">This is the default value if <see paramref="allowedInPreset" /> is false or no default rules exist when a pawn is first given rules.</param>
+            <param name="allowedInPreset">If set to false it cannot be used in a preset.</param>
+            <returns>Returns a handle for this option.</returns>
+        </member>
+    </members>
+</doc>

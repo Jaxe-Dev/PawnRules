@@ -20,9 +20,12 @@ namespace PawnRules.Patch
         public static PawnType GetTargetType(this Pawn self)
         {
             if (self == null) { return null; }
-            if ((self.Faction?.IsPlayer ?? false) && self.IsColonist) { return PawnType.Colonist; }
-            if ((self.Faction?.IsPlayer ?? false) && self.RaceProps.Animal) { return PawnType.Animal; }
-            if (self.HostFaction?.IsPlayer ?? false) { return self.IsPrisonerOfColony ? PawnType.Prisoner : PawnType.Guest; }
+            if ((self.Faction != null) && self.Faction.IsPlayer)
+            {
+                if (self.IsColonist) { return PawnType.Colonist; }
+                if (self.RaceProps.Animal) { return PawnType.Animal; }
+            }
+            if ((self.HostFaction != null) && self.HostFaction.IsPlayer) { return self.IsPrisonerOfColony ? PawnType.Prisoner : PawnType.Guest; }
             return null;
         }
 

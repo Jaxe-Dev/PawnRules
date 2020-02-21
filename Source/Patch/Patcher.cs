@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Harmony;
+using HarmonyLib;
 using PawnRules.Data;
 using Verse;
 
@@ -8,7 +8,7 @@ namespace PawnRules.Patch
     [StaticConstructorOnStartup]
     internal static class Patcher
     {
-        public static HarmonyInstance Harmony { get; } = HarmonyInstance.Create(Mod.Id);
+        public static Harmony Harmony { get; } = new Harmony(Mod.Id);
 
         static Patcher() => Harmony.PatchAll(Assembly.GetExecutingAssembly());
 

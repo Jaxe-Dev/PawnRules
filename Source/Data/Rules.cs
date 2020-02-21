@@ -21,8 +21,7 @@ namespace PawnRules.Data
         public bool HasAddons { get; private set; }
         public float AddonsRectHeight { get; private set; }
 
-        public Rules()
-        { }
+        public Rules() { }
 
         public Rules(Pawn pawn, PawnType type = null)
         {

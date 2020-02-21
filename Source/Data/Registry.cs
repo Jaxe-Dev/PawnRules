@@ -235,7 +235,7 @@ namespace PawnRules.Data
         {
             _isDeactivating = true;
 
-            ModsConfig.SetActive(Mod.Instance.Content.Identifier, false);
+            ModsConfig.SetActive(Mod.Instance.Content.PackageId, false);
 
             var runningMods = Access.Field_Verse_LoadedModManager_RunningMods_Get();
             runningMods.Remove(Mod.Instance.Content);
@@ -244,7 +244,7 @@ namespace PawnRules.Data
             foreach (var mod in AddonManager.Mods)
             {
                 addonMods.AppendLine(mod.Name);
-                ModsConfig.SetActive(mod.Identifier, false);
+                ModsConfig.SetActive(mod.PackageId, false);
                 runningMods.Remove(mod);
             }
 

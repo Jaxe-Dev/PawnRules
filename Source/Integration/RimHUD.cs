@@ -23,5 +23,7 @@ namespace PawnRules.Integration
 
             Dialog_Rules.Open(pawn);
         }
+
+        public static bool CanHaveRules(Pawn pawn) => pawn.CanHaveRules();
     }
 }

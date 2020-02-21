@@ -36,7 +36,7 @@ namespace PawnRules.Data
 
         internal static OptionHandle<T> Add<T>(PawnRulesLink link, string key, OptionTarget target, OptionWidget widget, string label, string tooltip, T defaultValue, bool allowedInPreset = true)
         {
-            var option = new AddonOption(link, link.ModContentPack.Identifier + "_" + key, target, widget, label, tooltip, typeof(T), defaultValue, allowedInPreset);
+            var option = new AddonOption(link, link.ModContentPack.PackageId + "_" + key, target, widget, label, tooltip, typeof(T), defaultValue, allowedInPreset);
 
             AddonManager.Add(option);
 

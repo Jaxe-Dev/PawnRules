@@ -25,7 +25,7 @@ namespace PawnRules.API
             if (AddonManager.Mods.Contains(modContentPack)) { throw new Mod.Exception("Only one plugin per mod is allowed"); }
 
             ModContentPack = modContentPack;
-            Mod.Log($"Registered with {ModContentPack.Identifier}");
+            Mod.Log($"Registered with {ModContentPack.PackageId}");
         }
 
         /// <summary>

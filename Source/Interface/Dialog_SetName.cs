@@ -28,10 +28,7 @@ namespace PawnRules.Interface
 
         public static void Open(string title, string label, Action<string> onCommit, Func<string, bool> validator, string name = null) => Find.WindowStack.Add(new Dialog_SetName(title, label, onCommit, validator, name));
 
-        public override void OnAcceptKeyPressed()
-        {
-            CommitName();
-        }
+        public override void OnAcceptKeyPressed() { CommitName(); }
 
         private void CommitName()
         {

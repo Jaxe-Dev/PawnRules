@@ -56,7 +56,7 @@ namespace PawnRules.Data
             doc.Save(file.FullName);
         }
 
-        public static bool NameIsValid(string name) => !name.NullOrEmpty() && (name.Length <= 250 - ExportsDirectory.FullName.Length) && ValidNameRegex.IsMatch(name);
+        public static bool NameIsValid(string name) => !name.NullOrEmpty() && (name.Length <= (250 - ExportsDirectory.FullName.Length)) && ValidNameRegex.IsMatch(name);
 
         public static string CreateDefaultName() => Faction.OfPlayer.Name + "_" + DateTime.Now.ToString("yyyy-MM-dd-hh-mm-ss");
     }

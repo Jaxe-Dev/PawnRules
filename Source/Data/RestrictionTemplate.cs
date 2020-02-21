@@ -45,7 +45,7 @@ namespace PawnRules.Data
             return new RestrictionTemplate(list.Values.ToArray());
         }
 
-        private static string GetFoodCategory(ThingDef self) => (self.category == ThingCategory.Item) && (self.FirstThingCategory != null) ? self.FirstThingCategory.LabelCap : self.category.ToString();
+        private static string GetFoodCategory(ThingDef self) => (self.category == ThingCategory.Item) && (self.FirstThingCategory != null) ? (string) self.FirstThingCategory.LabelCap : self.category.ToString();
 
         private static RestrictionTemplate GetAnimalsCategorized(Restriction restriction)
         {
@@ -53,12 +53,12 @@ namespace PawnRules.Data
 
             var categories = new[]
             {
-                        Lang.Get("AnimalCategory.Pet"),
-                        Lang.Get("AnimalCategory.Farm"),
-                        Lang.Get("AnimalCategory.Herd"),
-                        Lang.Get("AnimalCategory.Predator"),
-                        Lang.Get("AnimalCategory.Insect"),
-                        Lang.Get("AnimalCategory.Other")
+                Lang.Get("AnimalCategory.Pet"),
+                Lang.Get("AnimalCategory.Farm"),
+                Lang.Get("AnimalCategory.Herd"),
+                Lang.Get("AnimalCategory.Predator"),
+                Lang.Get("AnimalCategory.Insect"),
+                Lang.Get("AnimalCategory.Other")
             };
 
             foreach (var animal in AnimalCache)
@@ -96,7 +96,7 @@ namespace PawnRules.Data
             {
                 if (Members.Count < 1) { return MultiCheckboxState.Off; }
                 var first = Members.First().Value;
-                return Members.All(q => q.Value == first) ? (first ? MultiCheckboxState.On : MultiCheckboxState.Off) : MultiCheckboxState.Partial;
+                return Members.All(q => q.Value == first) ? first ? MultiCheckboxState.On : MultiCheckboxState.Off : MultiCheckboxState.Partial;
             }
 
             public void UpdateState(MultiCheckboxState state)

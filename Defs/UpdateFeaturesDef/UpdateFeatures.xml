@@ -4,10 +4,4 @@
     <modNameReadable>Pawn Rules</modNameReadable>
     <modIdentifier>PawnRules</modIdentifier>
   </HugsLib.UpdateFeatureDef>
-  <HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
-    <defName>PawnRules_1_3_0</defName>
-    <assemblyVersion>1.3.0</assemblyVersion>
-    <content>- Pawns should now properly respect food rules for inventory and deliveries\n\n- Assign tab is no longer replaced, this should now play nice with other mods\n\n- Presets sorted by name
-    </content>
-  </HugsLib.UpdateFeatureDef>
 </Defs>

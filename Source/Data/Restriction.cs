@@ -12,8 +12,7 @@ namespace PawnRules.Data
 
         private List<string> _defs = new List<string>();
 
-        public Restriction()
-        { }
+        public Restriction() { }
 
         public Restriction(RestrictionType type, string name) : base(name) => Type = type;
 

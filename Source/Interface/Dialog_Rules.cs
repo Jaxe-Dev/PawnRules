@@ -156,7 +156,7 @@ namespace PawnRules.Interface
 
             return options;
         }
-       
+
         private void AssignAll(bool byKind)
         {
             var pawns = GetOtherPawnsOfType(byKind).ToArray();

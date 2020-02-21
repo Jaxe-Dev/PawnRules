@@ -8,10 +8,9 @@ namespace PawnRules.Interface
         public override Vector2 InitialSize { get; }
         protected string Title { get; set; }
 
-        protected WindowPlus(Vector2 size) : this(null, size)
-        { }
+        protected WindowPlus(Vector2 size) : this(null, size) { }
 
-        protected WindowPlus(string title = null, Vector2 size = default(Vector2))
+        protected WindowPlus(string title = null, Vector2 size = default)
         {
             draggable = true;
             doCloseX = true;
@@ -20,7 +19,7 @@ namespace PawnRules.Interface
             closeOnClickedOutside = false;
             closeOnAccept = false;
 
-            InitialSize = size == default(Vector2) ? new Vector2(800f, 600f) : size;
+            InitialSize = size == default ? new Vector2(800f, 600f) : size;
             Title = title;
         }
 
