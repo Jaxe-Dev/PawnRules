@@ -1,6 +1,5 @@
 using System.IO;
 using PawnRules.Data;
-using PawnRules.Integration;
 using PawnRules.Interface;
 using PawnRules.Patch;
 using RimWorld;
@@ -13,7 +12,7 @@ namespace PawnRules
     {
         public const string Id = "PawnRules";
         public const string Name = "Pawn Rules";
-        public const string Version = "1.4.0";
+        public const string Version = "1.4.1";
 
         public static readonly DirectoryInfo ConfigDirectory = new DirectoryInfo(Path.Combine(GenFilePaths.ConfigFolderPath, Id));
 
@@ -26,8 +25,6 @@ namespace PawnRules
 
             FirstTimeUser = !ConfigDirectory.Exists;
             ConfigDirectory.Create();
-
-            if (!FirstTimeUser) { HugsLib.RegisterUpdateFeature(); }
 
             Log("Initialized");
         }

@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Defs>
-  <HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase">
-    <modNameReadable>Pawn Rules</modNameReadable>
-    <modIdentifier>PawnRules</modIdentifier>
-  </HugsLib.UpdateFeatureDef>
-</Defs>

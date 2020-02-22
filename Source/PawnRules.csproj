@@ -73,7 +73,6 @@
     <Compile Include="Data\RestrictionType.cs" />
     <Compile Include="Data\Rules.cs" />
     <Compile Include="Data\ScribePlus.cs" />
-    <Compile Include="Integration\HugsLib.cs" />
     <Compile Include="Integration\RimHUD.cs" />
     <Compile Include="Interface\Dialog_Alert.cs" />
     <Compile Include="Interface\Dialog_Global.cs" />
@@ -121,12 +120,6 @@
     </Content>
     <Content Include="..\About\About.xml">
       <Link>-\About\About.xml</Link>
-    </Content>
-    <Content Include="..\About\Manifest.xml">
-      <Link>-\About\Manifest.xml</Link>
-    </Content>
-    <Content Include="..\Defs\UpdateFeaturesDef\UpdateFeatures.xml">
-      <Link>-\Defs\UpdateFeaturesDefs\UpdateFeatures.xml</Link>
     </Content>
     <Content Include="..\Defs\WorldObjectDefs\PawnRules.xml">
       <Link>-\Defs\WorldObjectDefs\PawnRules.xml</Link>
