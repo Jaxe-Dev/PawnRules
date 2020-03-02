@@ -8,9 +8,9 @@ namespace PawnRules.Patch
     internal static class RimWorld_FoodUtility_WillEat
     {
         [HarmonyPatch(typeof(FoodUtility), "WillEat", typeof(Pawn), typeof(Thing), typeof(Pawn), typeof(bool))]
-        public static class ByThing
+        private static class ByThing
         {
-            private static void Postfix(ref bool __result, Pawn p, Thing food, Pawn getter = null) => ByThingDef.Postfix(ref __result, p, food.def, getter);
+            public static void Postfix(ref bool __result, Pawn p, Thing food, Pawn getter = null) => ByThingDef.Postfix(ref __result, p, food.def, getter);
         }
 
         [HarmonyPatch(typeof(FoodUtility), "WillEat", typeof(Pawn), typeof(ThingDef), typeof(Pawn), typeof(bool))]
