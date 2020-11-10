@@ -31,6 +31,7 @@ namespace PawnRules.Data
         public static bool AllowDrugsRestriction { get => _instance._allowDrugsRestriction; set => _instance._allowDrugsRestriction = value; }
         public static bool AllowEmergencyFood { get => _instance._allowEmergencyFood; set => _instance._allowEmergencyFood = value; }
         public static bool AllowTrainingFood { get => _instance._allowTrainingFood; set => _instance._allowTrainingFood = value; }
+        public static bool AllowRestingFood { get => _instance._allowRestingFood; set => _instance._allowRestingFood = value; }
         public static Pawn ExemptedTrainer { get => _instance._exemptedTrainer; set => _instance._exemptedTrainer = value; }
 
         private string _loadedVersion;
@@ -52,6 +53,7 @@ namespace PawnRules.Data
         private bool _allowDrugsRestriction;
         private bool _allowEmergencyFood;
         private bool _allowTrainingFood;
+        private bool _allowRestingFood;
 
         private Pawn _exemptedTrainer;
 
@@ -325,6 +327,7 @@ namespace PawnRules.Data
             Scribe_Values.Look(ref _allowDrugsRestriction, "allowDrugsRestriction");
             Scribe_Values.Look(ref _allowEmergencyFood, "allowEmergencyFood");
             Scribe_Values.Look(ref _allowTrainingFood, "allowTrainingFood");
+            Scribe_Values.Look(ref _allowRestingFood, "allowRestingFood");
 
             Scribe_Collections.Look(ref _savedPresets, "presets", LookMode.Deep);
             Scribe_Collections.Look(ref _savedBindings, "bindings", LookMode.Deep);

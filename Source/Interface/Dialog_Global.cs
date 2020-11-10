@@ -19,6 +19,7 @@ namespace PawnRules.Interface
             Registry.AllowDrugsRestriction = listing.CheckboxLabeled(Lang.Get("Dialog_Global.AllowDrugsRestriction"), Registry.AllowDrugsRestriction);
             Registry.AllowEmergencyFood = listing.CheckboxLabeled(Lang.Get("Dialog_Global.AllowEmergencyFood"), Registry.AllowEmergencyFood);
             Registry.AllowTrainingFood = listing.CheckboxLabeled(Lang.Get("Dialog_Global.AllowTrainingFood"), Registry.AllowTrainingFood);
+            Registry.AllowRestingFood = listing.CheckboxLabeled(Lang.Get("Dialog_Global.AllowRestingFood"), Registry.AllowRestingFood);
 
             listing.Gap();
             listing.GapLine();
