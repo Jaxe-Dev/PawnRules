@@ -48,14 +48,9 @@ namespace PawnRules.Patch
             if (t is Pawn)
             {
                 Pawn p = t as Pawn;
-                return (p.training != null) && (DoesPawnHaveImmunityDisease(p) || !CanPawnWalk(p));
+                return (p.training != null) && (HealthAIUtility.ShouldSeekMedicalRest(p) || !CanPawnWalk(p));
             }
             return false;
-        }
-
-        private static bool DoesPawnHaveImmunityDisease(Pawn p)
-        {
-            return p.health.hediffSet.HasImmunizableNotImmuneHediff();
         }
 
         private static bool CanPawnWalk(Pawn p)
