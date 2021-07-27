@@ -60,7 +60,7 @@ namespace PawnRules.Interface
                 _listing.Begin(vGrid[1], true);
                 foreach (var plan in _plans)
                 {
-                    if (_listing.RadioButton_NewTemp(plan, _selected == plan)) { _selected = plan; }
+                    if (_listing.RadioButton(plan, _selected == plan)) { _selected = plan; }
                 }
             }
             else

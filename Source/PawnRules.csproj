@@ -116,9 +116,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\.gitignore">
-      <Link>-\.gitignore</Link>
-    </Content>
     <Content Include="..\About\About.xml">
       <Link>-\About\About.xml</Link>
     </Content>
@@ -127,6 +124,9 @@
     </Content>
     <Content Include="..\Languages\English\Keyed\Keys.xml">
       <Link>-\Languages\English\Keyed\Keys.xml</Link>
+    </Content>
+    <Content Include="..\loadFolders.xml">
+      <Link>-\loadFolders.xml</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
