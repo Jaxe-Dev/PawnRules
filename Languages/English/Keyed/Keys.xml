@@ -93,6 +93,7 @@
   <PawnRules.Dialog_Global.Title>Global Options</PawnRules.Dialog_Global.Title>
   <PawnRules.Dialog_Global.AllowEmergencyFood>Allow any food when malnourished</PawnRules.Dialog_Global.AllowEmergencyFood>
   <PawnRules.Dialog_Global.AllowTrainingFood>Allow any food when training</PawnRules.Dialog_Global.AllowTrainingFood>
+  <PawnRules.Dialog_Global.AllowRestingFood>Allow any food to sick resting animals</PawnRules.Dialog_Global.AllowRestingFood>
   <PawnRules.Dialog_Global.AllowDrugsRestriction>Allow drugs to be restricted</PawnRules.Dialog_Global.AllowDrugsRestriction>
   <PawnRules.Dialog_Global.ShowRule>Show {0}</PawnRules.Dialog_Global.ShowRule>
   <PawnRules.Dialog_Global.Plans>Import/Export Plans</PawnRules.Dialog_Global.Plans>

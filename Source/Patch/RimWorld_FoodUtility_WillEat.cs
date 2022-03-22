@@ -24,6 +24,8 @@ namespace PawnRules.Patch
 
                 if (Registry.AllowTrainingFood && (getter?.CurJobDef != null) && ((getter.CurJobDef == JobDefOf.Tame) || (getter.CurJobDef == JobDefOf.Train))) { return; }
 
+                if (Registry.AllowRestingFood && (getter?.CurJobDef != null) && (getter.CurJobDef == JobDefOf.FeedPatient)) { return; }
+
                 if (!p.RaceProps.CanEverEat(food)) { return; }
 
                 var restriction = p.GetRules()?.GetRestriction(RestrictionType.Food);

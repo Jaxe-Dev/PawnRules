@@ -55,6 +55,7 @@
     <Compile Include="Patch\RimWorld_PawnColumnWorker_FoodRestriction_Compare.cs" />
     <Compile Include="Patch\RimWorld_PawnColumnWorker_FoodRestriction_DoAssignFoodRestrictionButtons.cs" />
     <Compile Include="Patch\RimWorld_PawnColumnWorker_FoodRestriction_DoHeader.cs" />
+    <Compile Include="Patch\RimWorld_WorkGiver_FeedPatient_JobOnThing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="API\OptionHandle.cs" />
