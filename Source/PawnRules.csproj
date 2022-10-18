@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Patch\RimWorld_HealthCardUtility_DrawOverviewTab.cs" />
     <Compile Include="Patch\RimWorld_PawnColumnWorker_FoodRestriction_Compare.cs" />
     <Compile Include="Patch\RimWorld_PawnColumnWorker_FoodRestriction_DoAssignFoodRestrictionButtons.cs" />
     <Compile Include="Patch\RimWorld_PawnColumnWorker_FoodRestriction_DoHeader.cs" />
@@ -94,7 +95,6 @@
     <Compile Include="Patch\RimWorld_GenConstruct_CanConstruct.cs" />
     <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_RandomSelectionWeight.cs" />
     <Compile Include="Patch\RimWorld_InteractionWorker_RomanceAttempt_SuccessChance.cs" />
-    <Compile Include="Patch\RimWorld_Pawn_FoodRestrictionTracker_Configurable.cs" />
     <Compile Include="Patch\RimWorld_Pawn_FoodRestrictionTracker_CurrentFoodRestriction.cs" />
     <Compile Include="Patch\RimWorld_Pawn_GuestTracker_SetGuestStatus.cs" />
     <Compile Include="Patch\RimWorld_PawnUtility_TrySpawnHatchedOrBornPawn.cs" />

@@ -11,7 +11,7 @@ namespace PawnRules.Patch
         {
             if (!Registry.IsActive) { return true; }
 
-            __result = new FoodRestriction(-1, Lang.Get("FoodRestrictionsOverridden"));
+            __result = new FoodRestriction(-1, Lang.Get("Gizmo.EditRulesLabel"));
             return false;
         }
     }

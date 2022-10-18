@@ -136,7 +136,7 @@ namespace PawnRules.Interface
             UpdateTemplate();
         }
 
-        private IEnumerable<Pawn> GetOtherPawnsOfType(bool byKind) => _type == null ? Find.CurrentMap.mapPawns.AllPawns.Where(pawn => (pawn != _pawn) && (pawn.GetTargetType() == _preset.Type) && (!byKind || (pawn.kindDef == _pawn.kindDef))) : Find.CurrentMap.mapPawns.AllPawns.Where(pawn => pawn.GetTargetType() == _type);
+        private IEnumerable<Pawn> GetOtherPawnsOfType(bool byKind) => _type == null ? Find.CurrentMap?.mapPawns.AllPawns.Where(pawn => (pawn != _pawn) && (pawn.GetTargetType() == _preset.Type) && (!byKind || (pawn.kindDef == _pawn.kindDef))) : Find.CurrentMap?.mapPawns.AllPawns.Where(pawn => pawn.GetTargetType() == _type);
 
         private string GetPresetNameDefinite()
         {
@@ -149,9 +149,10 @@ namespace PawnRules.Interface
             var options = new List<FloatMenuOption>();
 
             var otherPawnsOfType = GetOtherPawnsOfType(false);
-            if (GetOtherPawnsOfType(false).Any()) { options.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.AssignAll", _preset.Type.LabelPlural.ToLower()), () => AssignAll(false))); }
+            if (GetOtherPawnsOfType(false)?.Any() == true) { options.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.AssignAll", _preset.Type.LabelPlural.ToLower()), () => AssignAll(false))); }
             if ((_type == null) && _pawn.RaceProps.Animal && otherPawnsOfType.Any(kind => kind.kindDef == _pawn.kindDef)) { options.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.AssignAll", _pawn.kindDef.GetLabelPlural().ToLower()), () => AssignAll(true))); }
-            options.AddRange(Find.CurrentMap.mapPawns.AllPawns.Where(pawn => ((_type != null) || (pawn != _pawn)) && (pawn.GetTargetType() == _preset.Type)).Select(pawn => new FloatMenuOption(Lang.Get("Dialog_Rules.AssignSpecific", pawn.Name.ToString().Italic()), () => AssignSpecific(pawn))));
+            var toAdd = Find.CurrentMap?.mapPawns.AllPawns.Where(pawn => ((_type != null) || (pawn != _pawn)) && (pawn.GetTargetType() == _preset.Type)).Select(pawn => new FloatMenuOption(Lang.Get("Dialog_Rules.AssignSpecific", pawn.Name.ToString().Italic()), () => AssignSpecific(pawn)));
+            if (toAdd != null) { options.AddRange(toAdd); }
             if ((_type == null) && _preset.Selected.IsPreset) { options.Add(new FloatMenuOption(Lang.Get("Dialog_Rules.AssignDefault", _preset.Type.LabelPlural.ToLower()), () => Dialog_Alert.Open(Lang.Get("Dialog_Rules.AssignDefaultConfirm", _preset.Type.LabelPlural.ToLower(), _preset.Selected.Name.Bold()), Dialog_Alert.Buttons.YesNo, () => Registry.SetDefaultRules(_preset.Selected)))); }
 
             return options;
